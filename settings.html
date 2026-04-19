@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive.com - settings</title>
-    <link rel="stylesheet" href="settings.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Thrive</title>
+  <link rel="stylesheet" href="settings.css" />
 </head>
 <body>
-    <nav>
-        <h1 id="logo">thrive</h1>
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Goals</a></li>
-            <li><a href="#">Daily Tasks</a></li>
-            <li><a href="#">Progress</a></li>
-            <li><a href="#">Thrive with AI</a></li>
-            <li><a href="#">profile</a></li>
-            <li><a href="#">settings</a></li>
-        </ul>
-    </nav>
+<div class="container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
 
-    <div class="container">
-
-  
-    <div class="settings">
-    <h1>Settings</h1>
-
-     <div class="section">
-      <h2>Appearance</h2>
-      <label><input type="checkbox"> Dark Mode</label>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="goals.html">Goals</a>
+      <a class="nav-link" href="tasks.html">Daily tasks</a>
+      <a class="nav-link" href="progress.html">Progress</a>
+      <a class="nav-link" href="thriveAI.html">Thrive with AI</a>
     </div>
-
-     <div class="section">
-      <h2>Notifications</h2>
-      <label><input type="checkbox"> Email Alerts</label>
-      <label><input type="checkbox"> Push Notifications</label>
+    <div class="nav-user-controls">
+      <a class="icon-button active" href="settings.html" aria-label="Settings">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </a>
+      <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
     </div>
+  </nav>
 
-     <div class="section">
-      <h2>Accessibility</h2>
-      <p>Text size</p>
-      <label><input type="radio" name="text-size"> Small</label>
-      <label><input type="radio" name="text-size"> Large</label>
-    </div>
+  <main class="content-area">
+    <header class="welcome-header">
+      <h1>Settings</h1>
+      <p>Manage your account preferences and app appearance</p>
+    </header>
 
-    <div class="save">
-      <button>Save Changes</button>
-    </div>
+    <div class="settings-layout">
+      <section class="glass-box padded">
+        <h2 class="section-title">Appearance</h2>
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Dark Mode</span>
+            <span class="setting-desc">Switch between light and dark themes</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
 
+      <section class="glass-box padded">
+        <h2 class="section-title">Notifications</h2>
+        <div class="setting-item">
+          <span class="setting-label">Email Alerts</span>
+          <input type="checkbox" class="custom-check">
+        </div>
+        <div class="setting-item">
+          <span class="setting-label">Push Notifications</span>
+          <input type="checkbox" class="custom-check" checked>
+        </div>
+      </section>
+
+      <section class="glass-box padded">
+        <h2 class="section-title">Accessibility</h2>
+        <p class="setting-group-label">Text size</p>
+        <div class="radio-group">
+          <label class="radio-item">
+            <input type="radio" name="text-size" value="small">
+            <span class="radio-label">Small</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="text-size" value="large" checked>
+            <span class="radio-label">Large</span>
+          </label>
+        </div>
+      </section>
+
+      <div class="settings-actions">
+        <button class="save-btn">Save Changes</button>
+      </div>
     </div>
-  </div>
+  </main>
+</div>
 </body>
 </html>

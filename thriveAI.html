@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive.com - thrive with AI</title>
-    <link rel="stylesheet" href="thriveAI.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thrive with AI — Thrive</title>
+  <link rel="stylesheet" href="thriveAI.css" />
 </head>
 <body>
-    <nav>
-        <h1 id="logo">thrive</h1>
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Goals</a></li>
-            <li><a href="#">Daily Tasks</a></li>
-            <li><a href="#">Progress</a></li>
-            <li><a href="#">Thrive with AI</a></li>
-            <li><a href="#">profile</a></li>
-            <li><a href="#">settings</a></li>
-        </ul>
-    </nav>
+<div class="container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
 
-     <h1 id="promt">What's our quest today?</h1>
-    <div class="main">
-
-        <div class="input-box">
-            <span class="icon">+</span>
-            <input type="text"placeholder="Do anything with AI...">
-            <span class="icon">^</span>
-        </div>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="goals.html">Goals</a>
+      <a class="nav-link" href="tasks.html">Daily tasks</a>
+      <a class="nav-link" href="progress.html">Progress</a>
+      <a class="nav-link active" href="ai.html">Thrive with AI</a>
     </div>
+    <div class="nav-user-controls">
+      <a class="icon-button" href="profile.html" aria-label="Settings">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </a>
+      <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
+    </div>
+  </nav>
+
+  <main class="ai-center-wrapper">
+    <div class="ai-content">
+      <h1 class="ai-prompt">What's our quest today?</h1>
+      
+      <div class="ai-search-container">
+        <div class="ai-search-bar">
+          <button class="ai-action-icon" aria-label="Add file">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          
+          <input type="text" placeholder="Do anything with AI..." autofocus>
+          
+          <button class="ai-send-btn" aria-label="Send message">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8l14-7-7 14-1-6-6-1z" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="ai-suggestions">
+          <button class="suggestion-chip">Plan my workout</button>
+          <button class="suggestion-chip">Spanish vocab quiz</button>
+          <button class="suggestion-chip">Debug my Python code</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 </body>
 </html>

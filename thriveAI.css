@@ -1,62 +1,135 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #f0f0f0, #ffffff);
-  color: #333;
-  min-height: 100vh;
-}
+@import 'global.css';
 
-nav {
+/* --- Center Wrapper --- */
+.ai-center-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  color: #555;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #0078d7;
-}
-
-#promt{
-  text-align: center;
-  margin-top: 90px;
-}
-.main {
-  max-width: 900px;
-  align-items: center;
-  height: 200px;
-  margin: 80px auto;
-  background: rgba(215, 208, 208, 0.933);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 5 4px 20px rgba(95, 89, 89, 0.1);
-  text-align: center;
-  display: flex;
-  justify-content: center; 
-}
-
-.input-box{
-  width: 700px;
-  border-radius: 28px;
-  padding: 10px;
-  display: flex;
-  
   justify-content: center;
+  min-height: calc(80vh - 100px); /* Centers vertically in viewport */
+  text-align: center;
+}
+
+.ai-content {
+  width: 100%;
+  max-width: 720px;
+  padding: 20px;
+}
+
+/* --- Prompt Animation --- */
+.ai-prompt {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, var(--color-purple-dark), var(--color-blue-dark));
+  
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+/* --- AI Search Bar --- */
+.ai-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ai-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.ai-search-bar:focus-within {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: var(--color-purple-mid);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.15);
+  transform: translateY(-2px);
+}
+
+.ai-search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 0;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.ai-search-bar input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* --- Icons & Buttons --- */
+.ai-action-icon {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.ai-action-icon:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--color-purple-mid);
+}
+
+.ai-send-btn {
+  background: var(--color-purple-dark);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.ai-send-btn:hover {
+  transform: scale(1.1);
+  background: #3b0764;
+}
+
+/* --- Suggestion Chips --- */
+.ai-suggestions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.suggestion-chip {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.suggestion-chip:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: var(--color-purple-border);
+  color: var(--color-purple-text);
+}
+
+@media (max-width: 600px) {
+  .ai-prompt { font-size: 24px; }
+  .ai-suggestions { display: none; } /* Clean up mobile view */
 }

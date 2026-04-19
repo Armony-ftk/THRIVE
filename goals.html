@@ -1,91 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive.com - goals</title>
-    <link rel="stylesheet" href="goals.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goals — Thrive</title>
+  <link rel="stylesheet" href="goals.css" />
 </head>
 <body>
-        <nav>
-            <h1 id="logo">thrive</h1>
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Goals</a></li>
-            <li><a href="#">Daily Tasks</a></li>
-            <li><a href="#">Progress</a></li>
-            <li><a href="#">Thrive with AI</a></li>
-            <li><a href="#">profile</a></li>
-            <li><a href="#">settings</a></li>
-        </ul>
-    </nav>
+<div class="container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
 
-    <h1>Goals</h1>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link active" href="goals.html">Goals</a>
+      <a class="nav-link" href="tasks.html">Daily tasks</a>
+      <a class="nav-link" href="progress.html">Progress</a>
+      <a class="nav-link" href="thriveAI.html">Thrive with AI</a>
+    </div>
+    <div class="nav-user-controls">
+      <a class="icon-button" href="settings.html" aria-label="Settings">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </a>
+      <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
+    </div>
+  </nav>
 
-  <div class="goals">
-    <div class="card">
-      <h2>Skills</h2>
-      <h3>Master Python</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 28/05/2026</p>
-      <div class="milestones">
-        <strong>Milestones:</strong>
-        <ul>
-          <li>Complete Introduction to Python</li>
-          <li>Variable Declaration</li>
-          <li>Conditional Statements</li>
-        </ul>
-      </div>
+  <main class="content-area">
+    <header class="welcome-header">
+      <h1>Goals</h1>
+      <p>Set targets and track your long-term growth</p>
+    </header>
+
+    <div class="goals-grid">
+      <section class="glass-box goal-card">
+        <header class="goal-header">
+          <span class="category-tag primary">Skills</span>
+          <h2 class="goal-title">Master Python</h2>
+        </header>
+        <div class="progress-section">
+          <div class="progress-bar"><div class="fill primary" style="width: 40%"></div></div>
+          <span class="deadline">Deadline: 28/05/2026</span>
+        </div>
+        <div class="milestones-area">
+          <h3>Milestones</h3>
+          <ul class="milestone-check-list">
+            <li class="done">Complete Introduction to Python</li>
+            <li class="done">Variable Declaration</li>
+            <li>Conditional Statements</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="glass-box goal-card">
+        <header class="goal-header">
+          <span class="category-tag primary">Education</span>
+          <h2 class="goal-title">Learn Spanish</h2>
+        </header>
+        <div class="progress-section">
+          <div class="progress-bar"><div class="fill primary" style="width: 72%"></div></div>
+          <span class="deadline">Deadline: 01/09/2026</span>
+        </div>
+      </section>
+
+      <section class="glass-box goal-card">
+        <header class="goal-header">
+          <span class="category-tag secondary">Fitness</span>
+          <h2 class="goal-title">Complete Marathon Training</h2>
+        </header>
+        <div class="progress-section">
+          <div class="progress-bar"><div class="fill secondary" style="width: 30%"></div></div>
+          <span class="deadline">Deadline: 12/07/2026</span>
+        </div>
+      </section>
+
+      <section class="glass-box goal-card">
+        <header class="goal-header">
+          <span class="category-tag accent">Finance</span>
+          <h2 class="goal-title">Save R10,000</h2>
+        </header>
+        <div class="progress-section">
+          <div class="progress-bar"><div class="fill accent" style="width: 15%"></div></div>
+          <span class="deadline">Deadline: 30/12/2026</span>
+        </div>
+      </section>
+
+      <section class="glass-box goal-card">
+        <header class="goal-header">
+          <span class="category-tag info">Hobby</span>
+          <h2 class="goal-title">Gardening</h2>
+        </header>
+        <div class="progress-section">
+          <div class="progress-bar"><div class="fill info" style="width: 50%"></div></div>
+          <span class="deadline">Deadline: 08/06/2026</span>
+        </div>
+        <div class="milestones-area">
+          <h3>Milestones</h3>
+          <ul class="milestone-check-list">
+            <li class="done">Weed Garden</li>
+            <li>Buy fertiliser</li>
+          </ul>
+        </div>
+      </section>
     </div>
 
-    <div class="card">
-      <h2>Education</h2>
-      <h3>Learn Spanish</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 01/09/2026</p>
+    <div class="action-footer">
+      <button class="add-btn-large">
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Add New Goal
+      </button>
     </div>
-
-    <div class="card">
-      <h2>Fitness</h2>
-      <h3>Complete Marathon Training</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 12/07/2026</p>
-    </div>
-
-    <div class="card">
-      <h2>Finance</h2>
-      <h3>Save R10,000</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 30/12/2026</p>
-    </div>
-
-    <div class="card">
-      <h2>Personal Growth</h2>
-      <h3>Read 5 Books</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 16/08/2026</p>
-    </div>
-
-    <div class="card">
-      <h2>Hobby</h2>
-      <h3>Gardening</h3>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <p class="deadline">Deadline: 08/06/2026</p>
-      <div class="milestones">
-        <strong>Milestones:</strong>
-        <ul>
-          <li>Weed Garden</li>
-          <li>Buy fertiliser</li>
-          <li>Purchase garden tools</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="add-goal">
-    <button>Add New Goal</button>
-  </div>
-
-  
+  </main>
+</div>
 </body>
 </html>
