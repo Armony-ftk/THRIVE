@@ -3,131 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard — Thrive</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="dashboard.css" />
 </head>
 <body>
-<div class="page-wrapper">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
+<div class="container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
 
-  <!--The navigation bar-->
-  <nav class="navbar">
-    <a class="navbar_logo" href="dashboard.html">thrive.</a>
-    <div class="navbar_links">
-      <a class="navbar_link active" href="dashboard.html">Dashboard</a>
-      <a class="navbar_link" href="goals.html">Goals</a>
-      <a class="navbar_link" href="tasks.html">Daily tasks</a>
-      <a class="navbar_link" href="progress.html">Progress</a>
-      <a class="navbar_link" href="ai.html">Thrive with AI</a>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a class="nav-link active" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="goals.html">Goals</a>
+      <a class="nav-link" href="tasks.html">Daily tasks</a>
+      <a class="nav-link" href="progress.html">Progress</a>
+      <a class="nav-link" href="thriveAI.html">Thrive with AI</a>
     </div>
-    <div class="navbar_actions">
-      <button class="navbar_icon-btn" aria-label="Settings">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </button>
-      <a class="navbar_avatar" href="profile.html" title="Emma">EM</a>
-    </div>
+
+
+  <div class="nav-user-controls">
+  <a class="icon-button" href="settings.html" aria-label="Settings">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/>
+      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
+</div>
   </nav>
 
-  <main class="page-body">
-    <div class="page-hero">
+  <main class="content-area">
+    <header class="welcome-header">
       <h1>Welcome back, Emma</h1>
       <p>"Small progress every day leads to big results."</p>
+    </header>
+
+    <p class="label">Today's overview</p>
+    
+    <div class="stats-row">
+      <div class="stat-card primary">
+        <div class="card-top">
+          <span class="card-label">Active goals</span>
+          <div class="status-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#6d28d9" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="#6d28d9" stroke-width="1.3"/><circle cx="8" cy="8" r="1" fill="#6d28d9"/></svg></div>
+        </div>
+        <div class="stat-value">4</div>
+        <p class="stat-detail">2 on track &middot; 2 at risk</p>
+      </div>
+
+      <div class="stat-card secondary">
+        <div class="card-top">
+          <span class="card-label">Tasks today</span>
+          <div class="status-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#047857" stroke-width="1.3"/><path d="M5 8l2 2 4-3" stroke="#047857" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="stat-value">5</div>
+        <p class="stat-detail">2 completed &middot; 3 pending</p>
+      </div>
+
+      <div class="stat-card accent">
+        <div class="card-top">
+          <span class="card-label">Overall progress</span>
+          <div class="status-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><polyline points="2,11 5,7 8,9 11,4 14,6" stroke="#be123c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+        </div>
+        <div class="stat-value">60%</div>
+        <p class="stat-detail">Up 8% from last week</p>
+      </div>
     </div>
 
-    <div class="section-label">Today's overview</div>
-    <div class="stat-row">
-      <div class="stat-card stat-card--purple">
-        <div class="stat-card__top">
-          <span class="stat-card__label">Active goals</span>
-          <div class="stat-card__icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#6d28d9" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="#6d28d9" stroke-width="1.3"/><circle cx="8" cy="8" r="1" fill="#6d28d9"/></svg></div>
+    <div class="layout-grid">
+      <div class="column">
+        <div class="glass-box">
+          <div class="box-header">
+            <span class="box-title">Today's tasks</span>
+            <a class="view-link" href="tasks.html">View all &rarr;</a>
+          </div>
+          <div class="task-row">
+            <div class="checkbox completed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="task-name strike">Review Spanish vocabulary flashcards</p>
+            <span class="category-tag">Spanish</span>
+          </div>
+          <div class="task-row">
+            <div class="checkbox completed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <p class="task-name strike">Read chapter 3 of Clean Code</p>
+            <span class="category-tag">Dev</span>
+          </div>
+          <div class="task-row">
+            <div class="checkbox"></div>
+            <p class="task-name">Take Spanish quiz</p>
+            <span class="category-tag">Spanish</span>
+          </div>
+          <div class="task-row">
+            <div class="checkbox"></div>
+            <p class="task-name">Build Python calculator</p>
+            <span class="category-tag">Dev</span>
+          </div>
+          <div class="task-row">
+            <div class="checkbox"></div>
+            <p class="task-name">30-min morning run</p>
+            <span class="category-tag">Fitness</span>
+          </div>
         </div>
-        <div class="stat-card__number">4</div>
-        <div class="stat-card__sub">2 on track &middot; 2 at risk</div>
-      </div>
-      <div class="stat-card stat-card--teal">
-        <div class="stat-card__top">
-          <span class="stat-card__label">Tasks today</span>
-          <div class="stat-card__icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#047857" stroke-width="1.3"/><path d="M5 8l2 2 4-3" stroke="#047857" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        </div>
-        <div class="stat-card__number">5</div>
-        <div class="stat-card__sub">2 completed &middot; 3 pending</div>
-      </div>
-      <div class="stat-card stat-card--coral">
-        <div class="stat-card__top">
-          <span class="stat-card__label">Overall progress</span>
-          <div class="stat-card__icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><polyline points="2,11 5,7 8,9 11,4 14,6" stroke="#be123c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
-        </div>
-        <div class="stat-card__number">60%</div>
-        <div class="stat-card__sub">Up 8% from last week</div>
-      </div>
-    </div>
 
-    <div class="main-grid">
-      <div class="main-col">
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header">
-            <span class="card__title">Today's tasks</span>
-            <a class="card__action" href="tasks.html">View all &rarr;</a>
+        <div class="glass-box">
+          <div class="box-header">
+            <span class="box-title">Goal progress</span>
+            <a class="view-link" href="goals.html">View all &rarr;</a>
           </div>
-          <div class="task-item"><div class="task-item__check done"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="task-item__text done">Review Spanish vocabulary flashcards</span><span class="tag tag-p">Spanish</span></div>
-          <div class="task-item"><div class="task-item__check done"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="task-item__text done">Read chapter 3 of Clean Code</span><span class="tag tag-b">Dev</span></div>
-          <div class="task-item"><div class="task-item__check"></div><span class="task-item__text">Take Spanish quiz</span><span class="tag tag-p">Spanish</span></div>
-          <div class="task-item"><div class="task-item__check"></div><span class="task-item__text">Build Python calculator</span><span class="tag tag-b">Dev</span></div>
-          <div class="task-item"><div class="task-item__check"></div><span class="task-item__text">30-min morning run</span><span class="tag tag-t">Fitness</span></div>
-        </div>
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header">
-            <span class="card__title">Goal progress</span>
-            <a class="card__action" href="goals.html">View all &rarr;</a>
+          <div class="goal-entry">
+            <div class="goal-info">
+              <span>Learn Spanish (B2)</span>
+              <span>72%</span>
+            </div>
+            <div class="progress-bar"><div class="fill" style="width:72%"></div></div>
           </div>
-          <div class="goal-item"><div class="goal-item__row"><span class="goal-item__name">Learn Spanish (B2)</span><span class="goal-item__pct">72%</span></div><div class="pbar"><div class="pfill pfill-p" style="width:72%"></div></div></div>
-          <div class="goal-item"><div class="goal-item__row"><span class="goal-item__name">Build portfolio website</span><span class="goal-item__pct">45%</span></div><div class="pbar"><div class="pfill pfill-t" style="width:45%"></div></div></div>
-          <div class="goal-item"><div class="goal-item__row"><span class="goal-item__name">Run 5km under 25 min</span><span class="goal-item__pct">30%</span></div><div class="pbar"><div class="pfill pfill-c" style="width:30%"></div></div></div>
+          <div class="goal-entry">
+            <div class="goal-info">
+              <span>Build portfolio website</span>
+              <span>45%</span>
+            </div>
+            <div class="progress-bar"><div class="fill" style="width:45%"></div></div>
+          </div>
         </div>
       </div>
-      <div class="main-col">
-        <div class="glass glass--purple quote-card">
-          <div class="quote-card__label">Daily motivation</div>
-          <div class="quote-card__text">"The secret of getting ahead is getting started."</div>
-          <div class="quote-card__author">&mdash; Mark Twain</div>
+
+      <div class="column">
+        <div class="glass-box motivation">
+          <p class="small-label">Daily motivation</p>
+          <p class="quote">"The secret of getting ahead is getting started."</p>
+          <span class="author">&mdash; Mark Twain</span>
         </div>
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header" style="margin-bottom:8px;"><span class="card__title">Consistency streak</span></div>
-          <div><span class="streak-card__num">7</span><span class="streak-card__sub">days in a row</span></div>
-          <div class="streak-dots">
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">M</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">T</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">W</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">T</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">F</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">S</span></div>
-            <div class="streak-dot"><div class="streak-dot__circle streak-dot__circle--on"></div><span class="streak-dot__label">S</span></div>
+
+        <div class="glass-box">
+          <header class="box-header">
+            <span class="box-title">Consistency streak</span>
+          </header>
+          <div class="streak-focus">
+            <span class="streak-count">7</span>
+            <span class="streak-label">days in a row</span>
+          </div>
+          <div class="streak-calendar">
+            <div class="day"><div class="dot active"></div><span>M</span></div>
+            <div class="day"><div class="dot active"></div><span>T</span></div>
+            <div class="day"><div class="dot active"></div><span>W</span></div>
+            <div class="day"><div class="dot active"></div><span>T</span></div>
+            <div class="day"><div class="dot active"></div><span>F</span></div>
+            <div class="day"><div class="dot active"></div><span>S</span></div>
+            <div class="day"><div class="dot active"></div><span>S</span></div>
           </div>
         </div>
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Risk alert</span><span class="risk-badge">1 at risk</span></div>
-          <p class="risk-card__body"><span class="risk-card__name">Portfolio website</span> is falling behind — only 3 days left to hit this week's milestone.</p>
-          <a class="risk-card__action" href="progress.html">Adjust plan &rarr;</a>
+
+        <div class="glass-box">
+          <div class="box-header">
+            <span class="box-title">Risk alert</span>
+            <span class="badge">1 at risk</span>
+          </div>
+          <p class="alert-text"><strong>Portfolio website</strong> is falling behind — only 3 days left to hit this week's milestone.</p>
+          <a class="action-link" href="progress.html">Allow system to Adjust plan &rarr;</a>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="footer">
-    <span class="footer__copy">&copy; 2026 Thrive. All rights reserved.</span>
-    <div class="footer__links">
-      <a class="footer__link" href="dashboard.html">Dashboard</a>
-      <a class="footer__link" href="goals.html">Goals</a>
-      <a class="footer__link" href="tasks.html">Daily tasks</a>
-      <a class="footer__link" href="progress.html">Progress</a>
+  <footer class="main-footer">
+    <p class="copyright">&copy; 2026 Thrive. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="goals.html">Goals</a>
+      <a href="tasks.html">Daily tasks</a>
+      <a href="progress.html">Progress</a>
     </div>
-    <div class="footer__socials">
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><path d="M4 6.5v5M4 4.5v.5M7 11.5V9c0-1.1.9-2 2-2s2 .9 2 2v2.5M7 6.5v5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+    <div class="social-icons">
+      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="currentColor"/></svg></span>
+      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="currentColor"/></svg></span>
     </div>
   </footer>
 </div>

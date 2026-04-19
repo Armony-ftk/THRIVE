@@ -7,99 +7,177 @@
   <link rel="stylesheet" href="progress.css" />
 </head>
 <body>
-<div class="page-wrapper">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div>
+<div class="container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
 
-  <nav class="navbar">
-    <a class="navbar__logo" href="dashboard.html">thrive.</a>
-    <div class="navbar__links">
-      <a class="navbar__link" href="dashboard.html">Dashboard</a>
-      <a class="navbar__link" href="goals.html">Goals</a>
-      <a class="navbar__link" href="tasks.html">Daily tasks</a>
-      <a class="navbar__link active" href="progress.html">Progress</a>
-      <a class="navbar__link" href="ai.html">Thrive with AI</a>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a class="nav-link" href="dashboard.html">Dashboard</a>
+      <a class="nav-link" href="goals.html">Goals</a>
+      <a class="nav-link" href="tasks.html">Daily tasks</a>
+      <a class="nav-link active" href="progress.html">Progress</a>
+      <a class="nav-link" href="ai.html">Thrive with AI</a>
     </div>
-    <div class="navbar__actions">
-      <button class="navbar__icon-btn" aria-label="Settings">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </button>
-      <a class="navbar__avatar" href="profile.html">EM</a>
-    </div>
+    <div class="nav-user-controls">
+  <a class="icon-button" href="settings.html" aria-label="Settings">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/>
+      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
+</div>
   </nav>
 
-  <main class="page-body">
-    <div class="page-hero">
+  <main class="content-area">
+    <header class="welcome-header">
       <h1>Progress</h1>
       <p>Your execution stats and behavioural insights</p>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-card primary">
+        <span class="card-label">Tasks completed</span>
+        <span class="stat-value">84</span>
+      </div>
+      <div class="stat-card secondary">
+        <span class="card-label">Day streak</span>
+        <span class="stat-value">7</span>
+      </div>
+      <div class="stat-card accent">
+        <span class="card-label">Goals on track</span>
+        <span class="stat-value">2/4</span>
+      </div>
+      <div class="stat-card info">
+        <span class="card-label">Completion rate</span>
+        <span class="stat-value">74%</span>
+      </div>
     </div>
 
-    <div class="progress-stats">
-      <div class="p-stat p-stat--purple"><div class="p-stat__label">Tasks completed</div><div class="p-stat__val">84</div></div>
-      <div class="p-stat p-stat--teal"><div class="p-stat__label">Day streak</div><div class="p-stat__val">7</div></div>
-      <div class="p-stat p-stat--coral"><div class="p-stat__label">Goals on track</div><div class="p-stat__val">2/4</div></div>
-      <div class="p-stat p-stat--blue"><div class="p-stat__label">Completion rate</div><div class="p-stat__val">74%</div></div>
-    </div>
-
-    <div class="progress-grid">
-      <div class="progress-col">
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Goal progress</span><a class="card__action" href="goals.html">View all &rarr;</a></div>
-          <div class="goal-row"><div class="goal-row__top"><span class="goal-row__name">Learn Spanish (B2)</span><div class="goal-row__meta"><span class="goal-row__pct">72%</span><span class="badge badge--on">On track</span></div></div><div class="pbar"><div class="pfill pfill-p" style="width:72%"></div></div></div>
-          <div class="goal-row"><div class="goal-row__top"><span class="goal-row__name">Build portfolio website</span><div class="goal-row__meta"><span class="goal-row__pct">45%</span><span class="badge badge--risk">At risk</span></div></div><div class="pbar"><div class="pfill pfill-t" style="width:45%"></div></div></div>
-          <div class="goal-row"><div class="goal-row__top"><span class="goal-row__name">Run 5km under 25 min</span><div class="goal-row__meta"><span class="goal-row__pct">30%</span><span class="badge badge--on">On track</span></div></div><div class="pbar"><div class="pfill pfill-c" style="width:30%"></div></div></div>
-          <div class="goal-row"><div class="goal-row__top"><span class="goal-row__name">Read 12 books this year</span><div class="goal-row__meta"><span class="goal-row__pct">58%</span><span class="badge badge--on">On track</span></div></div><div class="pbar"><div class="pfill pfill-b" style="width:58%"></div></div></div>
-        </div>
-
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Weekly tasks completed</span></div>
-          <div class="bar-chart-lg" style="display:flex;align-items:flex-end;gap:10px;height:100px;margin-top:10px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;width:100%;height:60px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W1</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;width:100%;height:78px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W2</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#34d399,#059669);border-radius:4px 4px 0 0;width:100%;height:50px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W3</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;width:100%;height:92px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W4</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;width:100%;height:65px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W5</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#34d399,#059669);border-radius:4px 4px 0 0;width:100%;height:80px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W6</span></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;"><div style="background:linear-gradient(180deg,#34d399,#059669);border-radius:4px 4px 0 0;width:100%;height:55px;"></div><span style="font-size:9px;color:rgba(60,40,140,0.4);">W7</span></div>
+    <div class="layout-grid">
+      <div class="column">
+        <section class="glass-box padded">
+          <header class="box-header">
+            <span class="box-title">Goal progress</span>
+            <a class="view-link" href="goals.html">View all &rarr;</a>
+          </header>
+          
+          <div class="goal-entry">
+            <div class="goal-info">
+              <span>Learn Spanish (B2)</span>
+              <div><span class="pct">72%</span> <span class="badge secondary">On track</span></div>
+            </div>
+            <div class="progress-bar"><div class="fill" style="width:72%"></div></div>
           </div>
-        </div>
+
+          <div class="goal-entry">
+            <div class="goal-info">
+              <span>Build portfolio website</span>
+              <div><span class="pct">45%</span> <span class="badge accent">At risk</span></div>
+            </div>
+            <div class="progress-bar"><div class="fill" style="width:45%"></div></div>
+          </div>
+
+          <div class="goal-entry">
+            <div class="goal-info">
+              <span>Run 5km under 25 min</span>
+              <div><span class="pct">30%</span> <span class="badge secondary">On track</span></div>
+            </div>
+            <div class="progress-bar"><div class="fill" style="width:30%"></div></div>
+          </div>
+        </section>
+
+        <section class="glass-box padded">
+          <header class="box-header">
+            <span class="box-title">Weekly activity</span>
+          </header>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" style="height: 60%;"></div><span>W1</span></div>
+            <div class="bar-col"><div class="bar" style="height: 78%;"></div><span>W2</span></div>
+            <div class="bar-col"><div class="bar alt" style="height: 50%;"></div><span>W3</span></div>
+            <div class="bar-col"><div class="bar" style="height: 92%;"></div><span>W4</span></div>
+            <div class="bar-col"><div class="bar" style="height: 65%;"></div><span>W5</span></div>
+            <div class="bar-col"><div class="bar alt" style="height: 80%;"></div><span>W6</span></div>
+            <div class="bar-col"><div class="bar alt" style="height: 55%;"></div><span>W7</span></div>
+          </div>
+        </section>
       </div>
 
-      <div class="progress-col">
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Procrastination insights</span></div>
-          <div class="insight-row"><div class="insight-dot" style="background:#e11d48"></div><div><div class="insight-text">Dev tasks avoided on Wednesdays</div><div class="insight-sub">3 weeks in a row</div></div></div>
-          <div class="insight-row"><div class="insight-dot" style="background:#7c3aed"></div><div><div class="insight-text">Most productive window: 9–11 am</div><div class="insight-sub">74% of tasks completed in this slot</div></div></div>
-          <div class="insight-row"><div class="insight-dot" style="background:#059669"></div><div><div class="insight-text">Spanish tasks completed consistently</div><div class="insight-sub">No delays in the past 2 weeks</div></div></div>
-          <div class="insight-row"><div class="insight-dot" style="background:#d97706"></div><div><div class="insight-text">Fitness tasks often pushed to evening</div><div class="insight-sub">Average delay of 4 hours</div></div></div>
-        </div>
+      <div class="column">
+        <section class="glass-box padded">
+          <header class="box-header">
+            <span class="box-title">Procrastination insights</span>
+          </header>
+          <div class="insight-list">
+            <div class="insight-row">
+              <div class="dot accent"></div>
+              <div>
+                <p class="insight-text">Dev tasks avoided on Wednesdays</p>
+                <p class="insight-sub">3 weeks in a row</p>
+              </div>
+            </div>
+            <div class="insight-row">
+              <div class="dot primary"></div>
+              <div>
+                <p class="insight-text">Most productive window: 9–11 am</p>
+                <p class="insight-sub">74% of completion rate</p>
+              </div>
+            </div>
+            <div class="insight-row">
+              <div class="dot secondary"></div>
+              <div>
+                <p class="insight-text">Spanish consistency is high</p>
+                <p class="insight-sub">No delays in 14 days</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Milestones this month</span></div>
-          <div class="milestone-row"><div class="milestone-dot" style="background:#059669"></div><span class="milestone-text">Completed Spanish Unit 4</span></div>
-          <div class="milestone-row"><div class="milestone-dot" style="background:#7c3aed"></div><span class="milestone-text">Published portfolio homepage</span></div>
-          <div class="milestone-row"><div class="milestone-dot" style="background:#059669"></div><span class="milestone-text">7-day consistency streak</span></div>
-          <div class="milestone-row"><div class="milestone-box"></div><span class="milestone-text pending">Run 4km without stopping</span></div>
-          <div class="milestone-row"><div class="milestone-box"></div><span class="milestone-text pending">Finish Python calculator project</span></div>
-        </div>
+        <section class="glass-box padded">
+          <header class="box-header">
+            <span class="box-title">Milestones this month</span>
+          </header>
+          <ul class="milestone-list">
+            <li class="milestone-item done">
+              <div class="marker"></div>
+              <span>Completed Spanish Unit 4</span>
+            </li>
+            <li class="milestone-item done">
+              <div class="marker alt"></div>
+              <span>Published portfolio homepage</span>
+            </li>
+            <li class="milestone-item">
+              <div class="marker outline"></div>
+              <span class="pending">Run 4km without stopping</span>
+            </li>
+            <li class="milestone-item">
+              <div class="marker outline"></div>
+              <span class="pending">Finish Python calculator</span>
+            </li>
+          </ul>
+        </section>
       </div>
     </div>
   </main>
 
-  <footer class="footer">
-    <span class="footer__copy">&copy; 2026 Thrive. All rights reserved.</span>
-    <div class="footer__links">
-      <a class="footer__link" href="dashboard.html">Dashboard</a>
-      <a class="footer__link" href="goals.html">Goals</a>
-      <a class="footer__link" href="tasks.html">Daily tasks</a>
-      <a class="footer__link" href="progress.html">Progress</a>
+  <footer class="main-footer">
+    <p class="copyright">&copy; 2026 Thrive. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="goals.html">Goals</a>
+      <a href="tasks.html">Daily tasks</a>
+      <a href="progress.html">Progress</a>
     </div>
-    <div class="footer__socials">
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><path d="M4 6.5v5M4 4.5v.5M7 11.5V9c0-1.1.9-2 2-2s2 .9 2 2v2.5M7 6.5v5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+    <div class="social-icons">
+      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="currentColor"/></svg></span>
+      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="currentColor"/></svg></span>
     </div>
   </footer>
 </div>
-<script src="../../components/navbar.js"></script>
+<script src="navbar.js"></script>
 </body>
 </html>
