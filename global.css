@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
 
-/* ── Design tokens ─────────────────────────────────── */
+
 :root {
   --font-sans: 'DM Sans', sans-serif;
 
@@ -85,7 +85,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .orb-3 { width: 260px; height: 260px; background: #818cf8; opacity: 0.25; bottom: 160px; left: 30%; }
 .orb-4 { width: 200px; height: 200px; background: #34d399; opacity: 0.2;  bottom: 60px; right: 8%; }
 
-/* ── Navbar ─────────────────────────────────────────── */
+/* ──The navigation bar stylinggg─────── */
 .navbar {
   position: sticky; top: 0; z-index: 100;
   height: var(--nav-height);
@@ -96,33 +96,33 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
 }
-.navbar__logo {
+.navbar_logo {
   font-size: 17px; font-weight: 500;
   color: #4c1d95; letter-spacing: -0.4px; flex-shrink: 0;
 }
-.navbar__links { display: flex; align-items: center; gap: 2px; flex: 1; }
-.navbar__link {
+.navbar_links { display: flex; align-items: center; gap: 2px; flex: 1; }
+.navbar_link {
   font-size: 13px; color: var(--color-text-secondary);
   padding: 6px 13px; border-radius: var(--radius-sm);
   transition: background 0.15s, color 0.15s;
   white-space: nowrap; display: inline-block;
 }
-.navbar__link:hover { background: rgba(255,255,255,0.3); color: var(--color-purple-text); }
-.navbar__link.active {
+.navbar_link:hover { background: rgba(255,255,255,0.3); color: var(--color-purple-text); }
+.navbar_link.active {
   background: rgba(255,255,255,0.45);
   border: 1px solid var(--glass-border-strong);
   color: #3C3489; font-weight: 500;
 }
-.navbar__actions { display: flex; align-items: center; gap: 8px; }
-.navbar__icon-btn {
+.navbar_actions { display: flex; align-items: center; gap: 8px; }
+.navbar_icon-btn {
   width: 32px; height: 32px; border-radius: 50%;
   background: rgba(255,255,255,0.3);
   border: 1px solid var(--glass-border);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background 0.15s;
 }
-.navbar__icon-btn:hover { background: rgba(255,255,255,0.5); }
-.navbar__avatar {
+.navbar_icon-btn:hover { background: rgba(255,255,255,0.5); }
+.navbar_avatar {
   width: 32px; height: 32px; border-radius: 50%;
   background: rgba(255,255,255,0.4);
   border: 1px solid var(--glass-border-strong);
@@ -131,7 +131,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   cursor: pointer; backdrop-filter: blur(8px);
 }
 
-/* ── Glass card ─────────────────────────────────────── */
+/* ── This is for the glass effect─────── */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
