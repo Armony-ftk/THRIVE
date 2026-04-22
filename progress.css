@@ -1,99 +1,135 @@
-@import 'global.css';
+@import "global.css";
+@import "layout.css";
 
-/* --- Top Stat Row --- */
-.stats-row { 
-  display: grid; 
-  grid-template-columns: repeat(4, minmax(0, 1fr)); 
-  gap: 12px; 
-  margin-bottom: 24px; 
+/* =========================
+   HEADER
+========================= */
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-.stat-card { 
-  border-radius: var(--radius-lg); 
-  padding: 16px 18px; 
-  backdrop-filter: blur(16px); 
-  border: 1px solid var(--glass-border); 
-  box-shadow: var(--glass-shadow); 
+.welcome-header h1 {
+  font-family: var(--ff-display);
+  font-size: 34px;
 }
 
-/* Role-based coloring for Stat Cards */
-.stat-card.primary   { background: var(--color-purple-light); border-color: var(--color-purple-border); }
-.stat-card.secondary { background: var(--color-teal-light);   border-color: var(--color-teal-border); }
-.stat-card.accent    { background: var(--color-coral-light);  border-color: var(--color-coral-border); }
-.stat-card.info      { background: var(--color-blue-light);   border-color: var(--color-blue-border); }
+/* =========================
+   STATS ROW
+========================= */
 
-.card-label { font-size: 11px; font-weight: 500; margin-bottom: 8px; display: block; }
-.stat-value { font-size: 26px; font-weight: 500; letter-spacing: -0.5px; display: block; }
-
-/* Text colors based on role */
-.primary   .card-label { color: var(--color-purple-text); }
-.primary   .stat-value { color: var(--color-purple-dark); }
-.secondary .card-label { color: var(--color-teal-text); }
-.secondary .stat-value { color: var(--color-teal-dark); }
-.accent    .card-label { color: var(--color-coral-text); }
-.accent    .stat-value { color: var(--color-coral-dark); }
-.info      .card-label { color: var(--color-blue-text); }
-.info      .stat-value { color: var(--color-blue-dark); }
-
-/* --- Layout Grid --- */
-.layout-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
-.column      { display: flex; flex-direction: column; gap: 16px; }
-
-/* --- Goal Rows --- */
-.goal-entry { padding: 11px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
-.goal-entry:last-child { border-bottom: none; }
-
-.goal-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; font-size: 13px; }
-.pct { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-right: 8px; }
-
-.badge { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; border: 1px solid; }
-
-/* --- Weekly Activity Chart --- */
-.bar-chart { 
-  display: flex; 
-  align-items: flex-end; 
-  gap: 10px; 
-  height: 100px; 
-  margin-top: 10px; 
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
-.bar-col { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; }
-.bar-col span { font-size: 9px; color: var(--color-text-tertiary); }
-
-.bar { 
-  background: linear-gradient(180deg, #a78bfa, #7c3aed); 
-  border-radius: 4px 4px 0 0; 
-  width: 100%; 
+.stat-card {
+  padding: 16px;
+  text-align: center;
+  border-radius: var(--r-xl);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
-.bar.alt { background: linear-gradient(180deg, #34d399, #059669); }
-
-/* --- Insights --- */
-.insight-list { display: flex; flex-direction: column; }
-.insight-row  { display: flex; align-items: flex-start; gap: 10px; padding: 11px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
-.insight-row:last-child { border-bottom: none; }
-
-.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
-.dot.primary   { background: #7c3aed; }
-.dot.secondary { background: #059669; }
-.dot.accent    { background: #e11d48; }
-
-.insight-text { font-size: 12px; color: var(--color-text-primary); }
-.insight-sub  { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
-
-/* --- Milestones --- */
-.milestone-list { list-style: none; padding-top: 8px; }
-.milestone-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 12px; }
-
-.marker { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.marker.outline { border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 2px; }
-.marker:not(.outline) { background: #059669; } /* Default "Done" color */
-.marker.alt { background: #7c3aed; }
-
-.pending { color: var(--color-text-tertiary); }
-
-/* --- Responsive --- */
-@media (max-width: 860px) {
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .layout-grid { grid-template-columns: 1fr; }
+.card-label {
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
+
+.stat-value {
+  font-family: var(--ff-display);
+  font-size: 30px;
+  margin-top: 6px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 18px;
+}
+
+/* =========================
+   PROGRESS BARS
+========================= */
+
+.progress-bar {
+  height: 6px;
+  background: rgba(124,106,238,0.10);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a78bfa, #7c6aee);
+}
+
+/* =========================
+   INSIGHTS
+========================= */
+
+.insight-row {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.insight-text {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.insight-sub {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+/* dots */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.primary { background: var(--violet); }
+.dot.secondary { background: var(--teal); }
+.dot.accent { background: var(--coral); }
+
+/* =========================
+   MILESTONES
+========================= */
+
+.milestone-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.marker.done { background: var(--teal); }
+.marker.alt { background: var(--violet); }
+.marker.outline { border: 1px solid var(--text-3); }

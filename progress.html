@@ -1,183 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Progress — Thrive</title>
-  <link rel="stylesheet" href="progress.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thrive — Progress</title>
+  <link rel="stylesheet" href="dashboard.css"/>
 </head>
 <body>
-<div class="container">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-  <div class="blob blob-4"></div>
-
-  <nav class="main-nav">
-    <a class="logo" href="dashboard.html">thrive.</a>
-    <div class="nav-menu">
-      <a class="nav-link" href="dashboard.html">Dashboard</a>
-      <a class="nav-link" href="goals.html">Goals</a>
-      <a class="nav-link" href="tasks.html">Daily tasks</a>
-      <a class="nav-link active" href="progress.html">Progress</a>
-      <a class="nav-link" href="thriveAI.html">Thrive with AI</a>
+<canvas id="aurora"></canvas>
+<canvas id="particles"></canvas>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+<div class="orb orb-3"></div><div class="orb orb-4"></div>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sb-logo" href="dashboard.html" title="Thrive">
+      <div class="sb-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 2 Q12.5 5.5 12.5 9 Q12.5 13.5 9 16 Q5.5 13.5 5.5 9 Q5.5 5.5 9 2Z" fill="rgba(255,255,255,0.92)"/>
+          <path d="M9 16 Q9 11 14.5 7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg></div>
+      <span class="sb-logo-text">thrive.</span>
+    </a>
+    <nav class="sb-nav">
+      <a class="sb-item" href="dashboard.html" title="Dashboard">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="sb-item" href="goals.html" title="Goals">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/></svg>
+        <span>Goals</span>
+      </a>
+      <a class="sb-item" href="tasks.html" title="Daily Tasks">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10l2.5 2.5L13 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Tasks</span>
+      </a>
+      <a class="sb-item active" href="progress.html" title="Progress">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><polyline points="2,14 6,9 10,11 14,5 18,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Progress</span>
+      </a>
+      <a class="sb-item" href="thriveAI.html" title="Thrive with AI">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 3 Q14 6 14 9.5 Q14 14 10 17 Q6 14 6 9.5 Q6 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="7.5" y1="19" x2="12.5" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>AI</span>
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <a class="sb-item" href="settings.html" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>Settings</span>
+      </a>
+      <a class="sb-avatar" href="profile.html" title="Emma">EM</a>
     </div>
-    <div class="nav-user-controls">
-  <a class="icon-button" href="settings.html" aria-label="Settings">
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/>
-      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/>
-    </svg>
-  </a>
-  <a class="profile-avatar" href="profile.html" title="Emma">EM</a>
-</div>
-  </nav>
-
-  <main class="content-area">
-    <header class="welcome-header">
-      <h1>Progress</h1>
-      <p>Your execution stats and behavioural insights</p>
+  </aside>
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="topbar-links">
+        <a class="tlink" href="dashboard.html">Dashboard</a>
+        <a class="tlink" href="goals.html">Goals</a>
+        <a class="tlink" href="tasks.html">Daily tasks</a>
+        <a class="tlink active" href="progress.html">Progress</a>
+        <a class="tlink" href="thriveAI.html">Thrive with AI</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+      </div>
     </header>
-
-    <div class="stats-row">
-      <div class="stat-card primary">
-        <span class="card-label">Tasks completed</span>
-        <span class="stat-value">84</span>
+    <div class="content">
+      <div class="page-header fade-up">
+        <div>
+          <h1 class="page-title">Progress</h1>
+          <p class="page-sub">Your performance over the last 30 days</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn-secondary active">Week</button>
+          <button class="btn-secondary">Month</button>
+          <button class="btn-secondary">Year</button>
+        </div>
       </div>
-      <div class="stat-card secondary">
-        <span class="card-label">Day streak</span>
-        <span class="stat-value">7</span>
+      <div class="stats-grid fade-up">
+        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Avg Daily Tasks</span></div><div class="stat-value">3.8</div><p class="stat-sub">↑ from 3.1 last week</p></div>
+        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Completed</span></div><div class="stat-value">26</div><p class="stat-sub">This month</p></div>
+        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Streak Record</span></div><div class="stat-value">12</div><p class="stat-sub">days · personal best</p></div>
       </div>
-      <div class="stat-card accent">
-        <span class="card-label">Goals on track</span>
-        <span class="stat-value">2/4</span>
+      <div class="content-grid fade-up">
+        <div class="col">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Overall completion rate</span><span class="badge badge-teal">↑ 8%</span></div>
+            <div class="chart-bars">
+              <div class="chart-bar"><div class="cb-fill" style="--h:55%;background:var(--violet)"></div><span>W1</span></div>
+              <div class="chart-bar"><div class="cb-fill" style="--h:70%;background:var(--violet)"></div><span>W2</span></div>
+              <div class="chart-bar"><div class="cb-fill" style="--h:48%;background:var(--violet)"></div><span>W3</span></div>
+              <div class="chart-bar active"><div class="cb-fill" style="--h:60%;background:linear-gradient(0deg,#7c6aee,#a78bfa)"></div><span>W4</span></div>
+            </div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Goal milestones</span></div>
+            <div class="milestone-row"><span class="ms-emoji">🎯</span><div class="ms-info"><p>Spanish B1 level achieved</p><span class="ms-date">Mar 12</span></div><span class="badge badge-violet">Done</span></div>
+            <div class="milestone-row"><span class="ms-emoji">💻</span><div class="ms-info"><p>Portfolio wireframes complete</p><span class="ms-date">Apr 2</span></div><span class="badge badge-teal">Done</span></div>
+            <div class="milestone-row"><span class="ms-emoji">🏃</span><div class="ms-info"><p>First 5K without stopping</p><span class="ms-date">Apr 18</span></div><span class="badge badge-teal">Done</span></div>
+            <div class="milestone-row"><span class="ms-emoji">💻</span><div class="ms-info"><p>Portfolio live on GitHub Pages</p><span class="ms-date">Due Apr 24</span></div><span class="badge badge-coral">At Risk</span></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Goal breakdown</span></div>
+            <div class="goal-row"><div class="goal-info"><span>🇪🇸 Learn Spanish</span><span class="pct">72%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="72%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>💻 Portfolio Website</span><span class="pct">45%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="45%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>🏃 5K under 25 min</span><span class="pct">60%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="60%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>📚 Read 24 books</span><span class="pct">29%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="29%"></div></div></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Consistency streak</span></div>
+            <div class="streak-row"><span class="streak-num">7</span><span class="streak-label">days in a row 🔥</span></div>
+            <div class="streak-days"><div class="streak-day"><div class="streak-dot on"></div><span>M</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>W</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>F</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div></div>
+          </div>
+        </div>
       </div>
-      <div class="stat-card info">
-        <span class="card-label">Completion rate</span>
-        <span class="stat-value">74%</span>
-      </div>
+      <footer class="page-footer fade-up">
+        <p class="footer-copy">© 2026 Thrive. All rights reserved.</p>
+        <nav class="footer-links"><a href="dashboard.html">Dashboard</a><a href="goals.html">Goals</a><a href="tasks.html">Daily tasks</a><a href="progress.html">Progress</a></nav>
+        <div class="footer-social">
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1z" fill="currentColor"/></svg></span>
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="currentColor"/></svg></span>
+        </div>
+      </footer>
     </div>
-
-    <div class="layout-grid">
-      <div class="column">
-        <section class="glass-box padded">
-          <header class="box-header">
-            <span class="box-title">Goal progress</span>
-            <a class="view-link" href="goals.html">View all &rarr;</a>
-          </header>
-          
-          <div class="goal-entry">
-            <div class="goal-info">
-              <span>Learn Spanish (B2)</span>
-              <div><span class="pct">72%</span> <span class="badge secondary">On track</span></div>
-            </div>
-            <div class="progress-bar"><div class="fill" style="width:72%"></div></div>
-          </div>
-
-          <div class="goal-entry">
-            <div class="goal-info">
-              <span>Build portfolio website</span>
-              <div><span class="pct">45%</span> <span class="badge accent">At risk</span></div>
-            </div>
-            <div class="progress-bar"><div class="fill" style="width:45%"></div></div>
-          </div>
-
-          <div class="goal-entry">
-            <div class="goal-info">
-              <span>Run 5km under 25 min</span>
-              <div><span class="pct">30%</span> <span class="badge secondary">On track</span></div>
-            </div>
-            <div class="progress-bar"><div class="fill" style="width:30%"></div></div>
-          </div>
-        </section>
-
-        <section class="glass-box padded">
-          <header class="box-header">
-            <span class="box-title">Weekly activity</span>
-          </header>
-          <div class="bar-chart">
-            <div class="bar-col"><div class="bar" style="height: 60%;"></div><span>W1</span></div>
-            <div class="bar-col"><div class="bar" style="height: 78%;"></div><span>W2</span></div>
-            <div class="bar-col"><div class="bar alt" style="height: 50%;"></div><span>W3</span></div>
-            <div class="bar-col"><div class="bar" style="height: 92%;"></div><span>W4</span></div>
-            <div class="bar-col"><div class="bar" style="height: 65%;"></div><span>W5</span></div>
-            <div class="bar-col"><div class="bar alt" style="height: 80%;"></div><span>W6</span></div>
-            <div class="bar-col"><div class="bar alt" style="height: 55%;"></div><span>W7</span></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="column">
-        <section class="glass-box padded">
-          <header class="box-header">
-            <span class="box-title">Procrastination insights</span>
-          </header>
-          <div class="insight-list">
-            <div class="insight-row">
-              <div class="dot accent"></div>
-              <div>
-                <p class="insight-text">Dev tasks avoided on Wednesdays</p>
-                <p class="insight-sub">3 weeks in a row</p>
-              </div>
-            </div>
-            <div class="insight-row">
-              <div class="dot primary"></div>
-              <div>
-                <p class="insight-text">Most productive window: 9–11 am</p>
-                <p class="insight-sub">74% of completion rate</p>
-              </div>
-            </div>
-            <div class="insight-row">
-              <div class="dot secondary"></div>
-              <div>
-                <p class="insight-text">Spanish consistency is high</p>
-                <p class="insight-sub">No delays in 14 days</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="glass-box padded">
-          <header class="box-header">
-            <span class="box-title">Milestones this month</span>
-          </header>
-          <ul class="milestone-list">
-            <li class="milestone-item done">
-              <div class="marker"></div>
-              <span>Completed Spanish Unit 4</span>
-            </li>
-            <li class="milestone-item done">
-              <div class="marker alt"></div>
-              <span>Published portfolio homepage</span>
-            </li>
-            <li class="milestone-item">
-              <div class="marker outline"></div>
-              <span class="pending">Run 4km without stopping</span>
-            </li>
-            <li class="milestone-item">
-              <div class="marker outline"></div>
-              <span class="pending">Finish Python calculator</span>
-            </li>
-          </ul>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <footer class="main-footer">
-    <p class="copyright">&copy; 2026 Thrive. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="goals.html">Goals</a>
-      <a href="tasks.html">Daily tasks</a>
-      <a href="progress.html">Progress</a>
-    </div>
-    <div class="social-icons">
-      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="currentColor"/></svg></span>
-      <span class="social-item"><svg width="12" height="12" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="currentColor"/></svg></span>
-    </div>
-  </footer>
+  </div>
 </div>
-<script src="navbar.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>
