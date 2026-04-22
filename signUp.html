@@ -1,41 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thrive.com-SignUp</title>
-    <link rel="stylesheet" href="signUp.css" />
-  </head>
-  <body>
-    <!-- <h1 id="logo">thrive</h1> -->
-
-    <div class="container">
-      <form>
-        <input type="text" id="username" placeholder="Username" required />
-        <br />
-        <input type="text" id="email" placeholder="Email" required /> <br />
-        <input type="text" id="password" placeholder="Password" required />
-        <br />
-        <input
-          type="text"
-          id="confirm-password"
-          placeholder="Confirm Password"
-          required
-        />
-        <br />
-        <button
-          id="signUp-btn"
-          onclick="window.location.href = 'dashboard.html'"
-        >
-          Sign Up
-        </button>
-      </form>
-      <p>Back to <a href="login.html">login</a></p>
-
-      <p class="terms">
-        By signing up, you agree to the Terms of Service and Privacy Policy,
-        including Cookie Use <a href="README.md" target="_blank">*</a>
-      </p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive - Sign Up</title>
+  <link rel="stylesheet" href="signUp.css">
+</head>
+<body>
+  <div class="split-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="form-box">
+        <h1>Create Account</h1>
+        <p>Already have an account? <a href="login.html" class="link">Login</a></p>
+        <form>
+          <input type="text" placeholder="Username" required>
+          <input type="email" placeholder="Email" required>
+          <div class="password-box">
+            <input type="password" placeholder="Password" id="signup-password" required>
+            <span id="toggle">👁</span>
+          </div>
+          <div class="password-box">
+            <input type="password" placeholder="Confirm Password" id="confirm-password" required>
+            <span id="toggle-confirm">👁</span>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+        <hr>
+        <div class="social-signup">
+          <p>Or sign up with</p>
+          <button class="google-btn"><img src="google-icon.png" class="icon"> Continue with Google</button>
+          <button class="apple-btn"><img src="apple-icon.png" class="icon"> Continue with Apple</button>
+        </div>
+        <p class="terms">By signing up, you agree to Thrive’s Terms of Service, Privacy Policy, and Cookie Use. <a href="terms.html" target="_blank"></a></p>
+      </div>
     </div>
-  </body>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <div class="welcome">
+        <h2>Welcome to Thrive!</h2>
+        <p>Set your goals, track progress, and thrive with ease.</p>
+      </div>
+    </div>
+  </div>
+  <script src="signUp.js"></script>
+</body>
 </html>

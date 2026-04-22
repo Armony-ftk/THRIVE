@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive.com-login</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive - Login</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <!-- <h1 id="logo">thrive</h1> -->
-
-    <div class="container">
-
-        <p>Don't have an account? <a href="signUp.html" class="link">Sign Up.</a></p>
-
-        <form action="">
-            <input type="text" id="username" placeholder="Username" required> <br>
-            <input type="text" id="password" placeholder="Password" required> <br>
-            <button id="login-btn" onclick="window.location.href='dashboard.html'">Login</button>
-
-
-    <!-- <a href="dashboard.html" id="login">Login</a> -->
+  <div class="split-container">
+    <div class="left-panel">
+      <div class="form-box">
+        <h1>Thrive</h1>
+        <p>Don't have an account? <a href="signUp.html" class="link">Sign Up</a></p>
+        <form>
+          <input type="text" placeholder="Username" required>
+          <div class="password-box">
+            <input type="password" placeholder="Password" id="password" required>
+            <span id="toggle">👁</span>
+          </div>
+          <button type="submit">Login</button>
         </form>
-
-        <p><a href="passwordReset.html" class="link">Forgot Password?</a></p>
-
-        <p class="terms">By signing in, you agree to the Terms of Service and Privacy Policy, including Cookie Use <a href="README.md" target="_blank">*</a></p>
+        <a href="passwordReset.html" class="link">Forgot Password?</a>
+        <hr>
+        <div class="social-login">
+          <p>Or sign in with</p>
+          <button class="google-btn"><img src="google-icon.png" class="icon"> Continue with Google</button>
+          <button class="apple-btn"><img src="apple-icon.png" class="icon"> Continue with Apple</button>
+        </div>
+        <p class="terms">By continuing, you agree to Thrive’s Terms of Service, Privacy Policy, and Cookie <a href="terms.html" target="_blank">*</a></p>
+      </div>
     </div>
-    
+    <div class="right-panel">
+      <div class="welcome">
+        <h2>Welcome Back!</h2>
+        <p>Manage your goals, track progress, and thrive with ease.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

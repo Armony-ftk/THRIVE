@@ -1,54 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrive.com - settings</title>
-    <link rel="stylesheet" href="settings.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Thrive</title>
+  <link rel="stylesheet" href="settings.css" />
 </head>
 <body>
-    <nav>
-        <h1 id="logo">thrive</h1>
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Goals</a></li>
-            <li><a href="#">Daily Tasks</a></li>
-            <li><a href="#">Progress</a></li>
-            <li><a href="#">Thrive with AI</a></li>
-            <li><a href="#">profile</a></li>
-            <li><a href="#">settings</a></li>
-        </ul>
-    </nav>
+  <nav class="main-nav">
+    <a class="logo" href="dashboard.html">thrive.</a>
+    <div class="nav-menu">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="goals.html">Goals</a>
+      <a href="tasks.html">Daily tasks</a>
+      <a href="progress.html">Progress</a>
+      <a href="thriveAI.html">Thrive with AI</a>
+    </div>
+    <div class="nav-user">
+      <span class="avatar">EM</span>
+      <span class="date">MONDAY, 20 APR 2026</span>
+      <span class="sun">☀️</span>
+    </div>
+  </nav>
 
-    <div class="container">
-
-  
-    <div class="settings">
+  <main class="settings-container">
     <h1>Settings</h1>
+    <p class="subtitle">Manage your account preferences and app appearance</p>
 
-     <div class="section">
-      <h2>Appearance</h2>
-      <label><input type="checkbox"> Dark Mode</label>
+    <div class="settings-grid">
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- Notifications -->
+        <section class="glass-box">
+          <h2>Notifications</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Daily task reminders</span>
+              <span class="setting-desc">Get notified at 8:00 AM each morning</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Goal milestone alerts</span>
+              <span class="setting-desc">When you reach 25%, 50%, 75% of a goal</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Streak reminders</span>
+              <span class="setting-desc">Alert if you haven’t logged tasks by 8 PM</span>
+            </div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">AI coaching tips</span>
+              <span class="setting-desc">Weekly insights from your AI coach</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+        </section>
+
+        <!-- Preferences -->
+        <section class="glass-box">
+          <h2>Preferences</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Theme</span>
+              <span class="setting-desc">Light gradient (current)</span>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Week starts on</span>
+              <span class="setting-desc">Monday</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Account -->
+        <section class="glass-box">
+          <h2>Account</h2>
+          <div class="setting-item">
+            <span class="setting-label">Name</span>
+            <span class="setting-desc">Emma Mitchell</span>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">Email</span>
+            <span class="setting-desc">emma@thriveapp.co</span>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">Plan</span>
+            <span class="badge">PRO</span>
+          </div>
+          <div class="account-actions">
+            <button class="btn-outline">Change password</button>
+            <button class="btn-danger">Sign out</button>
+          </div>
+        </section>
+
+        <!-- Data & Privacy -->
+        <section class="glass-box">
+          <h2>Data & Privacy</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Share usage data</span>
+              <span class="setting-desc">Help improve Thrive with anonymous analytics</span>
+            </div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-label">Public profile</span>
+              <span class="setting-desc">Let others see your streak and achievements</span>
+            </div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+
+          <div class="account-actions">
+            <button class="btn-danger">Delete account</button>
+          </div>
+        </section>
+      </div>
     </div>
 
-     <div class="section">
-      <h2>Notifications</h2>
-      <label><input type="checkbox"> Email Alerts</label>
-      <label><input type="checkbox"> Push Notifications</label>
+    <div class="settings-actions">
+      <button class="save-btn">Save Changes</button>
     </div>
-
-     <div class="section">
-      <h2>Accessibility</h2>
-      <p>Text size</p>
-      <label><input type="radio" name="text-size"> Small</label>
-      <label><input type="radio" name="text-size"> Large</label>
-    </div>
-
-    <div class="save">
-      <button>Save Changes</button>
-    </div>
-
-    </div>
-  </div>
+  </main>
 </body>
 </html>
