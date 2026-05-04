@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive - Sign Up</title>
+  <link rel="stylesheet" href="signUp.css">
+</head>
+<body>
+  <div class="split-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="form-box">
+        <h1>Create Account</h1>
+        <p>Already have an account? <a href="login.html" class="link">Login</a></p>
+        <form action="http://localhost:3000/signUp" method="post">
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <div class="password-box">
+            <input type="password" name="password" placeholder="Password" id="signup-password" required>
+            <span id="toggle">👁</span>
+          </div>
+          <div class="password-box">
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirm-password" required>
+            <span id="toggle-confirm">👁</span>
+          </div>
+          <select name="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            <option value="super_admin">Super Admin</option>
+          </select>
+
+          <button type="submit">Sign Up</button>
+        </form>
+        <hr>
+        <div class="social-signup">
+          <p>Or sign up with</p>
+          <button class="google-btn"><img src="google-icon.png" class="icon"> Continue with Google</button>
+          <button class="apple-btn"><img src="apple-icon.png" class="icon"> Continue with Apple</button>
+        </div>
+        <p class="terms">By signing up, you agree to Thrive’s Terms of Service, Privacy Policy, and Cookie Use. <a href="terms.html" target="_blank"></a></p>
+      </div>
+    </div>
+    <div id="message-box"></div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <div class="welcome">
+        <h2>Welcome to Thrive!</h2>
+        <p>Set your goals, track progress, and thrive with ease.</p>
+      </div>
+    </div>
+  </div>
+  <script src="signUp.js"></script>
+</body>
+</html>
+
