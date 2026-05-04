@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>thrive-admin-flags.com</title>
+  <link rel="stylesheet" href="admin.css"/>
+  <link rel="stylesheet" href="admin-pages.css"/>
+</head>
+<body>
+<canvas id="aurora"></canvas>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+<div class="orb orb-3"></div><div class="orb orb-4"></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sb-logo" href="admin.html"><div class="sb-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2 Q12.5 5.5 12.5 9 Q12.5 13.5 9 16 Q5.5 13.5 5.5 9 Q5.5 5.5 9 2Z" fill="rgba(255,255,255,0.92)"/><path d="M9 16 Q9 11 14.5 7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/></svg></div><span class="sb-logo-text">admin.</span></a>
+    <nav class="sb-nav">
+      <a class="sb-item" href="admin.html" title="Overview"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/></svg><span>Overview</span></a>
+      <a class="sb-item" href="admin-users.html" title="Users"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="7" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M2 17c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15 7h3M16.5 5.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Users</span></a>
+      <a class="sb-item" href="admin-goals.html" title="Goals"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/></svg><span>Goals</span></a>
+      <a class="sb-item" href="admin-reports.html" title="Reports"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-5 3 3 4-6 3 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reports</span></a>
+      <a class="sb-item active" href="admin-flags.html" title="Flags"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 3v14M4 3h10l-2.5 4L14 11H4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Flags</span></a>
+    </nav>
+    <div class="sb-bottom">
+      <a class="sb-item" href="admin-settings.html" title="Settings"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>Settings</span></a>
+      <a class="sb-avatar" href="admin-profile.html">AD</a>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="topbar-links">
+        <a class="tlink" href="admin.html">Overview</a>
+        <a class="tlink" href="admin-users.html">Users</a>
+        <a class="tlink" href="admin-goals.html">Goals</a>
+        <a class="tlink" href="admin-reports.html">Reports</a>
+        <a class="tlink active" href="admin-flags.html">Content flags</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+        <div class="admin-chip">Admin portal</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="page-header fade-up">
+        <div>
+          <h1 class="page-title">Content Flags</h1>
+          <p class="page-sub">Review flagged goals and user-reported content</p>
+        </div>
+        <div class="header-actions">
+          <div class="filter-group">
+            <button class="filter-btn active" data-ffilter="all">All <span class="filter-count" id="fc-all">9</span></button>
+            <button class="filter-btn" data-ffilter="urgent">Urgent <span class="filter-count" id="fc-urgent">4</span></button>
+            <button class="filter-btn" data-ffilter="moderate">Moderate <span class="filter-count" id="fc-moderate">5</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flags-layout fade-up" style="animation-delay:.10s">
+        <!-- Left: flag cards -->
+        <div class="flags-list" id="flags-list"></div>
+
+        <!-- Right panel -->
+        <div class="flags-right">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Flag breakdown</span></div>
+            <div class="severity-row">
+              <span class="sev-label">Harmful content</span>
+              <div class="sev-bar-wrap"><div class="sev-bar"><div class="sev-fill" style="width:0;background:var(--red);transition:width 1s ease" data-w="80%"></div></div></div>
+              <span class="sev-num">4</span>
+            </div>
+            <div class="severity-row">
+              <span class="sev-label">Misinformation</span>
+              <div class="sev-bar-wrap"><div class="sev-bar"><div class="sev-fill" style="width:0;background:var(--amber);transition:width 1s ease" data-w="50%"></div></div></div>
+              <span class="sev-num">2</span>
+            </div>
+            <div class="severity-row">
+              <span class="sev-label">Spam / scam</span>
+              <div class="sev-bar-wrap"><div class="sev-bar"><div class="sev-fill" style="width:0;background:#8b5cf6;transition:width 1s ease" data-w="30%"></div></div></div>
+              <span class="sev-num">2</span>
+            </div>
+            <div class="severity-row">
+              <span class="sev-label">Off-platform</span>
+              <div class="sev-bar-wrap"><div class="sev-bar"><div class="sev-fill" style="width:0;background:var(--blue);transition:width 1s ease" data-w="20%"></div></div></div>
+              <span class="sev-num">1</span>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Recent actions</span></div>
+            <div class="recent-action-row"><div class="ra-icon">🗑️</div><div class="ra-text"><p>Removed <strong>"make cash fast"</strong> goal</p><span>Today, 10:30 AM</span></div></div>
+            <div class="recent-action-row"><div class="ra-icon">✅</div><div class="ra-text"><p>Dismissed report on <strong>@clarav</strong></p><span>Today, 9:15 AM</span></div></div>
+            <div class="recent-action-row"><div class="ra-icon">⏸️</div><div class="ra-text"><p>Suspended <strong>@spamuser_88</strong></p><span>Yesterday, 4:22 PM</span></div></div>
+            <div class="recent-action-row"><div class="ra-icon">🗑️</div><div class="ra-text"><p>Removed <strong>"crash diet"</strong> goal</p><span>Yesterday, 2:10 PM</span></div></div>
+          </div>
+
+          <div class="card card-pad" style="background:linear-gradient(135deg,rgba(245,158,11,.10),rgba(241,245,255,.66));border-color:rgba(245,158,11,.25)">
+            <div class="card-header"><span class="card-title">Auto-detection</span></div>
+            <p style="font-size:12.5px;color:var(--text-2);line-height:1.65;margin-bottom:14px">AI moderation flagged <strong style="color:var(--text)">3 new goals</strong> in the last hour based on keyword and pattern matching.</p>
+            <div style="display:flex;gap:8px">
+              <button class="act-btn reinstate" style="width:auto;padding:7px 14px;font-size:12px;font-weight:600">Review queue</button>
+              <button class="act-btn view" style="width:auto;padding:7px 14px;font-size:12px;font-weight:600">Settings</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="page-footer fade-up" style="animation-delay:.24s">
+        <p class="footer-copy">© 2026 Thrive Admin. Internal use only.</p>
+        <nav class="footer-links"><a href="admin.html">Overview</a><a href="admin-users.html">Users</a><a href="admin-goals.html">Goals</a><a href="admin-flags.html">Flags</a></nav>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon"></div>
+    <h2 class="modal-title" id="modal-title">Confirm action</h2>
+    <p class="modal-body" id="modal-body">Are you sure?</p>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="modal-cancel">Cancel</button>
+      <button class="modal-confirm" id="modal-confirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+<script src="admin-flags.js"></script>
+</body>
+</html>

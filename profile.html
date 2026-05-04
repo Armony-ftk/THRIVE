@@ -1,119 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile — Thrive</title>
-  <link rel="stylesheet" href="profile.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thrive — Profile</title>
+  <link rel="stylesheet" href="dashboard.css"/>
 </head>
 <body>
-<div class="page-wrapper">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="orb orb-4"></div>
-
-  <nav class="navbar">
-    <a class="navbar__logo" href="dashboard.html">thrive.</a>
-    <div class="navbar__links">
-      <a class="navbar__link" href="dashboard.html">Dashboard</a>
-      <a class="navbar__link" href="goals.html">Goals</a>
-      <a class="navbar__link" href="tasks.html">Daily tasks</a>
-      <a class="navbar__link" href="progress.html">Progress</a>
-      <a class="navbar__link" href="ai.html">Thrive with AI</a>
+<canvas id="aurora"></canvas>
+<canvas id="particles"></canvas>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+<div class="orb orb-3"></div><div class="orb orb-4"></div>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sb-logo" href="dashboard.html" title="Thrive">
+      <div class="sb-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 2 Q12.5 5.5 12.5 9 Q12.5 13.5 9 16 Q5.5 13.5 5.5 9 Q5.5 5.5 9 2Z" fill="rgba(255,255,255,0.92)"/>
+          <path d="M9 16 Q9 11 14.5 7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg></div>
+      <span class="sb-logo-text">thrive.</span>
+    </a>
+    <nav class="sb-nav">
+      <a class="sb-item" href="dashboard.html" title="Dashboard">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="sb-item" href="goals.html" title="Goals">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/></svg>
+        <span>Goals</span>
+      </a>
+      <a class="sb-item" href="tasks.html" title="Daily Tasks">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10l2.5 2.5L13 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Tasks</span>
+      </a>
+      <a class="sb-item" href="progress.html" title="Progress">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><polyline points="2,14 6,9 10,11 14,5 18,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Progress</span>
+      </a>
+      <a class="sb-item" href="thriveAI.html" title="Thrive with AI">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 3 Q14 6 14 9.5 Q14 14 10 17 Q6 14 6 9.5 Q6 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="7.5" y1="19" x2="12.5" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>AI</span>
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <a class="sb-item" href="settings.html" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>Settings</span>
+      </a>
+      <a class="sb-avatar active" href="profile.html" title="Emma">EM</a>
     </div>
-    <div class="navbar__actions">
-      <button class="navbar__icon-btn" aria-label="Settings">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="rgba(60,40,140,0.6)" stroke-width="1.2"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M11.5 3.4l-1.1 1.1M4.5 11.5l-1.1 1.1" stroke="rgba(60,40,140,0.6)" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </button>
-      <a class="navbar__avatar" href="profile.html" style="outline:2px solid rgba(167,139,250,0.6);outline-offset:2px;">EM</a>
-    </div>
-  </nav>
-
-  <main class="page-body">
-    <div class="page-hero">
-      <h1>Profile</h1>
-      <p>Manage your account and preferences</p>
-    </div>
-
-    <div class="profile-layout">
-      <div class="glass profile-card">
-        <div class="profile-avatar">EM</div>
-        <div>
-          <div class="profile-name">Emma Mokoena</div>
-          <div class="profile-email">emma@email.com</div>
-          <div class="profile-joined">Member since Jan 2026</div>
-        </div>
-        <div class="profile-stats">
-          <div class="ps-box"><div class="ps-num">4</div><div class="ps-lbl">Goals</div></div>
-          <div class="ps-box"><div class="ps-num">84</div><div class="ps-lbl">Tasks done</div></div>
-          <div class="ps-box"><div class="ps-num">7</div><div class="ps-lbl">Day streak</div></div>
-          <div class="ps-box"><div class="ps-num">74%</div><div class="ps-lbl">Rate</div></div>
-        </div>
-        <button class="edit-btn">Edit photo</button>
+  </aside>
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="topbar-links">
+        <a class="tlink active" href="dashboard.html">Dashboard</a>
+        <a class="tlink" href="goals.html">Goals</a>
+        <a class="tlink" href="tasks.html">Daily tasks</a>
+        <a class="tlink" href="progress.html">Progress</a>
+        <a class="tlink" href="thriveAI.html">Thrive with AI</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
       </div>
-
-      <div class="profile-right">
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Personal info</span><button class="card__action">Edit &rarr;</button></div>
-          <div class="form-grid-2">
-            <div class="form-group"><div class="form-label">First name</div><div class="form-val">Emma</div></div>
-            <div class="form-group"><div class="form-label">Last name</div><div class="form-val">Mokoena</div></div>
+    </header>
+    <div class="content">
+      <div class="page-header fade-up">
+        <h1 class="page-title">My Profile</h1>
+      </div>
+      <div class="content-grid fade-up">
+        <div class="col">
+          <div class="card card-pad profile-hero">
+            <div class="profile-avatar-lg">EM</div>
+            <div class="profile-info">
+              <h2 class="profile-name">Emma Mitchell</h2>
+              <p class="profile-email">emma@thriveapp.co</p>
+              <p class="profile-joined">Member since January 2026</p>
+            </div>
+            <button class="btn-secondary" style="margin-top:16px">Edit Profile</button>
           </div>
-          <div class="form-group" style="margin-top:12px;"><div class="form-label">Email</div><div class="form-val">emma@email.com</div></div>
-          <div class="form-grid-2" style="margin-top:12px;">
-            <div class="form-group"><div class="form-label">Timezone</div><div class="form-val">SAST (UTC+2)</div></div>
-            <div class="form-group"><div class="form-label">Language</div><div class="form-val">English</div></div>
-          </div>
-        </div>
-
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Notifications</span></div>
-          <div class="pref-row">
-            <div><div class="pref-label">Daily task reminders</div><div class="pref-sub">Get reminded each morning</div></div>
-            <div class="toggle"></div>
-          </div>
-          <div class="pref-row">
-            <div><div class="pref-label">Procrastination alerts</div><div class="pref-sub">When a task is overdue</div></div>
-            <div class="toggle"></div>
-          </div>
-          <div class="pref-row">
-            <div><div class="pref-label">Weekly summary email</div><div class="pref-sub">Every Sunday</div></div>
-            <div class="toggle toggle--off"></div>
-          </div>
-          <div class="pref-row">
-            <div><div class="pref-label">Motivational quotes</div><div class="pref-sub">Show on dashboard</div></div>
-            <div class="toggle"></div>
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Personal details</span></div>
+            <div class="profile-field"><span class="pf-label">Full name</span><span class="pf-value">Emma Mitchell</span></div>
+            <div class="profile-field"><span class="pf-label">Email</span><span class="pf-value">emma@thriveapp.co</span></div>
+            <div class="profile-field"><span class="pf-label">Location</span><span class="pf-value">Cape Town, South Africa</span></div>
+            <div class="profile-field"><span class="pf-label">Timezone</span><span class="pf-value">SAST (UTC+2)</span></div>
           </div>
         </div>
-
-        <div class="glass" style="padding:20px 22px;">
-          <div class="card__header"><span class="card__title">Achievements</span></div>
-          <div class="badge-row">
-            <span class="achiev-badge ab-t">7-day streak</span>
-            <span class="achiev-badge ab-p">First goal set</span>
-            <span class="achiev-badge ab-c">50 tasks done</span>
-            <span class="achiev-badge ab-a">Early bird</span>
-            <span class="achiev-badge ab-b">Consistent learner</span>
-            <span class="achiev-badge ab-t">Spanish starter</span>
+        <div class="col">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Achievements</span></div>
+            <div class="achievement-row"><span class="ach-icon">🔥</span><div><p class="ach-title">7-day streak</p><p class="ach-sub">Current streak</p></div><span class="badge badge-teal">Active</span></div>
+            <div class="achievement-row"><span class="ach-icon">🏆</span><div><p class="ach-title">12-day streak</p><p class="ach-sub">Personal best</p></div><span class="badge badge-violet">Record</span></div>
+            <div class="achievement-row"><span class="ach-icon">⭐</span><div><p class="ach-title">26 tasks this month</p><p class="ach-sub">Highest monthly count</p></div><span class="badge badge-teal">Best</span></div>
+            <div class="achievement-row"><span class="ach-icon">📚</span><div><p class="ach-title">First goal set</p><p class="ach-sub">Jan 12, 2026</p></div><span class="badge badge-violet">Unlocked</span></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">This month</span></div>
+            <div class="goal-row"><div class="goal-info"><span>Tasks completed</span><span class="pct">26 / 35</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="74%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>Goals progressed</span><span class="pct">4 / 4</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="100%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>Streak days</span><span class="pct">14 / 20</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="70%"></div></div></div>
           </div>
         </div>
       </div>
+      <footer class="page-footer fade-up">
+        <p class="footer-copy">© 2026 Thrive. All rights reserved.</p>
+        <nav class="footer-links"><a href="dashboard.html">Dashboard</a><a href="goals.html">Goals</a><a href="tasks.html">Daily tasks</a><a href="progress.html">Progress</a></nav>
+        <div class="footer-social">
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1z" fill="currentColor"/></svg></span>
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="currentColor"/></svg></span>
+        </div>
+      </footer>
     </div>
-  </main>
-
-  <footer class="footer">
-    <span class="footer__copy">&copy; 2026 Thrive. All rights reserved.</span>
-    <div class="footer__links">
-      <a class="footer__link" href="dashboard.html">Dashboard</a>
-      <a class="footer__link" href="goals.html">Goals</a>
-      <a class="footer__link" href="tasks.html">Daily tasks</a>
-      <a class="footer__link" href="progress.html">Progress</a>
-    </div>
-    <div class="footer__socials">
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1zm-.8 12.6h1.3L4.3 2.3H2.9l8.9 11.3z" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="0.8" fill="rgba(60,40,140,0.55)"/></svg></div>
-      <div class="footer__social"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2.5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3"/><path d="M4 6.5v5M4 4.5v.5M7 11.5V9c0-1.1.9-2 2-2s2 .9 2 2v2.5M7 6.5v5" stroke="rgba(60,40,140,0.55)" stroke-width="1.3" stroke-linecap="round"/></svg></div>
-    </div>
-  </footer>
+  </div>
 </div>
-<script src="../../components/navbar.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>

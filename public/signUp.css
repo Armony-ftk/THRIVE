@@ -15,9 +15,12 @@ body {
 /* Full-page container */
 .split-container {
   display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
+  border-radius: 0;
   overflow: hidden;
+  box-shadow: none;
   animation: fadeIn 1s ease;
 }
 
@@ -42,6 +45,24 @@ body {
   gap: 16px;
   animation: slideUp 1s ease;
   text-align: center;
+}
+
+.form-box select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Focus effect to match inputs */
+.form-box select:focus {
+  border-color: #7a42f4; /* same purple accent */
+  outline: none;
 }
 
 h1 {
@@ -78,6 +99,28 @@ input:focus {
   background: rgba(255, 255, 255, 0.95);
 }
 
+/* Password boxes with toggle */
+.password-box {
+  position: relative;
+  width: 92%;
+}
+
+.password-box input {
+  padding-right: 40px; /* space for toggle icon */
+}
+
+#toggle, #toggle-confirm {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6d28d9;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Buttons */
 button {
   background: linear-gradient(135deg, #7c3aed, #4c1d95);
   color: white;
@@ -86,7 +129,7 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   font-weight: 500;
   text-align: center;
@@ -97,11 +140,66 @@ button:hover {
   transform: scale(0.98);
 }
 
-.terms {
-  font-size: 11px;
-  color: rgba(60, 40, 140, 0.6);
+/* Divider */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+/* Social sign-up buttons */
+.social-signup {
   text-align: center;
-  line-height: 1.4;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.social-signup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.google-btn, .apple-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Google button */
+.google-btn {
+  background: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+}
+
+.google-btn:hover {
+  background: #f5f5f5;
+}
+
+/* Apple button */
+.apple-btn {
+  background: #000;
+  color: #fff;
+}
+
+.apple-btn:hover {
+  opacity: 0.85;
+}
+
+/* Icon styling */
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Right panel with illustration */
@@ -137,6 +235,13 @@ button:hover {
   line-height: 1.6;
 }
 
+.terms {
+  font-size: 11px;
+  color: rgba(60, 40, 140, 0.6);
+  text-align: center;
+  line-height: 1.4;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -163,3 +268,22 @@ button:hover {
     width: 100%;
   }
 }
+
+#message-box {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+

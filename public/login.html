@@ -12,10 +12,10 @@
       <div class="form-box">
         <h1>Thrive</h1>
         <p>Don't have an account? <a href="signUp.html" class="link">Sign Up</a></p>
-        <form>
-          <input type="text" placeholder="Username" required>
+        <form action="http://localhost:3000/login" method="post">
+          <input type="text" name="username" placeholder="username" required>
           <div class="password-box">
-            <input type="password" placeholder="Password" id="password" required>
+            <input type="password" name="password" placeholder="Password" id="password" required>
             <span id="toggle">👁</span>
           </div>
           <button type="submit">Login</button>
@@ -24,7 +24,7 @@
         <hr>
         <div class="social-login">
           <p>Or sign in with</p>
-          <button class="google-btn"><img src="google-icon.png" class="icon"> Continue with Google</button>
+          <button class="google-btn" type="button"><img src="google-icon.png" class="icon"> Continue with Google</button>
           <button class="apple-btn"><img src="apple-icon.png" class="icon"> Continue with Apple</button>
         </div>
         <p class="terms">By continuing, you agree to Thrive’s Terms of Service, Privacy Policy, and Cookie <a href="terms.html" target="_blank">*</a></p>
@@ -37,5 +37,6 @@
       </div>
     </div>
   </div>
+  <script src="login.js"></script>
 </body>
 </html>

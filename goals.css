@@ -1,138 +1,168 @@
-@import 'global.css';
+@import "global.css";
+@import "layout.css";
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #f0f0f0, #ffffff);
-  color: #333;
-  min-height: 100vh;
+*/
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.welcome-header h1 {
+  font-family: var(--ff-display);
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 25px;
+.welcome-header p {
+  font-size: 13px;
+  color: var(--text-2);
+  font-style: italic;
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 0.9rem;
-  transition: color 0.3s;
-}
+/* ===========
+   GOALS GRID
+======== */
 
-nav ul li a:hover {
-  color: #0078d7;
-}
-
-h1:not(#logo) {
-  display: none;
-}
-
-.goals {
+.goals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
-.card {
-  border-radius: 40px;
-  padding: 25px;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(9, 9, 9, 0.05);
+/* ===============
+   GOAL CARD (GLASS STYLE)
+*/
+
+.goal-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.card:first-child {
-  grid-row: span 2;
+/* header */
+.goal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.card h3 {
-  margin: 10px 0;
-  font-size: 1.2rem;
+.goal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
 }
 
-.progress {
-  background: #333;
+/* tags */
+.category-tag {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  width: fit-content;
+}
+
+.category-tag.primary {
+  background: var(--violet-light);
+  color: var(--violet);
+}
+
+.category-tag.secondary {
+  background: var(--teal-light);
+  color: var(--teal);
+}
+
+.category-tag.accent {
+  background: var(--coral-light);
+  color: var(--coral);
+}
+
+/* =====
+   PROGRESS BAR
+=======*/
+
+.progress-track {
   height: 6px;
-  border-radius: 10px;
-  margin: 15px 0;
-  position: relative;
+  background: rgba(124,106,238,0.10);
+  border-radius: var(--r-pill);
   overflow: hidden;
 }
 
-.progress-bar {
+.progress-fill {
   height: 100%;
-  width: 60%; 
-  background: linear-gradient(90deg, #5ab9f9, #d63384);
-  border-radius: 10px;
+  border-radius: var(--r-pill);
+  transition: width .6s ease;
 }
 
-.deadline {
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  margin-bottom: 20px;
+.fill-violet {
+  background: linear-gradient(90deg, #a78bfa, #7c6aee);
 }
 
-.milestones {
-  font-size: 0.85rem;
-  color: rgb(31, 30, 30);
-  display: block;
-  margin-bottom: 10px;
+.fill-teal {
+  background: linear-gradient(90deg, #34d399, #2bbfa4);
 }
 
-.milestones ul {
-  list-style: none;
-  padding: 0;
+.fill-coral {
+  background: linear-gradient(90deg, #fb7185, #f0607a);
 }
 
-.milestones li {
-  font-size: 0.85rem;
+/* ==
+   MILESTONES
+=*/
+
+.milestones-area {
+  margin-top: 10px;
+}
+
+.milestones-area h3 {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-3);
   margin-bottom: 8px;
-  padding-left: 15px;
-  position: relative;
 }
 
-.milestones li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: rgb(35, 34, 34);
+.milestone-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
 }
 
-.add-goal {
-  margin-top: 20px;
+.milestone-check-list li {
+  color: var(--text-2);
+}
+
+.milestone-check-list .done {
+  text-decoration: line-through;
+  color: var(--text-3);
+}
+
+/* ===
+   ACTION BUTTON
+ */
+
+.action-footer {
+  margin-top: 24px;
   display: flex;
   justify-content: center;
 }
 
-.add-goal button {
-  background: rgba(124, 122, 122, 0.05);
-  border: 2px dashed rgba(10, 10, 10, 0.2);
-  color: rgb(33, 31, 31);
-  padding: 40px;
-  width: 100%;
-  max-width: 320px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: 0.3s;
+.add-btn-large {
+  background: linear-gradient(135deg, var(--violet), var(--teal));
+  color: white;
+  padding: 10px 16px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(124,106,238,0.25);
+  transition: 0.2s;
 }
 
-.add-goal button:hover {
-  background: rgba(34, 34, 34, 0.1);
-  border-color: rgba(40, 38, 38, 0.4);
+.add-btn-large:hover {
+  transform: translateY(-2px);
 }
-
-
-

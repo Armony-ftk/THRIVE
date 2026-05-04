@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>thrive-admin-profile.com</title>
+  <link rel="stylesheet" href="admin.css"/>
+  <link rel="stylesheet" href="admin-pages.css"/>
+  <link rel="stylesheet" href="admin-profile.css"/>
+</head>
+<body>
+<canvas id="aurora"></canvas>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+<div class="orb orb-3"></div><div class="orb orb-4"></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sb-logo" href="admin.html"><div class="sb-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2 Q12.5 5.5 12.5 9 Q12.5 13.5 9 16 Q5.5 13.5 5.5 9 Q5.5 5.5 9 2Z" fill="rgba(255,255,255,0.92)"/><path d="M9 16 Q9 11 14.5 7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/></svg></div><span class="sb-logo-text">admin.</span></a>
+    <nav class="sb-nav">
+      <a class="sb-item" href="admin.html" title="Overview"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/></svg><span>Overview</span></a>
+      <a class="sb-item" href="admin-users.html" title="Users"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="7" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M2 17c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15 7h3M16.5 5.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Users</span></a>
+      <a class="sb-item" href="admin-goals.html" title="Goals"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/></svg><span>Goals</span></a>
+      <a class="sb-item" href="admin-reports.html" title="Reports"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-5 3 3 4-6 3 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reports</span></a>
+      <a class="sb-item" href="admin-flags.html" title="Flags"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 3v14M4 3h10l-2.5 4L14 11H4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Flags</span></a>
+    </nav>
+    <div class="sb-bottom">
+      <a class="sb-item" href="admin-settings.html" title="Settings"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>Settings</span></a>
+      <a class="sb-avatar" href="admin-profile.html" title="Profile" style="outline:2px solid rgba(59,130,246,.5);outline-offset:2px">AD</a>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="topbar-links">
+        <a class="tlink" href="admin.html">Overview</a>
+        <a class="tlink" href="admin-users.html">Users</a>
+        <a class="tlink" href="admin-goals.html">Goals</a>
+        <a class="tlink" href="admin-reports.html">Reports</a>
+        <a class="tlink" href="admin-flags.html">Content flags</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+        <div class="admin-chip">Admin portal</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="page-header fade-up">
+        <div>
+          <h1 class="page-title">My Profile</h1>
+          <p class="page-sub">Manage your admin account details and preferences</p>
+        </div>
+      </div>
+
+      <div class="profile-layout fade-up" style="animation-delay:.10s">
+
+        <!-- LEFT -->
+        <div class="profile-left">
+
+          <div class="card profile-hero-card">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar-lg">AD</div>
+              <button class="avatar-edit-btn" title="Change photo">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3-8 8H3v-3L11 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="profile-name">Charnasse Moatlhodi</div>
+            <div class="profile-email">cmoatlhodi@thrive.app</div>
+            <div class="profile-role-badge">Admin</div>
+            <div class="profile-joined">Member since January 2025</div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">My activity</span></div>
+            <div class="pstat-row">
+              <div class="pstat"><div class="pstat-val" style="color:#1e3a8a">284</div><div class="pstat-label">Actions taken</div></div>
+              <div class="pstat"><div class="pstat-val" style="color:#7f1d1d">142</div><div class="pstat-label">Goals removed</div></div>
+              <div class="pstat"><div class="pstat-val" style="color:#78350f">17</div><div class="pstat-label">Suspended</div></div>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Recent actions</span></div>
+            <div class="log-row"><div class="log-dot suspend-dot"></div><div class="log-text"><p>Suspended <strong>@spamuser_88</strong></p><span>Today, 10:24 AM</span></div></div>
+            <div class="log-row"><div class="log-dot remove-dot"></div><div class="log-text"><p>Removed inappropriate goal</p><span>Today, 09:11 AM</span></div></div>
+            <div class="log-row"><div class="log-dot delete-dot"></div><div class="log-text"><p>Deleted account <strong>@fake_acct_22</strong></p><span>Yesterday, 4:50 PM</span></div></div>
+            <div class="log-row"><div class="log-dot ok-dot"></div><div class="log-text"><p>Reinstated <strong>@marc_r</strong></p><span>Yesterday, 2:03 PM</span></div></div>
+            <div class="log-row"><div class="log-dot remove-dot"></div><div class="log-text"><p>Removed 3 flagged goals in bulk</p><span>Apr 21, 3:30 PM</span></div></div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="profile-right">
+
+          <div class="card settings-section">
+            <div class="section-title">Account details</div>
+            <div class="section-desc">Update your name, email, and contact information</div>
+            <div class="form-row">
+              <div class="form-field"><label class="form-label">First name</label><input class="form-input" type="text" value="Charnasse"/></div>
+              <div class="form-field"><label class="form-label">Last name</label><input class="form-input" type="text" value="Moatlhodi"/></div>
+            </div>
+            <div class="form-field" style="margin-top:14px"><label class="form-label">Email address</label><input class="form-input" type="email" value="cmoatlhodi@thrive.app"/></div>
+            <div class="form-field" style="margin-top:14px"><label class="form-label">Role</label><input class="form-input" type="text" value="Admin" disabled style="opacity:.45;cursor:not-allowed"/></div>
+            <div style="margin-top:20px"><button class="save-btn" id="save-details">Save changes</button></div>
+          </div>
+
+          <div class="card settings-section">
+            <div class="section-title">Change password</div>
+            <div class="section-desc">Use a strong password you don't use elsewhere</div>
+            <div class="form-field"><label class="form-label">Current password</label><input class="form-input" type="password" placeholder="••••••••"/></div>
+            <div class="form-field" style="margin-top:14px"><label class="form-label">New password</label><input class="form-input" type="password" placeholder="••••••••" id="new-pw"/></div>
+            <div class="form-field" style="margin-top:14px"><label class="form-label">Confirm new password</label><input class="form-input" type="password" placeholder="••••••••" id="confirm-pw"/></div>
+            <div id="pw-msg" style="font-size:11px;margin-top:8px;min-height:16px;color:var(--red)"></div>
+            <div style="margin-top:16px"><button class="save-btn" id="save-password">Update password</button></div>
+          </div>
+
+          <div class="card settings-section">
+            <div class="section-title">Preferences</div>
+            <div class="section-desc">Personal portal settings for your account only</div>
+            <div class="setting-row">
+              <div class="setting-left"><div class="setting-label">Email me on urgent flags</div><div class="setting-sub">Instant alerts for severity: urgent content</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-left"><div class="setting-label">Weekly digest</div><div class="setting-sub">Platform activity summary every Monday</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="setting-row">
+              <div class="setting-left"><div class="setting-label">Confirm before destructive actions</div><div class="setting-sub">Show modal before delete or suspend</div></div>
+              <div class="toggle on"></div>
+            </div>
+          </div>
+
+          <div class="card settings-section">
+            <div class="section-title">Active sessions</div>
+            <div class="section-desc">Devices currently logged in to this admin account</div>
+            <div class="session-row">
+              <div class="session-icon">💻</div>
+              <div class="session-info"><div class="session-device">MacBook Pro · Chrome 124</div><div class="session-meta">Johannesburg, ZA · Current session</div></div>
+              <span class="status-badge s-active">Active</span>
+            </div>
+            <div class="session-row">
+              <div class="session-icon">📱</div>
+              <div class="session-info"><div class="session-device">iPhone 15 · Safari</div><div class="session-meta">Johannesburg, ZA · 2 hours ago</div></div>
+              <button class="danger-btn session-revoke" style="font-size:11px;padding:5px 12px">Revoke</button>
+            </div>
+            <div class="session-row">
+              <div class="session-icon">💻</div>
+              <div class="session-info"><div class="session-device">Windows PC · Firefox 125</div><div class="session-meta">Cape Town, ZA · 3 days ago</div></div>
+              <button class="danger-btn session-revoke" style="font-size:11px;padding:5px 12px">Revoke</button>
+            </div>
+            <div style="margin-top:16px">
+              <button class="danger-btn" id="btn-revoke-all">Revoke all other sessions</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <footer class="page-footer fade-up">
+        <p class="footer-copy">© 2026 Thrive Admin. Internal use only.</p>
+        <nav class="footer-links"><a href="admin.html">Overview</a><a href="admin-users.html">Users</a><a href="admin-goals.html">Goals</a><a href="admin-flags.html">Flags</a></nav>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon"></div>
+    <h2 class="modal-title" id="modal-title">Confirm action</h2>
+    <p class="modal-body" id="modal-body">Are you sure?</p>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="modal-cancel">Cancel</button>
+      <button class="modal-confirm" id="modal-confirm">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+<script src="admin-profile.js"></script>
+</body>
+</html>
