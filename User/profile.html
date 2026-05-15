@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thrive — Progress</title>
+  <title>Thrive — Profile</title>
   <link rel="stylesheet" href="dashboard.css"/>
 </head>
 <body>
@@ -33,7 +33,7 @@
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10l2.5 2.5L13 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Tasks</span>
       </a>
-      <a class="sb-item active" href="progress.html" title="Progress">
+      <a class="sb-item" href="progress.html" title="Progress">
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><polyline points="2,14 6,9 10,11 14,5 18,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Progress</span>
       </a>
@@ -47,70 +47,64 @@
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         <span>Settings</span>
       </a>
-      <a class="sb-avatar" href="profile.html" title="Emma">EM</a>
+      <a class="sb-avatar active" href="profile.html" title="Emma">EM</a>
     </div>
   </aside>
   <div class="main-col">
     <header class="topbar">
       <nav class="topbar-links">
-        <a class="tlink" href="dashboard.html">Dashboard</a>
+        <a class="tlink active" href="dashboard.html">Dashboard</a>
         <a class="tlink" href="goals.html">Goals</a>
         <a class="tlink" href="tasks.html">Daily tasks</a>
-        <a class="tlink active" href="progress.html">Progress</a>
+        <a class="tlink" href="progress.html">Progress</a>
         <a class="tlink" href="thriveAI.html">Thrive with AI</a>
       </nav>
       <div class="topbar-right">
-        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+                <div class="date-chip">
+          <div class="pulse-dot"></div>
+
+         <span id="date-text"></span>
+        
+        </div>
+       
       </div>
     </header>
     <div class="content">
       <div class="page-header fade-up">
-        <div>
-          <h1 class="page-title">Progress</h1>
-          <p class="page-sub">Your performance over the last 30 days</p>
-        </div>
-        <div class="btn-group">
-          <button class="btn-secondary active">Week</button>
-          <button class="btn-secondary">Month</button>
-          <button class="btn-secondary">Year</button>
-        </div>
-      </div>
-      <div class="stats-grid fade-up">
-        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Avg Daily Tasks</span></div><div class="stat-value">3.8</div><p class="stat-sub">↑ from 3.1 last week</p></div>
-        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Completed</span></div><div class="stat-value">26</div><p class="stat-sub">This month</p></div>
-        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Streak Record</span></div><div class="stat-value">12</div><p class="stat-sub">days · personal best</p></div>
+        <h1 class="page-title">My Profile</h1>
       </div>
       <div class="content-grid fade-up">
         <div class="col">
-          <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Overall completion rate</span><span class="badge badge-teal">↑ 8%</span></div>
-            <div class="chart-bars">
-              <div class="chart-bar"><div class="cb-fill" style="--h:55%;background:var(--violet)"></div><span>W1</span></div>
-              <div class="chart-bar"><div class="cb-fill" style="--h:70%;background:var(--violet)"></div><span>W2</span></div>
-              <div class="chart-bar"><div class="cb-fill" style="--h:48%;background:var(--violet)"></div><span>W3</span></div>
-              <div class="chart-bar active"><div class="cb-fill" style="--h:60%;background:linear-gradient(0deg,#7c6aee,#a78bfa)"></div><span>W4</span></div>
+          <div class="card card-pad profile-hero">
+            <div class="profile-avatar-lg">EM</div>
+            <div class="profile-info">
+              <h2 class="profile-name">Emma Mitchell</h2>
+              <p class="profile-email">emma@thriveapp.co</p>
+              <p class="profile-joined">Member since January 2026</p>
             </div>
+            <button class="btn-secondary" style="margin-top:16px">Edit Profile</button>
           </div>
           <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Goal milestones</span></div>
-            <div class="milestone-row"><span class="ms-emoji">🎯</span><div class="ms-info"><p>Spanish B1 level achieved</p><span class="ms-date">Mar 12</span></div><span class="badge badge-violet">Done</span></div>
-            <div class="milestone-row"><span class="ms-emoji">💻</span><div class="ms-info"><p>Portfolio wireframes complete</p><span class="ms-date">Apr 2</span></div><span class="badge badge-teal">Done</span></div>
-            <div class="milestone-row"><span class="ms-emoji">🏃</span><div class="ms-info"><p>First 5K without stopping</p><span class="ms-date">Apr 18</span></div><span class="badge badge-teal">Done</span></div>
-            <div class="milestone-row"><span class="ms-emoji">💻</span><div class="ms-info"><p>Portfolio live on GitHub Pages</p><span class="ms-date">Due Apr 24</span></div><span class="badge badge-coral">At Risk</span></div>
+            <div class="card-header"><span class="card-title">Personal details</span></div>
+            <div class="profile-field"><span class="pf-label">Full name</span><span class="pf-value">Emma Mitchell</span></div>
+            <div class="profile-field"><span class="pf-label">Email</span><span class="pf-value">emma@thriveapp.co</span></div>
+            <div class="profile-field"><span class="pf-label">Location</span><span class="pf-value">Cape Town, South Africa</span></div>
+            <div class="profile-field"><span class="pf-label">Timezone</span><span class="pf-value">SAST (UTC+2)</span></div>
           </div>
         </div>
         <div class="col">
           <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Goal breakdown</span></div>
-            <div class="goal-row"><div class="goal-info"><span>🇪🇸 Learn Spanish</span><span class="pct">72%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="72%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>💻 Portfolio Website</span><span class="pct">45%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="45%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>🏃 5K under 25 min</span><span class="pct">60%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="60%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>📚 Read 24 books</span><span class="pct">29%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="29%"></div></div></div>
+            <div class="card-header"><span class="card-title">Achievements</span></div>
+            <div class="achievement-row"><span class="ach-icon">🔥</span><div><p class="ach-title">7-day streak</p><p class="ach-sub">Current streak</p></div><span class="badge badge-teal">Active</span></div>
+            <div class="achievement-row"><span class="ach-icon">🏆</span><div><p class="ach-title">12-day streak</p><p class="ach-sub">Personal best</p></div><span class="badge badge-violet">Record</span></div>
+            <div class="achievement-row"><span class="ach-icon">⭐</span><div><p class="ach-title">26 tasks this month</p><p class="ach-sub">Highest monthly count</p></div><span class="badge badge-teal">Best</span></div>
+            <div class="achievement-row"><span class="ach-icon">📚</span><div><p class="ach-title">First goal set</p><p class="ach-sub">Jan 12, 2026</p></div><span class="badge badge-violet">Unlocked</span></div>
           </div>
           <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Consistency streak</span></div>
-            <div class="streak-row"><span class="streak-num">7</span><span class="streak-label">days in a row 🔥</span></div>
-            <div class="streak-days"><div class="streak-day"><div class="streak-dot on"></div><span>M</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>W</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>F</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div></div>
+            <div class="card-header"><span class="card-title">This month</span></div>
+            <div class="goal-row"><div class="goal-info"><span>Tasks completed</span><span class="pct">26 / 35</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="74%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>Goals progressed</span><span class="pct">4 / 4</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="100%"></div></div></div>
+            <div class="goal-row"><div class="goal-info"><span>Streak days</span><span class="pct">14 / 20</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="70%"></div></div></div>
           </div>
         </div>
       </div>

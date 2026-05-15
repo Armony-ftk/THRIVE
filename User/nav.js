@@ -1,9 +1,28 @@
 /* ═══════════════════════════════════════════════
    thrive — shared nav + background script
-   Include at bottom of every page
+
 ═══════════════════════════════════════════════ */
 
+document.addEventListener("DOMContentLoaded", function () {
+  const dateElement = document.getElementById("date-text");
+
+  const today = new Date();
+
+  const options = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+
+  dateElement.textContent = today.toLocaleDateString('en-ZA', options);
+});
+
+
 /* ── Aurora canvas ──────────────────────────── */
+
+
+
 (function () {
   const cv = document.getElementById('aurora');
   if (!cv) return;
@@ -94,3 +113,5 @@ document.querySelectorAll('.task-check:not(.done)').forEach(cb => {
     } else { cb.innerHTML = ''; label?.classList.remove('done'); }
   });
 });
+
+
