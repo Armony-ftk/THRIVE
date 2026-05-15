@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive - Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="split-container">
+    <div class="left-panel">
+      <div class="form-box">
+        <h1>Thrive</h1>
+        <p>Don't have an account? <a href="signUp.html" class="link">Sign Up</a></p>
+        <form action="http://localhost:3000/login" method="post">
+          <input type="text" name="username" placeholder="username" required>
+          <div class="password-box">
+            <input type="password" name="password" placeholder="Password" id="password" required>
+            <span id="toggle">👁</span>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <a href="passwordReset.html" class="link">Forgot Password?</a>
+        <hr>
+        <div class="social-login">
+          <p>Or sign in with</p>
+          <button class="google-btn" type="button"><img src="google-icon.png" class="icon"> Continue with Google</button>
+          <button class="apple-btn"><img src="apple-icon.png" class="icon"> Continue with Apple</button>
+        </div>
+        <p class="terms">By continuing, you agree to Thrive’s Terms of Service, Privacy Policy, and Cookie <a href="terms.html" target="_blank">*</a></p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="welcome">
+        <h2>Welcome Back!</h2>
+        <p>Manage your goals, track progress, and thrive with ease.</p>
+      </div>
+    </div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

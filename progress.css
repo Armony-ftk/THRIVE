@@ -1,9 +1,7 @@
 @import "global.css";
 @import "layout.css";
 
-/* =========================
-   HEADER
-========================= */
+
 
 .welcome-header {
   text-align: center;
@@ -15,9 +13,7 @@
   font-size: 34px;
 }
 
-/* =========================
-   STATS ROW
-========================= */
+
 
 .stats-row {
   display: grid;
@@ -48,9 +44,7 @@
   margin-top: 6px;
 }
 
-/* =========================
-   GRID
-========================= */
+
 
 .layout-grid {
   display: grid;
@@ -58,9 +52,7 @@
   gap: 18px;
 }
 
-/* =========================
-   PROGRESS BARS
-========================= */
+
 
 .progress-bar {
   height: 6px;
@@ -75,9 +67,7 @@
   background: linear-gradient(90deg, #a78bfa, #7c6aee);
 }
 
-/* =========================
-   INSIGHTS
-========================= */
+
 
 .insight-row {
   display: flex;
@@ -95,7 +85,7 @@
   color: var(--text-3);
 }
 
-/* dots */
+
 .dot {
   width: 8px;
   height: 8px;
@@ -106,9 +96,7 @@
 .dot.secondary { background: var(--teal); }
 .dot.accent { background: var(--coral); }
 
-/* =========================
-   MILESTONES
-========================= */
+
 
 .milestone-list {
   list-style: none;

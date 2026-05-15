@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thrive — Thrive AI</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+<canvas id="aurora"></canvas>
+<canvas id="particles"></canvas>
+<div class="orb orb-1"></div><div class="orb orb-2"></div>
+<div class="orb orb-3"></div><div class="orb orb-4"></div>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sb-logo" href="dashboard.html" title="Thrive">
+      <div class="sb-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 2 Q12.5 5.5 12.5 9 Q12.5 13.5 9 16 Q5.5 13.5 5.5 9 Q5.5 5.5 9 2Z" fill="rgba(255,255,255,0.92)"/>
+          <path d="M9 16 Q9 11 14.5 7.5" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg></div>
+      <span class="sb-logo-text">thrive.</span>
+    </a>
+    <nav class="sb-nav">
+      <a class="sb-item" href="dashboard.html" title="Dashboard">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="2" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="11" width="7" height="7" rx="2.2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Home</span>
+      </a>
+      <a class="sb-item" href="goals.html" title="Goals">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/></svg>
+        <span>Goals</span>
+      </a>
+      <a class="sb-item" href="tasks.html" title="Daily Tasks">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10l2.5 2.5L13 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Tasks</span>
+      </a>
+      <a class="sb-item" href="progress.html" title="Progress">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><polyline points="2,14 6,9 10,11 14,5 18,8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Progress</span>
+      </a>
+      <a class="sb-item active" href="thriveAI.html" title="Thrive with AI">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 3 Q14 6 14 9.5 Q14 14 10 17 Q6 14 6 9.5 Q6 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="7.5" y1="19" x2="12.5" y2="19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>AI</span>
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <a class="sb-item" href="settings.html" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>Settings</span>
+      </a>
+      <a class="sb-avatar" href="profile.html" title="Emma">EM</a>
+    </div>
+  </aside>
+  <div class="main-col">
+    <header class="topbar">
+      <nav class="topbar-links">
+        <a class="tlink" href="dashboard.html">Dashboard</a>
+        <a class="tlink" href="goals.html">Goals</a>
+        <a class="tlink" href="tasks.html">Daily tasks</a>
+        <a class="tlink" href="progress.html">Progress</a>
+        <a class="tlink active" href="thriveAI.html">Thrive with AI</a>
+      </nav>
+      <div class="topbar-right">
+        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="page-header fade-up">
+        <div>
+          <h1 class="page-title">Thrive with AI</h1>
+          <p class="page-sub">Your personal coach, powered by AI</p>
+        </div>
+        <span class="badge badge-teal" style="padding:6px 14px;font-size:11px">● AI Online</span>
+      </div>
+      <div class="content-grid fade-up">
+        <div class="col">
+          <div class="card card-pad ai-chat">
+            <div class="card-header"><span class="card-title">Chat with Thrive AI</span></div>
+            <div class="chat-window">
+              <div class="chat-msg ai">
+                <div class="chat-bubble">Hi Emma! 👋 You're on a 7-day streak — that's incredible. How are you feeling about your goals today?</div>
+                <span class="chat-time">9:00 AM</span>
+              </div>
+              <div class="chat-msg user">
+                <div class="chat-bubble">A bit behind on the portfolio. I haven't worked on it in 3 days.</div>
+                <span class="chat-time">9:02 AM</span>
+              </div>
+              <div class="chat-msg ai">
+                <div class="chat-bubble">No worries — let's fix that! Your deadline is Apr 24, leaving you <strong>4 days</strong>. I suggest breaking it into: today — finish the about section, tomorrow — projects gallery, day 3 — deploy. Does that work?</div>
+                <span class="chat-time">9:02 AM</span>
+              </div>
+              <div class="chat-msg user">
+                <div class="chat-bubble">Yes that sounds doable!</div>
+                <span class="chat-time">9:04 AM</span>
+              </div>
+              <div class="chat-msg ai">
+                <div class="chat-bubble">Great! I've added those as tasks in your Daily Tasks. You've got this, Emma. 💜</div>
+                <span class="chat-time">9:04 AM</span>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <input class="chat-input" type="text" placeholder="Ask your AI coach anything…"/>
+              <button class="chat-send"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">AI Insights</span><span class="badge badge-violet">New</span></div>
+            <div class="insight-row"><span class="insight-icon">📈</span><div><p class="insight-title">Your best day is Wednesday</p><p class="insight-sub">You complete 94% of tasks on Wednesdays — try scheduling harder tasks then.</p></div></div>
+            <div class="insight-row"><span class="insight-icon">⚠️</span><div><p class="insight-title">Portfolio deadline risk</p><p class="insight-sub">At current pace you'll miss the Apr 24 milestone by ~2 days.</p></div></div>
+            <div class="insight-row"><span class="insight-icon">🏆</span><div><p class="insight-title">Spanish is going great</p><p class="insight-sub">72% complete with 4 months left — you're ahead of schedule!</p></div></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Quick prompts</span></div>
+            <div class="quick-prompts">
+              <button class="quick-btn">Reschedule my week</button>
+              <button class="quick-btn">What should I focus on today?</button>
+              <button class="quick-btn">Motivate me 💪</button>
+              <button class="quick-btn">Review my goal progress</button>
+            </div>
+          </div>
+          <div class="card card-pad motive"><p class="motive-label">AI pick of the day</p><p class="motive-quote">"You don't have to be great to start, but you have to start to be great."</p><span class="motive-author">— Zig Ziglar</span></div>
+        </div>
+      </div>
+      <footer class="page-footer fade-up">
+        <p class="footer-copy">© 2026 Thrive. All rights reserved.</p>
+        <nav class="footer-links"><a href="dashboard.html">Dashboard</a><a href="goals.html">Goals</a><a href="tasks.html">Daily tasks</a><a href="progress.html">Progress</a></nav>
+        <div class="footer-social">
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><path d="M12.6 1h2.3L9.9 6.8 15.7 15h-4.3l-3.5-4.6L3.6 15H1.3l5.3-6.1L1 1h4.4l3.2 4.2L12.6 1z" fill="currentColor"/></svg></span>
+          <span class="social-btn"><svg width="11" height="11" viewBox="0 0 16 16"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="currentColor"/></svg></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+<script src="nav.js"></script>
+</body>
+</html>
