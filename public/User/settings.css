@@ -125,3 +125,4 @@ input:checked + .slider:before { transform: translateX(14px); }
   transform: translateY(-2px);
   filter: brightness(1.1);
 }
+}

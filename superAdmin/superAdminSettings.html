@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuperUser — System Settings</title>
+  <link rel="stylesheet" href="superAdminSettings.css" />
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="shell">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <nav class="sidebar">
+      <a class="sb-logo" href="superAdminDashboard.html">
+        <div class="sb-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="sb-logo-text">sudo</span>
+      </a>
+      <div class="sb-nav">
+        <a class="sb-item" href="superAdminDashboard.html" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span>Dash</span>
+        </a>
+        <a class="sb-item" href="superAdminUsers.html" title="User Management">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span>Users</span>
+        </a>
+        <a class="sb-item" href="superAdminAdmins.html" title="Admin Roles">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Admins</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item" href="superAdminAPI.html" title="API Manager">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span>API</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item active" href="superAdminSettings.html" title="System Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span>Config</span>
+        </a>
+      </div>
+      <div class="sb-avatar" title="Superuser">SU</div>
+    </nav>
+
+    <!-- ═══ MAIN ═══ -->
+    <main class="main-col">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-links">
+          <a class="tlink" href="superAdminDashboard.html">Overview</a>
+          <a class="tlink" href="superAdminUsers.html">Users</a>
+          <a class="tlink" href="superAdminAdmins.html">Admins</a>
+          <a class="tlink" href="superAdminAPI.html">APIs</a>
+          <a class="tlink active" href="superAdminSettings.html">Settings</a>
+        </div>
+        <div class="topbar-right">
+          <div class="alert-chip">
+            <div class="pulse-dot" style="background:var(--coral);box-shadow:0 0 8px rgba(240,96,122,.6)"></div>
+            3 Alerts
+          </div>
+          <div class="search-box">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Search system…
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <div class="content">
+
+        <div class="page-header fade-up">
+          <h1>System <em>Settings</em></h1>
+          <p>Configure platform behaviour, security policies, integrations and global feature flags.</p>
+        </div>
+
+        <div class="settings-layout fade-up">
+
+          <!-- ─── SETTINGS NAV ─── -->
+          <div class="settings-nav">
+            <div class="card settings-nav-inner">
+              <div class="snav-label">General</div>
+              <div class="snav-item active" onclick="showSection('general', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                General
+              </div>
+              <div class="snav-item" onclick="showSection('security', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Security
+              </div>
+              <div class="snav-item" onclick="showSection('health', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                System Health
+              </div>
+              <div class="snav-divider"></div>
+              <div class="snav-label">Platform</div>
+              <div class="snav-item" onclick="showSection('notifications', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                Notifications
+              </div>
+              <div class="snav-item" onclick="showSection('flags', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                Feature Flags
+              </div>
+              <div class="snav-item" onclick="showSection('integrations', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="6"/><rect x="16" y="3" width="6" height="6"/><rect x="9" y="15" width="6" height="6"/><path d="M5 9v3a2 2 0 002 2h10a2 2 0 002-2V9"/><line x1="12" y1="12" x2="12" y2="15"/></svg>
+                Integrations
+              </div>
+              <div class="snav-divider"></div>
+              <div class="snav-item" onclick="showSection('danger', this)" style="color:var(--coral);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                Danger Zone
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── PANELS ─── -->
+          <div class="settings-panels">
+
+            <!-- GENERAL -->
+            <div class="settings-section active" id="section-general">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Platform Identity</div>
+                  <div class="section-desc">Basic information about your platform shown to users and in emails.</div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Platform Name</label>
+                    <input class="form-input" type="text" value="Platform Control" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Support Email</label>
+                    <input class="form-input" type="email" value="support@domain.com" />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Default Language</label>
+                    <select class="form-input form-select">
+                      <option selected>English (en-ZA)</option>
+                      <option>English (en-US)</option>
+                      <option>Zulu (zu-ZA)</option>
+                      <option>Afrikaans (af-ZA)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Timezone</label>
+                    <select class="form-input form-select">
+                      <option selected>Africa/Johannesburg (UTC+2)</option>
+                      <option>UTC</option>
+                      <option>America/New_York</option>
+                      <option>Europe/London</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Platform Description</label>
+                  <textarea class="form-input form-textarea" placeholder="Short description shown in emails and meta tags…">Full-stack platform control suite for enterprise user and API management.</textarea>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Changes</button>
+                  <button class="btn-secondary">Discard</button>
+                </div>
+              </div>
+
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">User Defaults</div>
+                  <div class="section-desc">Default behaviour applied to all new user accounts.</div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Require email verification</div>
+                    <div class="toggle-desc">New users must verify their email before accessing the platform.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Allow self-registration</div>
+                    <div class="toggle-desc">Users can sign up without an admin invite.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Auto-assign default role</div>
+                    <div class="toggle-desc">Newly registered users are assigned the "User" role automatically.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Changes</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="settings-section" id="section-security">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Authentication Policy</div>
+                  <div class="section-desc">Control login, session and password requirements platform-wide.</div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Enforce two-factor authentication</div>
+                    <div class="toggle-desc">All admin accounts must have 2FA enabled.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Single sign-on (SSO)</div>
+                    <div class="toggle-desc">Allow login via configured SSO provider.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Block disposable email addresses</div>
+                    <div class="toggle-desc">Prevent sign-up with known temporary email services.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="form-row-2" style="margin-top:16px;">
+                  <div class="form-group">
+                    <label class="form-label">Session Timeout (minutes)</label>
+                    <input class="form-input" type="number" value="60" />
+                    <span class="form-hint">Idle sessions are logged out after this period.</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Max Login Attempts</label>
+                    <input class="form-input" type="number" value="5" />
+                    <span class="form-hint">Account locks after this many failed attempts.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">IP Allowlist (one per line)</label>
+                  <textarea class="form-input form-textarea form-mono" placeholder="196.0.0.0/8&#10;10.0.0.0/8">196.22.0.0/16
+10.0.0.0/8</textarea>
+                  <span class="form-hint">Leave empty to allow all IPs. Superuser access is never restricted.</span>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Policy</button>
+                  <button class="btn-secondary">Discard</button>
+                </div>
+              </div>
+
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Password Requirements</div>
+                  <div class="section-desc">Minimum standards enforced when users set or change passwords.</div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Minimum Length</label>
+                    <input class="form-input" type="number" value="12" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Password Expiry (days)</label>
+                    <input class="form-input" type="number" value="90" />
+                    <span class="form-hint">Set 0 to never expire.</span>
+                  </div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Require uppercase &amp; lowercase</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Require numbers</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Require special characters</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Requirements</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SYSTEM HEALTH -->
+            <div class="settings-section" id="section-health">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Service Status</div>
+                  <div class="section-desc">Live status of all platform services. Last checked 1 minute ago.</div>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-warn"></span>API Gateway</div>
+                  <div style="text-align:right;flex:1;padding-left:16px;">
+                    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-3);margin-bottom:4px;"><span>Load</span><span class="health-warn" style="font-weight:600;">86%</span></div>
+                    <div class="progress-track"><div class="progress-fill fill-amber" style="width:86%"></div></div>
+                  </div>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Database (Primary)</div>
+                  <span class="health-val health-ok">✓ Healthy — 4ms avg</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Auth Service</div>
+                  <span class="health-val health-ok">✓ Healthy — 12ms avg</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Media CDN</div>
+                  <span class="health-val health-ok">✓ Healthy — 38ms avg</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-err"></span>Email Service</div>
+                  <span class="health-val health-err">✗ Degraded — check SMTP</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Background Jobs</div>
+                  <span class="health-val health-ok">✓ 12 active workers</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Search Index</div>
+                  <span class="health-val health-ok">✓ Synced 3 min ago</span>
+                </div>
+                <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(124,106,238,.08);">
+                  <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-3);margin-bottom:6px;"><span>30-day uptime</span><span style="font-weight:600;color:var(--teal);">99.4%</span></div>
+                  <div class="progress-track"><div class="progress-fill fill-teal" style="width:99%"></div></div>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-secondary">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                    Refresh Status
+                  </button>
+                  <button class="btn-secondary">View Full Report</button>
+                </div>
+              </div>
+
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Maintenance Mode</div>
+                  <div class="section-desc">Temporarily disable the platform for all non-superuser accounts.</div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Enable maintenance mode</div>
+                    <div class="toggle-desc">All users will see a maintenance page. Admins &amp; superusers unaffected.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="form-group" style="margin-top:14px;">
+                  <label class="form-label">Maintenance Message</label>
+                  <textarea class="form-input form-textarea">We're performing scheduled maintenance. We'll be back shortly.</textarea>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save &amp; Apply</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- NOTIFICATIONS -->
+            <div class="settings-section" id="section-notifications">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Email Notifications</div>
+                  <div class="section-desc">Control which system events trigger email alerts to admins.</div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">New user registration</div>
+                    <div class="toggle-desc">Send an alert when a new account is created.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Suspicious login attempts</div>
+                    <div class="toggle-desc">Alert when a login is blocked due to suspicious activity.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">API key nearing rate limit</div>
+                    <div class="toggle-desc">Alert when any key exceeds 80% of its quota.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Service degradation alerts</div>
+                    <div class="toggle-desc">Alert when any service enters a degraded state.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Weekly digest report</div>
+                    <div class="toggle-desc">Send a weekly summary of platform activity to all admins.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Preferences</button>
+                </div>
+              </div>
+
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">SMTP Configuration</div>
+                  <div class="section-desc">Outbound email settings used for all platform notifications.</div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">SMTP Host</label>
+                    <input class="form-input form-mono" type="text" value="smtp.mailservice.com" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Port</label>
+                    <input class="form-input form-mono" type="number" value="587" />
+                  </div>
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input class="form-input" type="text" value="noreply@domain.com" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input class="form-input" type="password" value="••••••••••••" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Sender Name</label>
+                  <input class="form-input" type="text" value="Platform Control" />
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save SMTP</button>
+                  <button class="btn-secondary">Send Test Email</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- FEATURE FLAGS -->
+            <div class="settings-section" id="section-flags">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Feature Flags</div>
+                  <div class="section-desc">Enable or disable features and control rollout percentages.</div>
+                </div>
+
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">beta_dashboard_v2</div>
+                    <div class="flag-desc">New dashboard layout with live analytics charts.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">10%</span>
+                    <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">new_onboarding_flow</div>
+                    <div class="flag-desc">Redesigned user onboarding with interactive checklist.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">50%</span>
+                    <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">ai_content_moderation</div>
+                    <div class="flag-desc">Automated AI-assisted content moderation pipeline.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">5%</span>
+                    <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">graphql_api_v3</div>
+                    <div class="flag-desc">New GraphQL endpoint alongside the REST API.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">100%</span>
+                    <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">dark_mode_ui</div>
+                    <div class="flag-desc">Allow users to switch to a dark colour scheme.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">0%</span>
+                    <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+                <div class="flag-row">
+                  <div class="flag-info">
+                    <div class="flag-name">bulk_user_import</div>
+                    <div class="flag-desc">CSV bulk import for user accounts via admin panel.</div>
+                  </div>
+                  <div class="flag-right">
+                    <span class="flag-rollout">100%</span>
+                    <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Flags</button>
+                  <button class="btn-secondary">Reset to Defaults</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- INTEGRATIONS -->
+            <div class="settings-section" id="section-integrations">
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Webhook Endpoints</div>
+                  <div class="section-desc">Send platform events to external services via HTTP POST.</div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Webhook URL</label>
+                  <input class="form-input form-mono" type="url" placeholder="https://hooks.yourservice.com/events" value="https://hooks.analytics.io/platform-v2" />
+                </div>
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Secret Key</label>
+                    <input class="form-input form-mono" type="password" value="••••••••••••••••" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Retry Attempts</label>
+                    <input class="form-input" type="number" value="3" />
+                  </div>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Send user events</div>
+                    <div class="toggle-desc">Registration, suspension, role changes.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Send API events</div>
+                    <div class="toggle-desc">Key creation, revocation, rate limit hits.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-info">
+                    <div class="toggle-label">Send security events</div>
+                    <div class="toggle-desc">Failed logins, IP blocks, 2FA changes.</div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                </div>
+                <div class="btn-actions">
+                  <button class="btn-primary">Save Webhook</button>
+                  <button class="btn-secondary">Send Test Ping</button>
+                </div>
+              </div>
+
+              <div class="card section-card">
+                <div class="section-header">
+                  <div class="section-title">Third-party Services</div>
+                  <div class="section-desc">Connected external services and their integration status.</div>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Stripe (Billing)</div>
+                  <span class="badge badge-teal">Connected</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-err"></span>SendGrid (Email)</div>
+                  <span class="badge badge-coral">Degraded</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>Cloudflare (CDN)</div>
+                  <span class="badge badge-teal">Connected</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-warn"></span>Datadog (Monitoring)</div>
+                  <span class="badge badge-amber">Config Needed</span>
+                </div>
+                <div class="health-row">
+                  <div class="health-left"><span class="dot dot-ok"></span>AWS S3 (Storage)</div>
+                  <span class="badge badge-teal">Connected</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DANGER ZONE -->
+            <div class="settings-section" id="section-danger">
+              <div class="card section-card danger-zone">
+                <div class="section-header" style="border-color:rgba(240,96,122,.12);">
+                  <div class="section-title" style="color:var(--coral);">⚠ Danger Zone</div>
+                  <div class="section-desc">These actions are irreversible. Proceed with extreme caution.</div>
+                </div>
+
+                <div class="danger-row">
+                  <div>
+                    <div class="danger-title">Enable Maintenance Mode</div>
+                    <div class="danger-desc">Immediately lock out all non-admin users from the platform.</div>
+                  </div>
+                  <button class="btn-danger">Enable Now</button>
+                </div>
+                <div class="danger-row">
+                  <div>
+                    <div class="danger-title">Revoke All Active Sessions</div>
+                    <div class="danger-desc">Force every user, admin and moderator to log in again immediately.</div>
+                  </div>
+                  <button class="btn-danger">Revoke All</button>
+                </div>
+                <div class="danger-row">
+                  <div>
+                    <div class="danger-title">Invalidate All API Keys</div>
+                    <div class="danger-desc">Immediately disable every API key platform-wide. Cannot be undone.</div>
+                  </div>
+                  <button class="btn-danger">Invalidate All</button>
+                </div>
+                <div class="danger-row">
+                  <div>
+                    <div class="danger-title">Purge Audit Logs</div>
+                    <div class="danger-desc">Permanently delete all audit log entries older than 90 days.</div>
+                  </div>
+                  <button class="btn-danger">Purge Logs</button>
+                </div>
+                <div class="danger-row">
+                  <div>
+                    <div class="danger-title">Reset Platform to Defaults</div>
+                    <div class="danger-desc">Wipe all settings and restore factory defaults. User data is preserved.</div>
+                  </div>
+                  <button class="btn-danger">Reset Settings</button>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /panels -->
+        </div><!-- /settings-layout -->
+      </div><!-- /content -->
+
+      <!-- FOOTER -->
+      <footer class="page-footer fade-up">
+        <span class="footer-copy">© 2026 Platform Control · Superuser session active</span>
+        <div class="footer-links">
+          <a href="superAdminDashboard.html">Dashboard</a>
+          <a href="superAdminUsers.html">Users</a>
+          <a href="superAdminAdmins.html">Admins</a>
+          <a href="superAdminAPI.html">APIs</a>
+          <a href="superAdminSettings.html">Settings</a>
+        </div>
+      </footer>
+
+    </main>
+  </div><!-- /shell -->
+
+  <script>
+    // Settings nav switching
+    function showSection(id, el) {
+      document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.snav-item').forEach(i => i.classList.remove('active'));
+      document.getElementById('section-' + id).classList.add('active');
+      el.classList.add('active');
+    }
+
+    // Animate progress bars on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = w; }, 200);
+      });
+    });
+  </script>
+
+</body>
+</html>

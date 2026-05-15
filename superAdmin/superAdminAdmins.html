@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuperUser — Admin Roles</title>
+  <link rel="stylesheet" href="superAdminAdmins.css" />
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="shell">
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <nav class="sidebar">
+      <a class="sb-logo" href="superAdminDashboard.html">
+        <div class="sb-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="sb-logo-text">sudo</span>
+      </a>
+
+      <div class="sb-nav">
+        <a class="sb-item" href="superAdminDashboard.html" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span>Dash</span>
+        </a>
+        <a class="sb-item" href="superAdminUsers.html" title="User Management">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span>Users</span>
+        </a>
+        <a class="sb-item active" href="superAdminAdmins.html" title="Admin Roles">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Admins</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item" href="superAdminAPI.html" title="API Manager">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span>API</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item" href="superAdminSettings.html" title="System Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span>Config</span>
+        </a>
+      </div>
+
+      <div class="sb-avatar" title="Superuser">SU</div>
+    </nav>
+
+    <!-- ═══ MAIN ═══ -->
+    <main class="main-col">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-links">
+          <a class="tlink" href="superAdminDashboard.html">Overview</a>
+          <a class="tlink" href="superAdminUsers.html">Users</a>
+          <a class="tlink active" href="superAdminAdmins.html">Admins</a>
+          <a class="tlink" href="superAdminAPI.html">APIs</a>
+          <a class="tlink" href="superAdminSettings.html">Settings</a>
+        </div>
+        <div class="topbar-right">
+          <div class="alert-chip">
+            <div class="pulse-dot" style="background:var(--coral);box-shadow:0 0 8px rgba(240,96,122,.6)"></div>
+            3 Alerts
+          </div>
+          <div class="search-box">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Search system…
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <div class="content">
+
+        <!-- Page Header -->
+        <div class="page-header fade-up">
+          <h1>Admin <em>Roles &amp; Permissions</em></h1>
+          <p>Manage administrator accounts, assign roles and control platform-wide access permissions.</p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row fade-up">
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-coral">🛡️</div>
+            <div>
+              <div class="stat-mini-val">34</div>
+              <div class="stat-mini-label">Total Admins</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-violet">⭐</div>
+            <div>
+              <div class="stat-mini-val">4</div>
+              <div class="stat-mini-label">Super Admins</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-teal">✅</div>
+            <div>
+              <div class="stat-mini-val">28</div>
+              <div class="stat-mini-label">Active Today</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-amber">🔑</div>
+            <div>
+              <div class="stat-mini-val">6</div>
+              <div class="stat-mini-label">Pending Invites</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="content-grid fade-up">
+
+          <!-- LEFT: Admin Table -->
+          <div class="col">
+            <div class="card table-card">
+              <div class="table-card-header">
+                <div>
+                  <div class="card-title">Admin Accounts</div>
+                  <div class="card-subtitle" id="rowCount">Showing 7 admins</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <div class="search-input">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" placeholder="Search admins…" id="adminSearch" oninput="filterTable()" />
+                  </div>
+                  <button class="btn-primary" onclick="openModal()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add Admin
+                  </button>
+                </div>
+              </div>
+
+              <table class="admin-table" id="adminTable">
+                <thead>
+                  <tr>
+                    <th style="width:30%">Admin</th>
+                    <th style="width:16%">Role</th>
+                    <th style="width:13%">Status</th>
+                    <th style="width:22%">Permissions</th>
+                    <th style="width:19%">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr data-role="superadmin">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#f0607a,#fb7185)">SR</div>
+                        <div>
+                          <div class="u-name-text">Sipho Root</div>
+                          <div class="u-email">sipho.root@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-superadmin">Super Admin</span></td>
+                    <td><span class="status-pill status-online"><span class="dot dot-online"></span>Online</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm perm-danger">Full Access</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="superadmin">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#7c6aee,#a78bfa)">KN</div>
+                        <div>
+                          <div class="u-name-text">Kefilwe Nkosi</div>
+                          <div class="u-email">k.nkosi@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-superadmin">Super Admin</span></td>
+                    <td><span class="status-pill status-online"><span class="dot dot-online"></span>Online</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm perm-danger">Full Access</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="admin">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#2bbfa4,#34d399)">TM</div>
+                        <div>
+                          <div class="u-name-text">Thabo Mokoena</div>
+                          <div class="u-email">t.mokoena@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-admin">Admin</span></td>
+                    <td><span class="status-pill status-online"><span class="dot dot-online"></span>Online</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm">Users</span>
+                        <span class="perm perm-teal">API</span>
+                        <span class="perm">Audit</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="admin">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#6366f1,#818cf8)">NM</div>
+                        <div>
+                          <div class="u-name-text">Nomsa Mahlangu</div>
+                          <div class="u-email">n.mahlangu@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-admin">Admin</span></td>
+                    <td><span class="status-pill status-offline"><span class="dot dot-offline"></span>Offline</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm">Users</span>
+                        <span class="perm">Flags</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="mod">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#10b981,#34d399)">SN</div>
+                        <div>
+                          <div class="u-name-text">Sipho Ndlovu</div>
+                          <div class="u-email">s.ndlovu@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-mod">Moderator</span></td>
+                    <td><span class="status-pill status-online"><span class="dot dot-online"></span>Online</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm perm-teal">Content</span>
+                        <span class="perm">Flags</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-teal">Promote</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="mod">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#f5a623,#fbbf24)">LV</div>
+                        <div>
+                          <div class="u-name-text">Lungelo Vilakazi</div>
+                          <div class="u-email">l.vilakazi@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-mod">Moderator</span></td>
+                    <td><span class="status-pill status-offline"><span class="dot dot-offline"></span>Offline</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm perm-teal">Content</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-teal">Promote</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-role="viewer">
+                    <td>
+                      <div class="u-cell">
+                        <div class="u-avatar" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1)">ZD</div>
+                        <div>
+                          <div class="u-name-text">Zanele Dlamini</div>
+                          <div class="u-email">z.dlamini@domain.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-viewer">Viewer</span></td>
+                    <td><span class="status-pill status-offline"><span class="dot dot-offline"></span>Offline</span></td>
+                    <td>
+                      <div class="perms">
+                        <span class="perm">Read Only</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-teal">Promote</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="table-footer">
+                <span class="pg-info">Page 1 of 5</span>
+                <div class="pagination">
+                  <div class="pg-btn">‹</div>
+                  <div class="pg-btn active">1</div>
+                  <div class="pg-btn">2</div>
+                  <div class="pg-btn">3</div>
+                  <div class="pg-btn">…</div>
+                  <div class="pg-btn">5</div>
+                  <div class="pg-btn">›</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Side panels -->
+          <div class="col">
+
+            <!-- Role Filter -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Filter by Role</div>
+              <div class="role-filter-list">
+                <div class="role-filter-item active" onclick="setRoleFilter(this,'all')">
+                  <span>All Roles</span>
+                  <span class="role-filter-count">34</span>
+                </div>
+                <div class="role-filter-item" onclick="setRoleFilter(this,'superadmin')">
+                  <span>⭐ Super Admin</span>
+                  <span class="role-filter-count">4</span>
+                </div>
+                <div class="role-filter-item" onclick="setRoleFilter(this,'admin')">
+                  <span>🛡️ Admin</span>
+                  <span class="role-filter-count">18</span>
+                </div>
+                <div class="role-filter-item" onclick="setRoleFilter(this,'mod')">
+                  <span>🔧 Moderator</span>
+                  <span class="role-filter-count">9</span>
+                </div>
+                <div class="role-filter-item" onclick="setRoleFilter(this,'viewer')">
+                  <span>👁 Viewer</span>
+                  <span class="role-filter-count">3</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Permissions Matrix -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Role Permissions</div>
+
+              <div class="perm-section">
+                <div class="perm-section-title">User Management</div>
+                <div class="perm-row">
+                  <span class="perm-name">View users</span>
+                  <div style="display:flex;gap:6px;">
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-no">–</span>
+                  </div>
+                </div>
+                <div class="perm-row">
+                  <span class="perm-name">Suspend users</span>
+                  <div style="display:flex;gap:6px;">
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                  </div>
+                </div>
+                <div class="perm-row">
+                  <span class="perm-name">Delete users</span>
+                  <div style="display:flex;gap:6px;">
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="perm-section">
+                <div class="perm-section-title">API &amp; System</div>
+                <div class="perm-row">
+                  <span class="perm-name">Manage API keys</span>
+                  <div style="display:flex;gap:6px;">
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                  </div>
+                </div>
+                <div class="perm-row">
+                  <span class="perm-name">System config</span>
+                  <div style="display:flex;gap:6px;">
+                    <span class="perm-check perm-yes">✓</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                    <span class="perm-check perm-no">–</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Legend -->
+              <div class="perm-legend">
+                <span class="perm-legend-item"><span class="perm-check perm-yes" style="width:14px;height:14px;font-size:9px;">✓</span> Super</span>
+                <span class="perm-legend-item"><span class="perm-check perm-yes" style="width:14px;height:14px;font-size:9px;">✓</span> Admin</span>
+                <span class="perm-legend-item"><span class="perm-check perm-no"  style="width:14px;height:14px;font-size:9px;">–</span> Mod</span>
+                <span class="perm-legend-item"><span class="perm-check perm-no"  style="width:14px;height:14px;font-size:9px;">–</span> Viewer</span>
+              </div>
+            </div>
+
+            <!-- Recent Admin Activity -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Recent Activity</div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--coral)"></span>
+                <div class="act-text"><strong>Kefilwe Nkosi</strong> granted Super Admin by root.</div>
+                <div class="act-time">18m ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--violet)"></span>
+                <div class="act-text"><strong>Sipho Ndlovu</strong> promoted to Moderator.</div>
+                <div class="act-time">2h ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--teal)"></span>
+                <div class="act-text"><strong>API access</strong> granted to Thabo Mokoena.</div>
+                <div class="act-time">5h ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--amber)"></span>
+                <div class="act-text"><strong>Zanele Dlamini</strong> role changed to Viewer.</div>
+                <div class="act-time">1d ago</div>
+              </div>
+            </div>
+
+          </div><!-- /right col -->
+        </div><!-- /content-grid -->
+      </div><!-- /content -->
+
+      <!-- FOOTER -->
+      <footer class="page-footer fade-up">
+        <span class="footer-copy">© 2026 Platform Control · Superuser session active</span>
+        <div class="footer-links">
+          <a href="superAdminDashboard.html">Dashboard</a>
+          <a href="superAdminUsers.html">Users</a>
+          <a href="superAdminAPI.html">APIs</a>
+          <a href="superAdminSettings.html">Settings</a>
+        </div>
+      </footer>
+
+    </main>
+  </div><!-- /shell -->
+
+  <!-- ═══ ADD ADMIN MODAL ═══ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Add Admin</span>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="form-row-2">
+        <div class="form-row">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="e.g. Sipho" />
+        </div>
+        <div class="form-row">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="e.g. Nkosi" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="admin@domain.com" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Role</label>
+        <select class="form-input form-select">
+          <option>Viewer</option>
+          <option>Moderator</option>
+          <option>Admin</option>
+          <option>Super Admin</option>
+        </select>
+      </div>
+      <div class="form-label" style="margin-bottom:8px;">Permissions</div>
+      <div class="perm-toggle-group">
+        <div class="perm-toggle-row">
+          <span class="perm-toggle-label">User Management</span>
+          <label class="toggle"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+        </div>
+        <div class="perm-toggle-row">
+          <span class="perm-toggle-label">API Access</span>
+          <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+        </div>
+        <div class="perm-toggle-row">
+          <span class="perm-toggle-label">System Config</span>
+          <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="closeModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Add Admin
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal
+    function openModal() { document.getElementById('modalOverlay').classList.add('open'); }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+    function closeModalOnBg(e) { if (e.target === e.currentTarget) closeModal(); }
+
+    // Role filter (sidebar list)
+    let activeRole = 'all';
+    function setRoleFilter(el, role) {
+      document.querySelectorAll('.role-filter-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+      activeRole = role;
+      filterTable();
+    }
+
+    // Search + filter
+    function filterTable() {
+      const q = document.getElementById('adminSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('#adminTable tbody tr');
+      let visible = 0;
+      rows.forEach(row => {
+        const matchSearch = !q || row.textContent.toLowerCase().includes(q);
+        const matchRole   = activeRole === 'all' || row.dataset.role === activeRole;
+        const show = matchSearch && matchRole;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      document.getElementById('rowCount').textContent = `Showing ${visible} admin${visible !== 1 ? 's' : ''}`;
+    }
+  </script>
+
+</body>
+</html>

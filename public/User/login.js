@@ -10,12 +10,13 @@ if (toggle && password) {
   });
 }
 
-// Example login form submission
+// Handle login form submission
 const loginForm = document.querySelector("form");
 if (loginForm) {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("Login submitted!");
-    
+
+    // Redirect to dashboard.html when Login button is clicked
+    window.location.href = "dashboard.html";
   });
 }
