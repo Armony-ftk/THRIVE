@@ -47,24 +47,6 @@ body {
   text-align: center;
 }
 
-.form-box select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  background-color: #fff;
-  transition: border-color 0.3s ease;
-  cursor: pointer;
-}
-
-/* Focus effect to match inputs */
-.form-box select:focus {
-  border-color: #7a42f4; /* same purple accent */
-  outline: none;
-}
-
 h1 {
   color: #4c1d95;
   font-size: 28px;
@@ -268,22 +250,3 @@ hr {
     width: 100%;
   }
 }
-
-#message-box {
-  margin: 10px 0;
-  padding: 8px;
-  border-radius: 4px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.error {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-

@@ -534,8 +534,12 @@
 
 /* ── Page header ────────────────────────────────────────────── */
 .page-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: space-between;
+  margin-bottom: 24px; 
+  flex-wrap: wrap; 
+  gap: 12px;
 }
 .page-title {
   font-family: var(--ff-display);

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thrive — Goals</title>
   <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="goals.css">
 </head>
 <body>
 <canvas id="aurora"></canvas>
@@ -60,7 +61,13 @@
         <a class="tlink" href="thriveAI.html">Thrive with AI</a>
       </nav>
       <div class="topbar-right">
-        <div class="date-chip"><div class="pulse-dot"></div>Wednesday, 22 Apr 2026</div>
+                 <div class="date-chip">
+          <div class="pulse-dot"></div>
+
+         <span id="date-text"></span>
+        
+        </div>
+
       </div>
     </header>
     <div class="content">
@@ -94,7 +101,7 @@
         <div class="goal-card card card-pad">
           <div class="goal-card-header">
             <div class="goal-card-left">
-              <span class="goal-emoji">💻</span>
+              <span class="goal-emoji"></span>
               <div><p class="goal-card-title">Build Portfolio Website</p><p class="goal-card-meta">Development · Target: May 2026</p></div>
             </div>
             <span class="badge badge-coral">At Risk</span>
@@ -107,7 +114,7 @@
         <div class="goal-card card card-pad">
           <div class="goal-card-header">
             <div class="goal-card-left">
-              <span class="goal-emoji">🏃</span>
+              <span class="goal-emoji"></span>
               <div><p class="goal-card-title">Run a 5K under 25 minutes</p><p class="goal-card-meta">Fitness · Target: Jun 2026</p></div>
             </div>
             <span class="badge badge-teal">On Track</span>
@@ -120,7 +127,7 @@
         <div class="goal-card card card-pad">
           <div class="goal-card-header">
             <div class="goal-card-left">
-              <span class="goal-emoji">📚</span>
+              <span class="goal-emoji"></span>
               <div><p class="goal-card-title">Read 24 books this year</p><p class="goal-card-meta">Learning · Target: Dec 2026</p></div>
             </div>
             <span class="badge badge-coral">At Risk</span>
@@ -131,6 +138,104 @@
           </div>
         </div>
       </div>
+
+
+      <!-- NEW GOAL pop-up -->
+<div id="goal-modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:1rem;">
+  <div id="goal-modal" style="background:var(--color-background-primary,#fff); border-radius:16px; padding:2rem; width:100%; max-width:520px; position:relative;">
+
+    <div id="gm-form">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:1.5rem;">
+        <div>
+          <p style="font-size:18px; font-weight:600; margin:0; color:#1a1a2e;">ADD NEW GOAL</p>
+          <p style="font-size:13px; color:#888; margin:4px 0 0;">Answer a few quick questions</p>
+        </div>
+        <button onclick="gmClose()" style="background:none; border:1px solid #e5e5e5; border-radius:8px; width:32px; height:32px; cursor:pointer; font-size:16px; color:#888;">✕</button>
+      </div>
+
+      <div id="gm-dots" style="display:flex; gap:6px; margin-bottom:1.75rem;">
+        <div class="gm-dot active" id="gm-dot-0"></div>
+        <div class="gm-dot" id="gm-dot-1"></div>
+        <div class="gm-dot" id="gm-dot-2"></div>
+        <div class="gm-dot" id="gm-dot-3"></div>
+        <div class="gm-dot" id="gm-dot-4"></div>
+      </div>
+
+      <!-- Q1-->
+      <div class="gm-step active" id="gm-step-0">
+        <span class="gm-qlabel">Question 1 of 5</span>
+        <p class="gm-qtitle">What is your goal?</p>
+        
+        <input type="text" id="gm-title" placeholder="e.g. Learn Spanish to B2 level" oninput="gmValidate()" class="gm-input"/>
+      </div>
+
+      <!-- Q2 -->
+      <div class="gm-step" id="gm-step-1">
+        <span class="gm-qlabel">Question 2 of 5</span>
+        <p class="gm-qtitle">What category does this fall under?</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;" id="gm-cats">
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Learning</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Fitness</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Career</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Finance</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Creative</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Wellbeing</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'cat')">Other</div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="gm-step" id="gm-step-2">
+        <span class="gm-qlabel">Question 3 of 5</span>
+        <p class="gm-qtitle">When is your target deadline?</p>
+        <input type="date" id="gm-deadline" class="gm-input" oninput="gmValidate()"/>
+        <p style="font-size:12px; color:#aaa; margin:8px 0 0;">Pick a realistic date — you can always adjust it later.</p>
+      </div>
+
+      <!-- Q4 -->
+      <div class="gm-step" id="gm-step-3">
+        <span class="gm-qlabel">Question 4 of 5</span>
+        <p class="gm-qtitle">When are you most productive?</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;" id="gm-times">
+          <div class="gm-chip" onclick="gmPickChip(this,'time')"> Early morning</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'time')"> Morning</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'time')"> Afternoon</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'time')"> Evening</div>
+          <div class="gm-chip" onclick="gmPickChip(this,'time')"> Late night</div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="gm-step" id="gm-step-4">
+        <span class="gm-qlabel">Question 5 of 5</span>
+        <p class="gm-qtitle">How many hours per day can you dedicate?</p>
+        <div style="display:flex; align-items:center; gap:12px; margin-top:8px;">
+          <input type="range" min="0.5" max="8" step="0.5" value="1" id="gm-hours" oninput="gmUpdateHours(this.value)" style="flex:1;"/>
+          <span id="gm-hours-val" style="font-size:15px; font-weight:600; min-width:70px; text-align:right; color:#1a1a2e;">1 hr / day</span>
+        </div>
+        <p style="font-size:12px; color:#aaa; margin:10px 0 0;">Be honest — consistency beats intensity every time.</p>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.75rem;">
+        <button id="gm-back" onclick="gmPrev()" class="gm-btn-back" style="visibility:hidden;">← Back</button>
+        <button id="gm-next" onclick="gmNext()" class="gm-btn-next">Next →</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div id="gm-success" style="display:none; text-align:center; padding:1rem 0 0.5rem;">
+      
+      <p style="font-size:18px; font-weight:600; margin:0 0 8px; color:#1a1a2e;" id="gm-success-title">Goal added!</p>
+      <p style="font-size:14px; color:#888;" id="gm-success-sub">Your goal has been created.</p>
+      <button onclick="gmClose()" class="gm-btn-next" style="margin-top:1.5rem;">Done</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+
       <footer class="page-footer fade-up">
         <p class="footer-copy">© 2026 Thrive. All rights reserved.</p>
         <nav class="footer-links"><a href="dashboard.html">Dashboard</a><a href="goals.html">Goals</a><a href="tasks.html">Daily tasks</a><a href="progress.html">Progress</a></nav>
@@ -142,6 +247,10 @@
     </div>
   </div>
 </div>
+
+
+
+<script src="goals.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>
