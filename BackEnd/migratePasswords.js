@@ -1,16 +1,11 @@
 const sql = require("mssql");   // or your DB client
 const bcrypt = require("bcrypt"); // or bcryptjs if you installed that
+const config = require('./dbConfig');
 
 async function migratePasswords() {
   try {
     // Connect to your DB
-    await sql.connect({
-      user: "thrive_user",
-      password: "StrongPass123!",
-      server: "localhost\\SQLEXPRESS",
-      database: "ThriveDb",
-      options: { encrypt: true, trustServerCertificate: true }
-    });
+    await sql.connect(config);
 
     // Fetch all users
     const result = await sql.query`SELECT id, password FROM Users`;

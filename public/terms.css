@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #e8e4ff, #d4e8ff);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(100, 80, 200, 0.15);
+}
+
+.glass-box h2 {
+  color: #4c1d95;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.glass-box ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.glass-box li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #1e1b4b;
+  line-height: 1.6;
+}
+
+.glass-box strong {
+  color: #6d28d9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+  .container {
+    width: 100%;
+  }
+}
