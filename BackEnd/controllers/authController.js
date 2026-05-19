@@ -21,7 +21,7 @@ async function signup(req, res, next) {
   try {
     const user = await authService.createLocalUser({ username, email, password, role });
     setAuthenticatedUser(req, user);
-    return res.redirect("/dashboard.html");
+    return res.redirect("/normalUser/dashboard.html");
   } catch (err) {
     if (err.code === "USERNAME_TAKEN") {
       return res.redirect("/signUp.html?error=Username+already+taken");
@@ -54,7 +54,7 @@ async function login(req, res, next) {
     }
 
     setAuthenticatedUser(req, result.user);
-    return res.redirect("/dashboard.html");
+    return res.redirect("/normalUser/dashboard.html");
   } catch (err) {
     return next(err);
   }
@@ -72,7 +72,7 @@ async function googleCallback(req, res, next) {
 
     const result = await authService.findOrCreateGoogleUser({ name, email });
     setAuthenticatedUser(req, result.user);
-    return res.redirect("/dashboard.html");
+    return res.redirect("/normalUser/dashboard.html");
   } catch (err) {
     return next(err);
   }
