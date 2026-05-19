@@ -1,6 +1,16 @@
 const authService = require("../services/authService");
 
 // Controllers manage request/response only. Business rules stay in services.
+function setAuthenticatedUser(req, user) {
+  // Keep a lightweight user record in the session so frontend routes can fetch the current user.
+  req.session.user = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
+}
+
 async function signup(req, res, next) {
   const { username, email, password, confirmPassword, role } = req.body;
 
@@ -9,8 +19,9 @@ async function signup(req, res, next) {
   }
 
   try {
-    await authService.createLocalUser({ username, email, password, role });
-    return res.redirect("/login.html?success=Account+created+successfully");
+    const user = await authService.createLocalUser({ username, email, password, role });
+    setAuthenticatedUser(req, user);
+    return res.redirect("/dashboard.html");
   } catch (err) {
     if (err.code === "USERNAME_TAKEN") {
       return res.redirect("/signUp.html?error=Username+already+taken");
@@ -42,7 +53,8 @@ async function login(req, res, next) {
       return res.redirect("/login.html?error=Invalid+password");
     }
 
-    return res.redirect(`/thriveAI.html?user=${encodeURIComponent(result.user.name)}`);
+    setAuthenticatedUser(req, result.user);
+    return res.redirect("/dashboard.html");
   } catch (err) {
     return next(err);
   }
@@ -59,11 +71,34 @@ async function googleCallback(req, res, next) {
     }
 
     const result = await authService.findOrCreateGoogleUser({ name, email });
-    const action = result.created ? "Signed+up+with+Google" : "Logged+in+with+Google";
+    setAuthenticatedUser(req, result.user);
+    return res.redirect("/dashboard.html");
+  } catch (err) {
+    return next(err);
+  }
+}
 
-    return res.redirect(
-      `/thriveAI.html?user=${encodeURIComponent(result.user.name)}&success=${action}`,
-    );
+async function currentUser(req, res, next) {
+  try {
+    const sessionUser = req.session.user;
+    const email = sessionUser?.email || req.user?.emails?.[0]?.value;
+
+    if (!email) {
+      return res.status(401).json({ error: "not_authenticated" });
+    }
+
+    const user = await authService.getUserByEmail(email);
+
+    if (!user) {
+      return res.status(401).json({ error: "not_authenticated" });
+    }
+
+    return res.json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    });
   } catch (err) {
     return next(err);
   }
@@ -73,4 +108,5 @@ module.exports = {
   signup,
   login,
   googleCallback,
+  currentUser,
 };

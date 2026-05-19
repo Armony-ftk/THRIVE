@@ -47,7 +47,7 @@
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M14.24 5.76l-1.42 1.42M5.76 14.24l-1.42 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         <span>Settings</span>
       </a>
-      <a class="sb-avatar active" href="profile.html" title="Emma">EM</a>
+      <a class="sb-avatar active user-avatar" href="profile.html" title="Profile" data-user-avatar="initials">EM</a>
     </div>
   </aside>
   <div class="main-col">
@@ -70,19 +70,19 @@
       <div class="content-grid fade-up">
         <div class="col">
           <div class="card card-pad profile-hero">
-            <div class="profile-avatar-lg">EM</div>
+            <div class="profile-avatar-lg user-avatar-large" data-user-avatar="initials">EM</div>
             <div class="profile-info">
-              <h2 class="profile-name">Emma Mitchell</h2>
-              <p class="profile-email">emma@thriveapp.co</p>
+              <h2 class="profile-name" data-user-name>Emma Mitchell</h2>
+              <p class="profile-email" data-user-email>emma@thriveapp.co</p>
               <p class="profile-joined">Member since January 2026</p>
             </div>
             <button class="btn-secondary" style="margin-top:16px">Edit Profile</button>
           </div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Personal details</span></div>
-            <div class="profile-field"><span class="pf-label">Full name</span><span class="pf-value">Emma Mitchell</span></div>
-            <div class="profile-field"><span class="pf-label">Email</span><span class="pf-value">emma@thriveapp.co</span></div>
-            <div class="profile-field"><span class="pf-label">Location</span><span class="pf-value">Cape Town, South Africa</span></div>
+            <div class="profile-field"><span class="pf-label">Full name</span><span class="pf-value" data-user-name>Emma Mitchell</span></div>
+            <div class="profile-field"><span class="pf-label">Email</span><span class="pf-value" data-user-email>emma@thriveapp.co</span></div>
+            <div class="profile-field"><span class="pf-label">Location</span><span class="pf-value">Johannesburg, South Africa</span></div>
             <div class="profile-field"><span class="pf-label">Timezone</span><span class="pf-value">SAST (UTC+2)</span></div>
           </div>
         </div>
@@ -114,5 +114,6 @@
   </div>
 </div>
 <script src="nav.js"></script>
+<script src="userData.js"></script>
 </body>
 </html>
