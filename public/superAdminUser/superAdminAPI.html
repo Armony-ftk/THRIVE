@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuperUser — API Manager</title>
+  <link rel="stylesheet" href="superAdminAPI.css" />
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="shell">
+
+    <!-- SIDEBAR  -->
+    <nav class="sidebar">
+      <a class="sb-logo" href="superAdminDashboard.html">
+        <div class="sb-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="sb-logo-text">sudo</span>
+      </a>
+
+      <div class="sb-nav">
+        <a class="sb-item" href="superAdminDashboard.html" title="Dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dash</span>
+        </a>
+        <a class="sb-item" href="superAdminUsers.html" title="User Management">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+            <path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+          <span>Users</span>
+        </a>
+        <a class="sb-item" href="superAdminAdmins.html" title="Admin Roles">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Admins</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item active" href="superAdminAPI.html" title="API Manager">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <span>API</span>
+        </a>
+        <div class="sb-divider"></div>
+        <a class="sb-item" href="superAdminSettings.html" title="System Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83
+                     2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33
+                     1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09
+                     A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06
+                     a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06
+                     A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3
+                     a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9
+                     a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83
+                     2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68
+                     a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09
+                     a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06
+                     a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06
+                     A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21
+                     a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+          <span>Config</span>
+        </a>
+      </div>
+
+      <div class="sb-avatar" title="Superuser">SU</div>
+    </nav>
+
+    <!--  Main  -->
+    <main class="main-col">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-links">
+          <a class="tlink" href="superAdminDashboard.html">Overview</a>
+          <a class="tlink" href="superAdminUsers.html">Users</a>
+          <a class="tlink" href="superAdminAdmins.html">Admins</a>
+          <a class="tlink active" href="superAdminAPI.html">APIs</a>
+          <a class="tlink" href="superAdminSettings.html">Settings</a>
+        </div>
+        <div class="topbar-right">
+          <div class="alert-chip">
+            <div class="pulse-dot" style="background:var(--coral);box-shadow:0 0 8px rgba(240,96,122,.6)"></div>
+            3 Alerts
+          </div>
+          <div class="search-box">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            Search system…
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <div class="content">
+
+        <!-- Page Header -->
+        <div class="page-header fade-up">
+          <h1>API <em>Manager</em></h1>
+          <p>Generate, monitor and revoke API keys — manage rate limits and endpoint usage across all integrations.</p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row fade-up">
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-violet">🔑</div>
+            <div>
+              <div class="stat-mini-val">128</div>
+              <div class="stat-mini-label">Total Keys</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-teal">⚡</div>
+            <div>
+              <div class="stat-mini-val">342k</div>
+              <div class="stat-mini-label">Calls / hr</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-coral">🔥</div>
+            <div>
+              <div class="stat-mini-val">86%</div>
+              <div class="stat-mini-label">Gateway Load</div>
+            </div>
+          </div>
+          <div class="stat-mini card">
+            <div class="stat-mini-icon smi-amber">⚠️</div>
+            <div>
+              <div class="stat-mini-val">5</div>
+              <div class="stat-mini-label">Rate Limited</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="content-grid fade-up">
+
+          <!-- LEFT: API Keys Table  -->
+          <div class="col">
+
+            <!-- Gateway Alert -->
+            <div class="card alert-card card-pad">
+              <div class="alert-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                API Gateway Warning
+              </div>
+              <p class="alert-body">
+                <strong>API Gateway</strong> is at <strong>86% capacity</strong>.
+                Predicted saturation in ~2 hours at current growth rate.
+                Consider scaling horizontally or enabling throttle rules on high-volume endpoints.
+              </p>
+              <div class="alert-actions">
+                <button class="btn-primary" style="padding:7px 14px;font-size:12px;">Enable Throttling</button>
+                <button class="btn-sm btn-amber" style="padding:6px 12px;font-size:11px;">Scale Gateway</button>
+                <button class="btn-sm btn-edit" style="padding:6px 12px;font-size:11px;">Dismiss</button>
+              </div>
+            </div>
+
+            <!-- API Keys Table -->
+            <div class="card table-card">
+              <div class="table-card-header">
+                <div>
+                  <div class="card-title">API Keys</div>
+                  <div class="card-subtitle" id="rowCount">Showing 7 keys</div>
+                </div>
+                <div class="toolbar-right">
+                  <div class="filter-tabs">
+                    <span class="ftab active" onclick="setFilter(this,'all')">All</span>
+                    <span class="ftab" onclick="setFilter(this,'active')">Active</span>
+                    <span class="ftab" onclick="setFilter(this,'inactive')">Inactive</span>
+                    <span class="ftab" onclick="setFilter(this,'warn')">At Limit</span>
+                  </div>
+                  <div class="search-input">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"/>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input
+                      type="text"
+                      id="keySearch"
+                      placeholder="Search keys…"
+                      oninput="filterTable()"
+                    />
+                  </div>
+                  <button class="btn-primary" onclick="openModal()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    New Key
+                  </button>
+                </div>
+              </div>
+
+              <table class="api-table" id="apiTable">
+                <thead>
+                  <tr>
+                    <th style="width:24%">Key Name</th>
+                    <th style="width:20%">Key</th>
+                    <th style="width:13%">Status</th>
+                    <th style="width:22%">Rate Limit</th>
+                    <th style="width:21%">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <!-- analytics-pipeline-v3 -->
+                  <tr data-status="warn">
+                    <td>
+                      <div class="key-name">analytics-pipeline-v3</div>
+                      <div class="key-owner">Thabo Mokoena</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• a3f9</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-warn">
+                        <span class="dot dot-warn"></span>At Limit
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>50k / hr</span>
+                          <span style="color:var(--amber)">98%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-amber" style="width:98%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-amber">Throttle</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- mobile-app-prod -->
+                  <tr data-status="active">
+                    <td>
+                      <div class="key-name">mobile-app-prod</div>
+                      <div class="key-owner">Kefilwe Nkosi</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• 7c2e</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-active">
+                        <span class="dot dot-active"></span>Active
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>100k / hr</span>
+                          <span>72%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-violet" style="width:72%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- webhook-service -->
+                  <tr data-status="active">
+                    <td>
+                      <div class="key-name">webhook-service</div>
+                      <div class="key-owner">Sipho Root</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• d18b</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-active">
+                        <span class="dot dot-active"></span>Active
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>20k / hr</span>
+                          <span>44%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-teal" style="width:44%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- data-export-cron -->
+                  <tr data-status="warn">
+                    <td>
+                      <div class="key-name">data-export-cron</div>
+                      <div class="key-owner">Nomsa Mahlangu</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• 55fa</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-warn">
+                        <span class="dot dot-warn"></span>At Limit
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>10k / hr</span>
+                          <span style="color:var(--amber)">91%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-amber" style="width:91%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-amber">Throttle</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- search-indexer -->
+                  <tr data-status="active">
+                    <td>
+                      <div class="key-name">search-indexer</div>
+                      <div class="key-owner">Lungelo Vilakazi</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• b04c</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-active">
+                        <span class="dot dot-active"></span>Active
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>30k / hr</span>
+                          <span>28%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-teal" style="width:28%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- legacy-v1-bridge -->
+                  <tr data-status="inactive">
+                    <td>
+                      <div class="key-name">legacy-v1-bridge</div>
+                      <div class="key-owner">System</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• 0031</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-inactive">
+                        <span class="dot dot-inactive"></span>Inactive
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>5k / hr</span>
+                          <span>0%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-violet" style="width:0%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-teal">Activate</button>
+                        <button class="btn-sm btn-danger">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- email-notifications -->
+                  <tr data-status="active">
+                    <td>
+                      <div class="key-name">email-notifications</div>
+                      <div class="key-owner">Sipho Ndlovu</div>
+                    </td>
+                    <td>
+                      <div class="key-value">
+                        <span class="key-mask">sk_•••• e77d</span>
+                        <button class="key-copy" title="Copy key" onclick="copyKey(this)">⎘</button>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="status-pill status-active">
+                        <span class="dot dot-active"></span>Active
+                      </span>
+                    </td>
+                    <td>
+                      <div class="rate-cell">
+                        <div class="rate-label">
+                          <span>15k / hr</span>
+                          <span>55%</span>
+                        </div>
+                        <div class="progress-track">
+                          <div class="progress-fill fill-violet" style="width:55%"></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="btn-sm btn-edit">Edit</button>
+                        <button class="btn-sm btn-danger">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <div class="table-footer">
+                <span class="pg-info">Page 1 of 19</span>
+                <div class="pagination">
+                  <div class="pg-btn">‹</div>
+                  <div class="pg-btn active">1</div>
+                  <div class="pg-btn">2</div>
+                  <div class="pg-btn">3</div>
+                  <div class="pg-btn">…</div>
+                  <div class="pg-btn">19</div>
+                  <div class="pg-btn">›</div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /left col -->
+
+          <!--  RIGHT: Side panels -->
+          <div class="col">
+
+            <!-- Top Endpoints -->
+            <div class="card card-pad">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <span class="card-title">Top Endpoints</span>
+                <span class="badge badge-coral" style="animation:badge-pulse 2.5s ease-in-out infinite;">High Load</span>
+              </div>
+              <div class="endpoint-row">
+                <div class="endpoint-top">
+                  <span class="endpoint-name">/api/v2/users</span>
+                  <span class="endpoint-calls">128k / hr</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill fill-violet" style="width:78%"></div>
+                </div>
+              </div>
+              <div class="endpoint-row">
+                <div class="endpoint-top">
+                  <span class="endpoint-name">/api/v2/auth</span>
+                  <span class="endpoint-calls">94k / hr</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill fill-teal" style="width:58%"></div>
+                </div>
+              </div>
+              <div class="endpoint-row">
+                <div class="endpoint-top">
+                  <span class="endpoint-name">/api/v1/media</span>
+                  <span class="endpoint-calls">67k / hr</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill fill-coral" style="width:41%"></div>
+                </div>
+              </div>
+              <div class="endpoint-row">
+                <div class="endpoint-top">
+                  <span class="endpoint-name">/api/v2/events</span>
+                  <span class="endpoint-calls">53k / hr</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill fill-amber" style="width:33%"></div>
+                </div>
+              </div>
+              <div class="endpoint-row">
+                <div class="endpoint-top">
+                  <span class="endpoint-name">/api/v2/search</span>
+                  <span class="endpoint-calls">41k / hr</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill fill-teal" style="width:25%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gateway Health -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Gateway Health</div>
+              <div class="activity-row" style="border-bottom:1px solid rgba(124,106,238,.07);padding-bottom:10px;margin-bottom:4px;">
+                <span class="act-dot" style="background:var(--amber)"></span>
+                <div style="flex:1;">
+                  <div style="font-size:12.5px;color:var(--text);font-weight:500;">Overall Load</div>
+                  <div class="progress-track" style="margin-top:5px;">
+                    <div class="progress-fill fill-amber" style="width:86%"></div>
+                  </div>
+                </div>
+                <span style="font-size:12px;font-weight:600;color:#b07d10;">86%</span>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--teal)"></span>
+                <div class="act-text"><strong>Avg Response Time</strong></div>
+                <div class="act-time" style="font-size:12px;font-weight:600;color:var(--teal);">48ms</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--teal)"></span>
+                <div class="act-text"><strong>Success Rate (1h)</strong></div>
+                <div class="act-time" style="font-size:12px;font-weight:600;color:var(--teal);">99.1%</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--coral)"></span>
+                <div class="act-text"><strong>4xx Errors / hr</strong></div>
+                <div class="act-time" style="font-size:12px;font-weight:600;color:var(--coral);">1,204</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--violet)"></span>
+                <div class="act-text"><strong>Rate Limited Keys</strong></div>
+                <div class="act-time" style="font-size:12px;font-weight:600;color:var(--violet);">5</div>
+              </div>
+            </div>
+
+            <!-- Recent Key Activity -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Recent Key Activity</div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--teal)"></span>
+                <div class="act-text">
+                  New key <strong>analytics-pipeline-v3</strong> generated. Rate limit: 50k/hr.
+                </div>
+                <div class="act-time">42m ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--amber)"></span>
+                <div class="act-text">
+                  Key <strong>data-export-cron</strong> hit rate limit threshold (91%).
+                </div>
+                <div class="act-time">1h ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--coral)"></span>
+                <div class="act-text">
+                  Key <strong>legacy-v1-bridge</strong> deactivated by superuser root.
+                </div>
+                <div class="act-time">3h ago</div>
+              </div>
+              <div class="activity-row">
+                <span class="act-dot" style="background:var(--violet)"></span>
+                <div class="act-text">
+                  Rate limit updated on <strong>mobile-app-prod</strong>: 80k → 100k/hr.
+                </div>
+                <div class="act-time">6h ago</div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card card-pad">
+              <div class="card-title" style="margin-bottom:14px;">Quick Actions</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <button
+                  class="btn-primary"
+                  onclick="openModal()"
+                  style="justify-content:center;width:100%;padding:10px 16px;"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  Generate New Key
+                </button>
+                <button
+                  class="btn-sm btn-amber"
+                  style="padding:9px 16px;font-size:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  Enable Global Throttle
+                </button>
+                <button
+                  class="btn-sm btn-edit"
+                  style="padding:9px 16px;font-size:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                  </svg>
+                  Rotate Expired Keys
+                </button>
+                <button
+                  class="btn-sm btn-danger"
+                  style="padding:9px 16px;font-size:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14H6L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                    <path d="M9 6V4h6v2"/>
+                  </svg>
+                  Revoke All Inactive
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /right col -->
+        </div><!-- /content-grid -->
+      </div><!-- /content -->
+
+      <!-- FOOTER -->
+      <footer class="page-footer fade-up">
+        <span class="footer-copy">© 2026 Platform Control · Superuser session active</span>
+        <div class="footer-links">
+          <a href="superAdminDashboard.html">Dashboard</a>
+          <a href="superAdminUsers.html">Users</a>
+          <a href="superAdminAdmins.html">Admins</a>
+          <a href="superAdminSettings.html">Settings</a>
+        </div>
+      </footer>
+
+    </main>
+  </div><!-- /shell -->
+
+  <!-- NEW KEY MODAL  -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Generate API Key</span>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Key Name</label>
+        <input class="form-input" type="text" placeholder="e.g. mobile-app-staging" />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Assigned To</label>
+        <select class="form-input form-select">
+          <option>Sipho Root</option>
+          <option>Kefilwe Nkosi</option>
+          <option>Thabo Mokoena</option>
+          <option>Nomsa Mahlangu</option>
+          <option>System</option>
+        </select>
+      </div>
+      <div class="form-row-2">
+        <div class="form-row">
+          <label class="form-label">Rate Limit</label>
+          <input class="form-input" type="number" placeholder="e.g. 50000" />
+        </div>
+        <div class="form-row">
+          <label class="form-label">Period</label>
+          <select class="form-input form-select">
+            <option>Per Hour</option>
+            <option>Per Minute</option>
+            <option>Per Day</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Allowed Environments</label>
+        <select class="form-input form-select">
+          <option>Production</option>
+          <option>Staging</option>
+          <option>Development</option>
+          <option>All</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Expiry (optional)</label>
+        <input class="form-input" type="date" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="closeModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          Generate Key
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animate progress bars on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = w; }, 200);
+      });
+    });
+
+    // Modal
+    function openModal()          { document.getElementById('modalOverlay').classList.add('open'); }
+    function closeModal()         { document.getElementById('modalOverlay').classList.remove('open'); }
+    function closeModalOnBg(e)    { if (e.target === e.currentTarget) closeModal(); }
+
+    // Copy key mock
+    function copyKey(btn) {
+      btn.textContent = '✓';
+      btn.style.color = 'var(--teal)';
+      setTimeout(() => { btn.textContent = '⎘'; btn.style.color = ''; }, 1500);
+    }
+
+    // Filter tabs
+    let activeFilter = 'all';
+    function setFilter(el, filter) {
+      document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      activeFilter = filter;
+      filterTable();
+    }
+
+    // Search + filter
+    function filterTable() {
+      const q = document.getElementById('keySearch').value.toLowerCase();
+      const rows = document.querySelectorAll('#apiTable tbody tr');
+      let visible = 0;
+      rows.forEach(row => {
+        const matchSearch = !q || row.textContent.toLowerCase().includes(q);
+        const matchFilter = activeFilter === 'all' || row.dataset.status === activeFilter;
+        const show = matchSearch && matchFilter;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      document.getElementById('rowCount').textContent =
+        `Showing ${visible} key${visible !== 1 ? 's' : ''}`;
+    }
+  </script>
+
+</body>
+</html>
