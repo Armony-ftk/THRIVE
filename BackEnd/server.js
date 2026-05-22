@@ -19,6 +19,7 @@ const requiredEnv = [
   "DB_NAME",
   "GOOGLE_CLIENT_ID",
   "GOOGLE_CLIENT_SECRET",
+  "GOOGLE_API_KEY",
 ];
 
 const missingEnv = requiredEnv.filter(key => !process.env[key]);
@@ -36,6 +37,7 @@ configurePassport(passport);
 
 // Middleware setup
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
   session({
