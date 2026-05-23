@@ -14,8 +14,8 @@
     at_risk: { label: "At Risk", badge: "badge-coral" },
   };
 
-  function fetchJson(url) {
-    return fetch(url, { credentials: "include" }).then(async (response) => {
+  function fetchJson(url, options = {}) {
+    return fetch(url, { credentials: "include", ...options }).then(async (response) => {
       const json = await response.json();
       if (!response.ok) {
         throw new Error(json.error || "Unable to load data");

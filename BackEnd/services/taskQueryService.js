@@ -1,16 +1,42 @@
 const { poolPromise, sql } = require("../database/connection");
 const { createApiError } = require("../utils/apiErrorHandler");
 
-async function getTasksForUser(userId) {
+const DEFAULT_ACTIVE_STATUSES = ["pending", "in_progress"];
+
+function normalizeStatuses(statuses) {
+  if (!Array.isArray(statuses) || statuses.length === 0) {
+    return DEFAULT_ACTIVE_STATUSES;
+  }
+
+  const normalized = statuses
+    .map((status) => String(status || "").trim().toLowerCase())
+    .filter(Boolean);
+
+  return normalized.length ? normalized : DEFAULT_ACTIVE_STATUSES;
+}
+
+function applyStatusFilters(request, statuses) {
+  const normalized = normalizeStatuses(statuses);
+  const placeholders = normalized.map((status, index) => {
+    const paramName = `status${index}`;
+    request.input(paramName, sql.NVarChar(50), status);
+    return `@${paramName}`;
+  });
+  return placeholders.join(", ");
+}
+
+async function getTasksForUser(userId, statuses = DEFAULT_ACTIVE_STATUSES) {
   if (userId === undefined || userId === null) {
     throw createApiError(401, "Authenticated user is required to fetch tasks.");
   }
 
   const pool = await poolPromise;
-  const result = await pool
-    .request()
-    .input("userId", sql.Int, Number(userId))
-    .query(`
+  const request = pool.request();
+  request.input("userId", sql.Int, Number(userId));
+
+  const statusList = applyStatusFilters(request, statuses);
+
+  const result = await request.query(`
       SELECT
         t.id,
         t.title,
@@ -23,6 +49,7 @@ async function getTasksForUser(userId) {
       FROM tasks AS t
       INNER JOIN goals AS g ON g.id = t.goal_id
       WHERE g.user_id = @userId
+        AND t.status IN (${statusList})
       ORDER BY t.deadline ASC, t.position ASC;
     `);
 

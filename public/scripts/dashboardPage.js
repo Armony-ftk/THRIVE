@@ -97,6 +97,7 @@ function renderTasksPreview(container, tasks) {
 
   const latestTasks = tasks.slice(0, 3);
   container.innerHTML = latestTasks.map((task) => createDashboardTaskRow(task)).join("");
+  taskCompletion.bindTaskCompletion(container);
 }
 
 function createDashboardGoalRow(goal) {
@@ -127,9 +128,9 @@ function createDashboardTaskRow(task) {
   const badgeClass = thriveUtils.getCategoryBadgeClass(task.goal_category);
 
   return `
-    <div class="task-row">
+    <div class="task-row" data-task-id="${task.id}">
       <div class="task-check ${isDone ? "done" : ""}">
-        ${isDone ? `<svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""}
+        ${taskCompletion.renderTaskCheckbox(task)}
       </div>
       <p class="task-name ${isDone ? "done" : ""}">${escapeHtml(task.title)}</p>
       <span class="task-xp">${escapeHtml(task.goal_title)} · ${escapeHtml(deadline)}</span>

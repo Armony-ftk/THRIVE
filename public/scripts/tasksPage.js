@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     tasksContainer.innerHTML = Object.values(groupedTasks)
       .map((group) => createTaskGroupCard(group))
       .join("");
+
+    taskCompletion.bindTaskCompletion(tasksContainer);
   } catch (error) {
     tasksContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">Unable to load tasks. ${error.message}</p></div>`;
     console.error("Tasks page error:", error);
@@ -64,9 +66,9 @@ function createTaskRow(task) {
   const deadline = thriveUtils.formatDate(task.deadline);
 
   return `
-    <div class="task-row">
+    <div class="task-row" data-task-id="${task.id}">
       <div class="task-check ${taskClass}">
-        ${isDone ? `<svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""}
+        ${taskCompletion.renderTaskCheckbox(task)}
       </div>
       <p class="task-name ${taskClass}">${escapeHtml(task.title)}</p>
       <span class="task-xp">${escapeHtml(statusLabel)} · ${deadline}</span>
