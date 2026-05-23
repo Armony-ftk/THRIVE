@@ -31,6 +31,8 @@ function createGoalCard(goal) {
   const statusLabel = thriveUtils.getGoalStatusLabel(goal.status);
   const statusClass = thriveUtils.getGoalBadgeClass(goal.status);
   const emoji = thriveUtils.getCategoryEmoji(category);
+  const progressPercent = Number.isFinite(Number(goal.progress_percent)) ? Number(goal.progress_percent) : 0;
+  const progressLabel = goal.total_tasks ? `${progressPercent}% complete` : "No tasks yet";
 
   return `
     <div class="goal-card card card-pad">
@@ -48,6 +50,12 @@ function createGoalCard(goal) {
         <div class="goal-card-stats">
           <span>Deadline: ${deadline}</span>
           <span>Status: ${statusLabel}</span>
+          <span>${progressLabel}</span>
+        </div>
+        <div class="goal-card-progress">
+          <div class="progress-track">
+            <div class="progress-fill fill-violet" style="width:${progressPercent}%"></div>
+          </div>
         </div>
       </div>
     </div>

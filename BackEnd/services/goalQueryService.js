@@ -1,5 +1,6 @@
 const { poolPromise, sql } = require("../database/connection");
 const { createApiError } = require("../utils/apiErrorHandler");
+const { attachProgressToGoals } = require("./goalProgressService");
 
 async function getGoalsForUser(userId) {
   if (userId === undefined || userId === null) {
@@ -12,21 +13,34 @@ async function getGoalsForUser(userId) {
     .input("userId", sql.Int, Number(userId))
     .query(`
       SELECT
-        id,
-        user_id,
-        title,
-        category,
-        duration,
-        duration_unit,
-        deadline,
-        created_at,
-        status
-      FROM goals
-      WHERE user_id = @userId
-      ORDER BY deadline ASC, created_at DESC;
+        g.id,
+        g.user_id,
+        g.title,
+        g.category,
+        g.duration,
+        g.duration_unit,
+        g.deadline,
+        g.created_at,
+        g.status,
+        COUNT(t.id) AS total_tasks,
+        SUM(CASE WHEN LOWER(ISNULL(t.status, '')) = 'completed' THEN 1 ELSE 0 END) AS completed_tasks
+      FROM goals AS g
+      LEFT JOIN tasks AS t ON t.goal_id = g.id
+      WHERE g.user_id = @userId
+      GROUP BY
+        g.id,
+        g.user_id,
+        g.title,
+        g.category,
+        g.duration,
+        g.duration_unit,
+        g.deadline,
+        g.created_at,
+        g.status
+      ORDER BY g.deadline ASC, g.created_at DESC;
     `);
 
-  return result.recordset || [];
+  return attachProgressToGoals(result.recordset || []);
 }
 
 module.exports = {

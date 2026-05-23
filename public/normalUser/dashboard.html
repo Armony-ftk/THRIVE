@@ -90,8 +90,8 @@
           <div class="card card-pad motive"><p class="motive-label">Daily motivation</p><p class="motive-quote">"The secret of getting ahead is getting started."</p><span class="motive-author">— Mark Twain</span></div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Consistency streak</span></div>
-            <div class="streak-row"><span class="streak-num">7</span><span class="streak-label">days in a row 🔥</span></div>
-            <div class="streak-days"><div class="streak-day"><div class="streak-dot on"></div><span>M</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>W</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>F</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div></div>
+            <div class="streak-row"><span class="streak-num" id="streak-current-count">0</span><span class="streak-label" id="streak-current-label">No streak yet</span></div>
+            <div class="streak-days" id="streak-days"></div>
           </div>
           <div class="card card-pad risk"><div class="card-header"><span class="card-title">Risk alert</span><span class="risk-badge">1 at risk</span></div><p class="risk-text"><strong>Portfolio website</strong> is falling behind — only 3 days left to hit this week's milestone.</p><a class="risk-btn" href="progress.html">Adjust plan <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
         </div>
@@ -112,6 +112,8 @@
 <script src="/scripts/pageUtils.js"></script>
 <script src="/scripts/taskCompletion.js"></script>
 <script src="/scripts/dashboardHelpers.js"></script>
+<script src="/scripts/goalProgressRenderer.js"></script>
+<script src="/scripts/progressStreakRenderer.js"></script>
 <script src="/scripts/dashboardPage.js"></script>
 </body>
 </html>

@@ -76,20 +76,15 @@
         </div>
       </div>
       <div class="stats-grid fade-up">
-        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Avg Daily Tasks</span></div><div class="stat-value">3.8</div><p class="stat-sub">↑ from 3.1 last week</p></div>
-        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Completed</span></div><div class="stat-value">26</div><p class="stat-sub">This month</p></div>
-        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Streak Record</span></div><div class="stat-value">12</div><p class="stat-sub">days · personal best</p></div>
+        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Avg Daily Tasks</span></div><div class="stat-value" id="summary-avg-daily">0.0</div><p class="stat-sub" id="summary-avg-daily-sub">Average over last 30 days</p></div>
+        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Completed</span></div><div class="stat-value" id="summary-tasks-month">0</div><p class="stat-sub" id="summary-tasks-month-sub">This month</p></div>
+        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Current streak</span></div><div class="stat-value" id="summary-current-streak">0</div><p class="stat-sub">Best streak <span id="summary-best-streak">0</span> days</p></div>
       </div>
       <div class="content-grid fade-up">
         <div class="col">
           <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Overall completion rate</span><span class="badge badge-teal">↑ 8%</span></div>
-            <div class="chart-bars">
-              <div class="chart-bar"><div class="cb-fill" style="--h:55%;background:var(--violet)"></div><span>W1</span></div>
-              <div class="chart-bar"><div class="cb-fill" style="--h:70%;background:var(--violet)"></div><span>W2</span></div>
-              <div class="chart-bar"><div class="cb-fill" style="--h:48%;background:var(--violet)"></div><span>W3</span></div>
-              <div class="chart-bar active"><div class="cb-fill" style="--h:60%;background:linear-gradient(0deg,#7c6aee,#a78bfa)"></div><span>W4</span></div>
-            </div>
+            <div class="card-header"><span class="card-title">Weekly completions</span><span class="badge badge-teal">Current week</span></div>
+            <div id="weekly-completion-chart" class="chart-bars"></div>
           </div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Goal milestones</span></div>
@@ -102,15 +97,12 @@
         <div class="col">
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Goal breakdown</span></div>
-            <div class="goal-row"><div class="goal-info"><span>🇪🇸 Learn Spanish</span><span class="pct">72%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="72%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>💻 Portfolio Website</span><span class="pct">45%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="45%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>🏃 5K under 25 min</span><span class="pct">60%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="60%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>📚 Read 24 books</span><span class="pct">29%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="29%"></div></div></div>
+            <div id="goal-progress-breakdown"></div>
           </div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Consistency streak</span></div>
-            <div class="streak-row"><span class="streak-num">7</span><span class="streak-label">days in a row 🔥</span></div>
-            <div class="streak-days"><div class="streak-day"><div class="streak-dot on"></div><span>M</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>W</span></div><div class="streak-day"><div class="streak-dot on"></div><span>T</span></div><div class="streak-day"><div class="streak-dot on"></div><span>F</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div><div class="streak-day"><div class="streak-dot on"></div><span>S</span></div></div>
+            <div class="streak-row"><span class="streak-num" id="streak-current-count">0</span><span class="streak-label" id="streak-current-label">No streak yet</span></div>
+            <div class="streak-days" id="streak-days"></div>
           </div>
         </div>
       </div>
@@ -125,6 +117,11 @@
     </div>
   </div>
 </div>
+<script src="/scripts/pageUtils.js"></script>
+<script src="/scripts/goalProgressRenderer.js"></script>
+<script src="/scripts/progressChartRenderer.js"></script>
+<script src="/scripts/progressStreakRenderer.js"></script>
+<script src="/scripts/progressPage.js"></script>
 <script src="nav.js"></script>
 <script src="/userData.js"></script>
 </body>

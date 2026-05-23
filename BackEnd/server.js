@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const goalRoutes = require("./routes/goalRoutes");
 const taskRoutes = require("./routes/taskRoutes");
+const progressRoutes = require("./routes/progressRoutes");
 const configurePassport = require("./config/passportConfig");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
@@ -58,6 +59,7 @@ app.use("/api/ai", aiRoutes);
 // Mount read APIs for goals and tasks.
 app.use("/api/goals", goalRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/progress", progressRoutes);
 
 // Global error handler keeps failures consistent.
 app.use(errorHandler);

@@ -26,17 +26,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   tasksPreview.innerHTML = `<div class="card card-pad">Loading task previews...</div>`;
 
   try {
-    const [goalsResponse, tasksResponse] = await Promise.all([
+    const [goalsResponse, tasksResponse, summaryResponse] = await Promise.all([
       thriveUtils.fetchJson("/api/goals"),
       thriveUtils.fetchJson("/api/tasks"),
+      thriveUtils.fetchJson("/api/progress/summary"),
     ]);
 
     const goals = goalsResponse.goals || [];
     const tasks = tasksResponse.tasks || [];
+    const progressSummary = summaryResponse.summary || null;
 
     renderDashboardSummary(goals, tasks);
     renderGoalsPreview(goalsPreview, goals);
     renderTasksPreview(tasksPreview, tasks);
+    // Render streak using the shared streak renderer (reuses progress implementation)
+    try {
+      const streakDaysContainer = document.getElementById("streak-days");
+      const streakCountElement = document.getElementById("streak-current-count");
+      const streakLabelElement = document.getElementById("streak-current-label");
+      progressStreakRenderer.renderStreakDays(streakDaysContainer, progressSummary?.dailyActivity);
+      progressStreakRenderer.renderCurrentStreak(streakCountElement, streakLabelElement, progressSummary?.currentStreakDays);
+    } catch (err) {
+      // Non-blocking: dashboard should still load if streak rendering fails
+      console.error("Failed to render dashboard streak:", err);
+    }
   } catch (error) {
     const message = `Unable to load dashboard preview. ${error.message}`;
     goalsPreview.innerHTML = `<div class="card card-pad"><p class="empty-state">${message}</p></div>`;
@@ -86,7 +99,7 @@ function renderGoalsPreview(container, goals) {
   }
 
   const latestGoals = goals.slice(0, 2);
-  container.innerHTML = latestGoals.map((goal) => createDashboardGoalRow(goal)).join("");
+  goalProgressRenderer.renderGoalProgressRows(container, latestGoals);
 }
 
 function renderTasksPreview(container, tasks) {
@@ -98,27 +111,6 @@ function renderTasksPreview(container, tasks) {
   const latestTasks = tasks.slice(0, 3);
   container.innerHTML = latestTasks.map((task) => createDashboardTaskRow(task)).join("");
   taskCompletion.bindTaskCompletion(container);
-}
-
-function createDashboardGoalRow(goal) {
-  const title = goal.title || "Untitled goal";
-  const deadline = thriveUtils.formatDate(goal.deadline);
-  const statusLabel = thriveUtils.getGoalStatusLabel(goal.status);
-  const statusClass = thriveUtils.getGoalBadgeClass(goal.status);
-
-  return `
-    <div class="goal-row">
-      <div class="goal-info">
-        <span>${escapeHtml(title)}</span>
-        <span class="pct">${escapeHtml(statusLabel)}</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill fill-violet" style="width:0" data-w="0"></div>
-      </div>
-      <div class="task-name">Due ${escapeHtml(deadline)}</div>
-      <span class="badge ${statusClass}">${statusLabel}</span>
-    </div>
-  `;
 }
 
 function createDashboardTaskRow(task) {
