@@ -1,10 +1,27 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const goalsPreview = document.getElementById("dashboard-goals-preview");
   const tasksPreview = document.getElementById("dashboard-tasks-preview");
-  if (!goalsPreview || !tasksPreview) {
+  const activeGoalsValue = document.getElementById("dashboard-active-goals");
+  const activeGoalsSub = document.getElementById("dashboard-active-goals-sub");
+  const tasksTodayValue = document.getElementById("dashboard-tasks-today");
+  const tasksTodaySub = document.getElementById("dashboard-tasks-today-sub");
+  const overallProgressValue = document.getElementById("dashboard-overall-progress");
+  const overallProgressSub = document.getElementById("dashboard-overall-progress-sub");
+
+  if (
+    !goalsPreview ||
+    !tasksPreview ||
+    !activeGoalsValue ||
+    !activeGoalsSub ||
+    !tasksTodayValue ||
+    !tasksTodaySub ||
+    !overallProgressValue ||
+    !overallProgressSub
+  ) {
     return;
   }
 
+  setDashboardLoading();
   goalsPreview.innerHTML = `<div class="card card-pad">Loading goal previews...</div>`;
   tasksPreview.innerHTML = `<div class="card card-pad">Loading task previews...</div>`;
 
@@ -14,15 +31,53 @@ document.addEventListener("DOMContentLoaded", async () => {
       thriveUtils.fetchJson("/api/tasks"),
     ]);
 
-    renderGoalsPreview(goalsPreview, goalsResponse.goals || []);
-    renderTasksPreview(tasksPreview, tasksResponse.tasks || []);
+    const goals = goalsResponse.goals || [];
+    const tasks = tasksResponse.tasks || [];
+
+    renderDashboardSummary(goals, tasks);
+    renderGoalsPreview(goalsPreview, goals);
+    renderTasksPreview(tasksPreview, tasks);
   } catch (error) {
     const message = `Unable to load dashboard preview. ${error.message}`;
     goalsPreview.innerHTML = `<div class="card card-pad"><p class="empty-state">${message}</p></div>`;
     tasksPreview.innerHTML = `<div class="card card-pad"><p class="empty-state">${message}</p></div>`;
+    activeGoalsValue.textContent = "—";
+    activeGoalsSub.textContent = "Unable to load goal stats";
+    tasksTodayValue.textContent = "—";
+    tasksTodaySub.textContent = "Unable to load tasks";
+    overallProgressValue.textContent = "—";
+    overallProgressSub.textContent = "Unable to load progress";
     console.error("Dashboard page error:", error);
   }
 });
+
+function setDashboardLoading() {
+  document.getElementById("dashboard-active-goals").textContent = "...";
+  document.getElementById("dashboard-active-goals-sub").textContent = "Loading goal status…";
+  document.getElementById("dashboard-tasks-today").textContent = "...";
+  document.getElementById("dashboard-tasks-today-sub").textContent = "Loading task totals…";
+  document.getElementById("dashboard-overall-progress").textContent = "...";
+  document.getElementById("dashboard-overall-progress-sub").textContent = "Loading progress…";
+}
+
+function renderDashboardSummary(goals, tasks) {
+  // Use the helper module to keep dashboard calculations separate and reusable.
+  const goalSummary = dashboardHelpers.countGoalStatuses(goals);
+  const taskSummary = dashboardHelpers.countTaskCompletion(tasks);
+  const todaySummary = dashboardHelpers.countTasksToday(tasks);
+  const completionPercent = dashboardHelpers.calculateCompletionPercent(taskSummary.completed, taskSummary.total);
+
+  document.getElementById("dashboard-active-goals").textContent = String(goalSummary.activeGoals);
+  document.getElementById("dashboard-active-goals-sub").textContent = `${goalSummary.onTrackGoals} on track · ${goalSummary.atRiskGoals} at risk`;
+
+  document.getElementById("dashboard-tasks-today").textContent = String(todaySummary.count);
+  document.getElementById("dashboard-tasks-today-sub").textContent = `${todaySummary.completed} completed · ${todaySummary.pending} pending`;
+
+  document.getElementById("dashboard-overall-progress").textContent = `${completionPercent}%`;
+  document.getElementById("dashboard-overall-progress-sub").textContent = taskSummary.total
+    ? `${taskSummary.completed} completed · ${taskSummary.pending} pending`
+    : "No tasks yet";
+}
 
 function renderGoalsPreview(container, goals) {
   if (!goals.length) {

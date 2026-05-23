@@ -71,9 +71,9 @@
       </div>
       <p class="section-label fade-up">Today's overview</p>
       <div class="stats-grid fade-up">
-        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Active Goals</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#7c6aee" stroke-width="1.4"/><circle cx="8" cy="8" r="3" stroke="#7c6aee" stroke-width="1.4"/><circle cx="8" cy="8" r="1" fill="#7c6aee"/></svg></div></div><div class="stat-value">4</div><p class="stat-sub">2 on track · 2 at risk</p></div>
-        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Today</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#2bbfa4" stroke-width="1.4"/><path d="M5 8l2 2 4-3" stroke="#2bbfa4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="stat-value">5</div><p class="stat-sub">2 completed · 3 pending</p></div>
-        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Overall Progress</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><polyline points="2,11 5,7 8,9 11,4 14,6" stroke="#f0607a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div><div class="stat-value">60%</div><p class="stat-sub">↑ Up 8% from last week</p></div>
+        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Active Goals</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#7c6aee" stroke-width="1.4"/><circle cx="8" cy="8" r="3" stroke="#7c6aee" stroke-width="1.4"/><circle cx="8" cy="8" r="1" fill="#7c6aee"/></svg></div></div><div id="dashboard-active-goals" class="stat-value">0</div><p id="dashboard-active-goals-sub" class="stat-sub">Loading goal status…</p></div>
+        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">Tasks Today</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#2bbfa4" stroke-width="1.4"/><path d="M5 8l2 2 4-3" stroke="#2bbfa4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div id="dashboard-tasks-today" class="stat-value">0</div><p id="dashboard-tasks-today-sub" class="stat-sub">Loading task totals…</p></div>
+        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">Overall Progress</span><div class="stat-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><polyline points="2,11 5,7 8,9 11,4 14,6" stroke="#f0607a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div><div id="dashboard-overall-progress" class="stat-value">0%</div><p id="dashboard-overall-progress-sub" class="stat-sub">Loading progress…</p></div>
       </div>
       <div class="content-grid fade-up">
         <div class="col">
@@ -110,6 +110,7 @@
 <script src="/nav.js"></script>
 <script src="/userData.js"></script>
 <script src="/scripts/pageUtils.js"></script>
+<script src="/scripts/dashboardHelpers.js"></script>
 <script src="/scripts/dashboardPage.js"></script>
 </body>
 </html>
