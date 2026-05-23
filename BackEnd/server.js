@@ -6,6 +6,8 @@ const session = require("express-session");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
 const aiRoutes = require("./routes/aiRoutes");
+const goalRoutes = require("./routes/goalRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 const configurePassport = require("./config/passportConfig");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
@@ -53,6 +55,9 @@ app.use(passport.session());
 app.use("/", authRoutes);
 // Mount AI routes for future AI engine endpoints.
 app.use("/api/ai", aiRoutes);
+// Mount read APIs for goals and tasks.
+app.use("/api/goals", goalRoutes);
+app.use("/api/tasks", taskRoutes);
 
 // Global error handler keeps failures consistent.
 app.use(errorHandler);

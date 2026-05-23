@@ -79,16 +79,11 @@
         <div class="col">
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Today's tasks</span><a class="card-link" href="tasks.html">View all →</a></div>
-            <div class="task-row"><div class="task-check done"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="task-name done">Review Spanish vocabulary flashcards</p><span class="badge badge-violet">Spanish</span></div>
-            <div class="task-row"><div class="task-check done"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="task-name done">Read chapter 3 of Clean Code</p><span class="badge badge-teal">Dev</span></div>
-            <div class="task-row"><div class="task-check"></div><p class="task-name">Take Spanish quiz</p><span class="badge badge-violet">Spanish</span></div>
-            <div class="task-row"><div class="task-check"></div><p class="task-name">Build Python calculator</p><span class="badge badge-teal">Dev</span></div>
-            <div class="task-row"><div class="task-check"></div><p class="task-name">30-min morning run</p><span class="badge badge-coral">Fitness</span></div>
+            <div id="dashboard-tasks-preview"></div>
           </div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Goal progress</span><a class="card-link" href="goals.html">View all →</a></div>
-            <div class="goal-row"><div class="goal-info"><span>Learn Spanish (B2)</span><span class="pct">72%</span></div><div class="progress-track"><div class="progress-fill fill-violet" style="width:0" data-w="72%"></div></div></div>
-            <div class="goal-row"><div class="goal-info"><span>Build portfolio website</span><span class="pct">45%</span></div><div class="progress-track"><div class="progress-fill fill-teal" style="width:0" data-w="45%"></div></div></div>
+            <div id="dashboard-goals-preview"></div>
           </div>
         </div>
         <div class="col">
@@ -114,6 +109,8 @@
 </div>
 <script src="/nav.js"></script>
 <script src="/userData.js"></script>
+<script src="/scripts/pageUtils.js"></script>
+<script src="/scripts/dashboardPage.js"></script>
 </body>
 </html>
 
