@@ -1,5 +1,6 @@
 const { poolPromise, sql } = require("../database/connection");
 const { createApiError } = require("../utils/apiErrorHandler");
+const { evaluateGoalStatus } = require("./goalStatusService");
 
 function normalizeId(value) {
   const id = Number(value);
@@ -29,7 +30,7 @@ async function completeTaskForUser(taskId, userId) {
     selectRequest.input("userId", sql.Int, normalizedUserId);
 
     const selectSql = `
-      SELECT t.status
+      SELECT t.status, t.goal_id
       FROM Tasks AS t
       INNER JOIN Goals AS g ON g.id = t.goal_id
       WHERE t.id = @taskId AND g.user_id = @userId;
@@ -72,6 +73,7 @@ async function completeTaskForUser(taskId, userId) {
     `;
 
     await progressRequest.query(insertSql);
+    await evaluateGoalStatus(taskRecord.goal_id, transaction);
     await transaction.commit();
 
     return {
@@ -79,6 +81,7 @@ async function completeTaskForUser(taskId, userId) {
       status: "completed",
     };
   } catch (error) {
+    console.error("Error during task completion:", error);
     try {
       await transaction.rollback();
     } catch (rollbackError) {
