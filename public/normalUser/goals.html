@@ -72,9 +72,9 @@
         <button class="btn-primary">+ New Goal</button>
       </div>
       <div class="stats-grid fade-up">
-        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Total Goals</span></div><div class="stat-value">4</div><p class="stat-sub">Across 3 categories</p></div>
-        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">On Track</span></div><div class="stat-value">2</div><p class="stat-sub">Ahead of schedule</p></div>
-        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">At Risk</span></div><div class="stat-value">2</div><p class="stat-sub">Need attention</p></div>
+        <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Total Goals</span></div><div id="goal-total-count" class="stat-value">0</div><p id="goal-total-categories" class="stat-sub">Across 0 categories</p></div>
+        <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">On Track</span></div><div id="goal-on-track-count" class="stat-value">0</div><p id="goal-on-track-sub" class="stat-sub">Ahead of schedule</p></div>
+        <div class="stat-card card s-coral"><div class="stat-top"><span class="stat-label">At Risk</span></div><div id="goal-at-risk-count" class="stat-value">0</div><p id="goal-at-risk-sub" class="stat-sub">Need attention</p></div>
       </div>
       <p class="section-label fade-up">Active goals</p>
       <div id="goals-container" class="goals-list fade-up"></div>
@@ -92,6 +92,7 @@
 <script src="nav.js"></script>
 <script src="/userData.js"></script>
 <script src="/scripts/pageUtils.js"></script>
+<script src="/scripts/dashboardHelpers.js"></script>
 <script src="/scripts/goalsPage.js"></script>
 </body>
 </html>

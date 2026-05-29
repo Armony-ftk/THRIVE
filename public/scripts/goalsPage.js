@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     goalsContainer.innerHTML = goals
       .map((goal) => createGoalCard(goal))
       .join("");
+
+    renderGoalStatistics(goals);
   } catch (error) {
     goalsContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">Unable to load goals. ${error.message}</p></div>`;
     console.error("Goals page error:", error);
@@ -69,4 +71,30 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function renderGoalStatistics(goals) {
+  const stats = dashboardHelpers.countGoalStatuses(goals);
+  const categoryCount = dashboardHelpers.countUniqueCategories(goals);
+
+  const totalCount = document.getElementById("goal-total-count");
+  const categoryLabel = document.getElementById("goal-total-categories");
+  const onTrackCount = document.getElementById("goal-on-track-count");
+  const atRiskCount = document.getElementById("goal-at-risk-count");
+
+  if (totalCount) {
+    totalCount.textContent = String(goals.length);
+  }
+
+  if (categoryLabel) {
+    categoryLabel.textContent = `Across ${categoryCount} categories`;
+  }
+
+  if (onTrackCount) {
+    onTrackCount.textContent = String(stats.onTrackGoals);
+  }
+
+  if (atRiskCount) {
+    atRiskCount.textContent = String(stats.atRiskGoals);
+  }
 }

@@ -122,6 +122,22 @@
     return getAtRiskGoals(goals).slice(0, limit);
   }
 
+  function countUniqueCategories(goals) {
+    if (!Array.isArray(goals)) {
+      return 0;
+    }
+
+    const categories = new Set();
+    for (const goal of goals) {
+      const category = String(goal.category || "").trim().toLowerCase();
+      if (category) {
+        categories.add(category);
+      }
+    }
+
+    return categories.size;
+  }
+
   window.dashboardHelpers = {
     parseDeadline,
     isSameCalendarDay,
@@ -133,5 +149,6 @@
     filterActiveTasks,
     getAtRiskGoals,
     getAtRiskGoalsSlice,
+    countUniqueCategories,
   };
 })(window);
