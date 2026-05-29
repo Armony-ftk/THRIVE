@@ -2,6 +2,15 @@ const { poolPromise, sql } = require("../database/connection");
 const { createApiError } = require("../utils/apiErrorHandler");
 const { attachProgressToGoals } = require("./goalProgressService");
 
+const GOAL_STATUS_PRIORITY_SQL = `
+      CASE LOWER(ISNULL(g.status, ''))
+        WHEN 'at_risk' THEN 1
+        WHEN 'active' THEN 2
+        WHEN 'pending' THEN 3
+        WHEN 'completed' THEN 4
+        ELSE 5
+      END`;
+
 async function getGoalsForUser(userId) {
   if (userId === undefined || userId === null) {
     throw createApiError(401, "Authenticated user is required to fetch goals.");
@@ -37,7 +46,7 @@ async function getGoalsForUser(userId) {
         g.deadline,
         g.created_at,
         g.status
-      ORDER BY g.deadline ASC, g.created_at DESC;
+      ORDER BY ${GOAL_STATUS_PRIORITY_SQL}, g.deadline ASC, g.created_at DESC;
     `);
 
   return attachProgressToGoals(result.recordset || []);
