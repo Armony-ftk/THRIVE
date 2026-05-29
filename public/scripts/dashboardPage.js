@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tasksTodaySub = document.getElementById("dashboard-tasks-today-sub");
   const overallProgressValue = document.getElementById("dashboard-overall-progress");
   const overallProgressSub = document.getElementById("dashboard-overall-progress-sub");
+  const riskBadge = document.getElementById("dashboard-risk-badge");
+  const riskContent = document.getElementById("dashboard-risk-content");
 
   if (
     !goalsPreview ||
@@ -16,7 +18,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     !tasksTodayValue ||
     !tasksTodaySub ||
     !overallProgressValue ||
-    !overallProgressSub
+    !overallProgressSub ||
+    !riskBadge ||
+    !riskContent
   ) {
     return;
   }
@@ -39,6 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderDashboardSummary(goals, tasks);
     renderGoalsPreview(goalsPreview, goals);
     renderTasksPreview(tasksPreview, tasks);
+    // Render risk alert using the shared risk alert renderer
+    try {
+      renderRiskAlert(riskBadge, riskContent, goals);
+    } catch (err) {
+      // Non-blocking: dashboard should still load if risk alert rendering fails
+      console.error("Failed to render dashboard risk alert:", err);
+    }
     // Render streak using the shared streak renderer (reuses progress implementation)
     try {
       const streakDaysContainer = document.getElementById("streak-days");
@@ -71,6 +82,10 @@ function setDashboardLoading() {
   document.getElementById("dashboard-tasks-today-sub").textContent = "Loading task totals…";
   document.getElementById("dashboard-overall-progress").textContent = "...";
   document.getElementById("dashboard-overall-progress-sub").textContent = "Loading progress…";
+  const riskBadge = document.getElementById("dashboard-risk-badge");
+  if (riskBadge) {
+    riskBadge.textContent = "Loading…";
+  }
 }
 
 function renderDashboardSummary(goals, tasks) {
@@ -138,4 +153,19 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function renderRiskAlert(badgeElement, contentElement, goals) {
+  // Get the total count of at-risk goals
+  const allAtRiskGoals = dashboardHelpers.getAtRiskGoals(goals);
+  const totalAtRiskCount = allAtRiskGoals.length;
+
+  // Get the first 2 at-risk goals for display
+  const displayedAtRiskGoals = dashboardHelpers.getAtRiskGoalsSlice(goals, 2);
+
+  // Update the badge with the total count
+  riskAlertRenderer.updateRiskBadge(badgeElement, totalAtRiskCount);
+
+  // Render the content (empty state or at-risk goals)
+  riskAlertRenderer.renderAtRiskGoalsContent(contentElement, displayedAtRiskGoals, totalAtRiskCount);
 }

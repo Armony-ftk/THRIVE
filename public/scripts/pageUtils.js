@@ -7,7 +7,7 @@
   };
 
   const statusMap = {
-    pending: { label: "Pending", badge: "badge-coral" },
+    pending: { label: "Pending", badge: "badge-violet" },
     completed: { label: "Completed", badge: "badge-teal" },
     in_progress: { label: "In Progress", badge: "badge-violet" },
     on_track: { label: "On Track", badge: "badge-teal" },

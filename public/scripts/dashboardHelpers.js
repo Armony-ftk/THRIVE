@@ -99,6 +99,17 @@
     return Math.round((completed / total) * 100);
   }
 
+  function getAtRiskGoals(goals) {
+    if (!Array.isArray(goals)) {
+      return [];
+    }
+    return goals.filter((goal) => normalizeStatus(goal.status) === "at_risk");
+  }
+
+  function getAtRiskGoalsSlice(goals, limit = 2) {
+    return getAtRiskGoals(goals).slice(0, limit);
+  }
+
   window.dashboardHelpers = {
     parseDeadline,
     isSameCalendarDay,
@@ -107,5 +118,7 @@
     countTaskCompletion,
     countTasksToday,
     calculateCompletionPercent,
+    getAtRiskGoals,
+    getAtRiskGoalsSlice,
   };
 })(window);
