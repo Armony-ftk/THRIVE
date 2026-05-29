@@ -7,6 +7,25 @@ function normalizeId(value) {
   return Number.isInteger(id) && id > 0 ? id : null;
 }
 
+async function findBlockingTask(goalId, position) {
+  const pool = await poolPromise;
+  const request = pool.request();
+  request.input("goalId", sql.Int, goalId);
+  request.input("position", sql.Int, position);
+
+  const blockSql = `
+    SELECT TOP 1 title
+    FROM Tasks
+    WHERE goal_id = @goalId
+      AND position < @position
+      AND LOWER(status) <> 'completed'
+    ORDER BY position ASC;
+  `;
+
+  const result = await request.query(blockSql);
+  return result.recordset && result.recordset[0];
+}
+
 async function completeTaskForUser(taskId, userId) {
   const normalizedTaskId = normalizeId(taskId);
   const normalizedUserId = normalizeId(userId);
@@ -20,37 +39,50 @@ async function completeTaskForUser(taskId, userId) {
   }
 
   const pool = await poolPromise;
+  const selectRequest = pool.request();
+  selectRequest.input("taskId", sql.Int, normalizedTaskId);
+  selectRequest.input("userId", sql.Int, normalizedUserId);
+
+  const selectSql = `
+    SELECT t.status, t.goal_id, t.position
+    FROM Tasks AS t
+    INNER JOIN Goals AS g ON g.id = t.goal_id
+    WHERE t.id = @taskId AND g.user_id = @userId;
+  `;
+
+  const selectResult = await selectRequest.query(selectSql);
+  const taskRecord = selectResult.recordset && selectResult.recordset[0];
+
+  if (!taskRecord) {
+    throw createApiError(404, "Task not found for the authenticated user.");
+  }
+
+  const currentStatus = String(taskRecord.status || "").toLowerCase();
+  if (currentStatus === "completed") {
+    throw createApiError(400, "Task is already completed.");
+  }
+
+  if (!["pending", "in_progress"].includes(currentStatus)) {
+    throw createApiError(400, "Only pending or in_progress tasks may be marked as completed.");
+  }
+
+  const blockingTask = await findBlockingTask(
+    taskRecord.goal_id,
+    Number(taskRecord.position),
+  );
+
+  if (blockingTask) {
+    const title = String(blockingTask.title || "").trim();
+    const message = title
+      ? `You must complete '${title}' first.`
+      : "You must complete earlier tasks before this one.";
+    throw createApiError(400, message);
+  }
+
   const transaction = new sql.Transaction(pool);
 
   try {
     await transaction.begin();
-
-    const selectRequest = new sql.Request(transaction);
-    selectRequest.input("taskId", sql.Int, normalizedTaskId);
-    selectRequest.input("userId", sql.Int, normalizedUserId);
-
-    const selectSql = `
-      SELECT t.status, t.goal_id
-      FROM Tasks AS t
-      INNER JOIN Goals AS g ON g.id = t.goal_id
-      WHERE t.id = @taskId AND g.user_id = @userId;
-    `;
-
-    const selectResult = await selectRequest.query(selectSql);
-    const taskRecord = selectResult.recordset && selectResult.recordset[0];
-
-    if (!taskRecord) {
-      throw createApiError(404, "Task not found for the authenticated user.");
-    }
-
-    const currentStatus = String(taskRecord.status || "").toLowerCase();
-    if (currentStatus === "completed") {
-      throw createApiError(400, "Task is already completed.");
-    }
-
-    if (!["pending", "in_progress"].includes(currentStatus)) {
-      throw createApiError(400, "Only pending or in_progress tasks may be marked as completed.");
-    }
 
     const updateRequest = new sql.Request(transaction);
     updateRequest.input("taskId", sql.Int, normalizedTaskId);
