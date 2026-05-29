@@ -6,6 +6,19 @@ function getAuthenticatedUserId(req) {
   return req.session?.user?.id || req.user?.id;
 }
 
+function parseStatusesQuery(rawStatuses) {
+  if (!rawStatuses) {
+    return undefined;
+  }
+
+  const statuses = String(rawStatuses)
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+
+  return statuses.length ? statuses : undefined;
+}
+
 async function getTasks(req, res, next) {
   const userId = getAuthenticatedUserId(req);
   if (!userId) {
@@ -13,7 +26,8 @@ async function getTasks(req, res, next) {
   }
 
   try {
-    const tasks = await getTasksForUser(userId);
+    const requestedStatuses = parseStatusesQuery(req.query.statuses);
+    const tasks = await getTasksForUser(userId, requestedStatuses);
     return res.json({ success: true, tasks });
   } catch (error) {
     return next(error);

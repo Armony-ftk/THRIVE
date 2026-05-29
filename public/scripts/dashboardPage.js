@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const [goalsResponse, tasksResponse, summaryResponse] = await Promise.all([
       thriveUtils.fetchJson("/api/goals"),
-      thriveUtils.fetchJson("/api/tasks"),
+      thriveUtils.fetchJson("/api/tasks?statuses=pending,in_progress,completed"),
       thriveUtils.fetchJson("/api/progress/summary"),
     ]);
 
@@ -118,12 +118,14 @@ function renderGoalsPreview(container, goals) {
 }
 
 function renderTasksPreview(container, tasks) {
-  if (!tasks.length) {
-    container.innerHTML = `<div class="card card-pad"><p class="empty-state">No tasks yet. Complete a goal plan to see tasks here.</p></div>`;
+  const activeTasks = dashboardHelpers.filterActiveTasks(tasks);
+
+  if (!activeTasks.length) {
+    container.innerHTML = `<div class="card card-pad"><p class="empty-state">No active tasks yet. Complete a goal plan to see tasks here.</p></div>`;
     return;
   }
 
-  const latestTasks = tasks.slice(0, 3);
+  const latestTasks = activeTasks.slice(0, 3);
   container.innerHTML = latestTasks.map((task) => createDashboardTaskRow(task)).join("");
   taskCompletion.bindTaskCompletion(container);
 }

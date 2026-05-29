@@ -27,7 +27,7 @@
 
   function countGoalStatuses(goals) {
     const counts = {
-      activeGoals: goals.length,
+      activeGoals: 0,
       onTrackGoals: 0,
       atRiskGoals: 0,
       pendingGoals: 0,
@@ -35,7 +35,8 @@
 
     for (const goal of goals) {
       const status = normalizeStatus(goal.status);
-      if (status === "on_track" || status === "on track") {
+      if (status === "active" || status === "on_track" || status === "on track") {
+        counts.activeGoals += 1;
         counts.onTrackGoals += 1;
       } else if (status === "at_risk" || status === "at risk") {
         counts.atRiskGoals += 1;
@@ -45,6 +46,17 @@
     }
 
     return counts;
+  }
+
+  function isTaskCompleted(task) {
+    return normalizeStatus(task.status) === "completed";
+  }
+
+  function filterActiveTasks(tasks) {
+    if (!Array.isArray(tasks)) {
+      return [];
+    }
+    return tasks.filter((task) => !isTaskCompleted(task));
   }
 
   function countTaskCompletion(tasks) {
@@ -118,6 +130,7 @@
     countTaskCompletion,
     countTasksToday,
     calculateCompletionPercent,
+    filterActiveTasks,
     getAtRiskGoals,
     getAtRiskGoalsSlice,
   };

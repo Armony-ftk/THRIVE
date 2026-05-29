@@ -4,6 +4,10 @@ const { createApiError } = require("../utils/apiErrorHandler");
 const DEFAULT_ACTIVE_STATUSES = ["pending", "in_progress"];
 
 function normalizeStatuses(statuses) {
+  if (statuses === null) {
+    return null;
+  }
+
   if (!Array.isArray(statuses) || statuses.length === 0) {
     return DEFAULT_ACTIVE_STATUSES;
   }
@@ -12,11 +16,23 @@ function normalizeStatuses(statuses) {
     .map((status) => String(status || "").trim().toLowerCase())
     .filter(Boolean);
 
-  return normalized.length ? normalized : DEFAULT_ACTIVE_STATUSES;
+  if (normalized.length === 0) {
+    return DEFAULT_ACTIVE_STATUSES;
+  }
+
+  if (normalized.includes("all")) {
+    return null;
+  }
+
+  return normalized;
 }
 
 function applyStatusFilters(request, statuses) {
   const normalized = normalizeStatuses(statuses);
+  if (normalized === null) {
+    return null;
+  }
+
   const placeholders = normalized.map((status, index) => {
     const paramName = `status${index}`;
     request.input(paramName, sql.NVarChar(50), status);
@@ -35,6 +51,7 @@ async function getTasksForUser(userId, statuses = DEFAULT_ACTIVE_STATUSES) {
   request.input("userId", sql.Int, Number(userId));
 
   const statusList = applyStatusFilters(request, statuses);
+  const statusCondition = statusList ? `AND t.status IN (${statusList})` : "";
 
   const result = await request.query(`
       SELECT
@@ -49,7 +66,7 @@ async function getTasksForUser(userId, statuses = DEFAULT_ACTIVE_STATUSES) {
       FROM tasks AS t
       INNER JOIN goals AS g ON g.id = t.goal_id
       WHERE g.user_id = @userId
-        AND t.status IN (${statusList})
+        ${statusCondition}
       ORDER BY t.deadline ASC, t.position ASC;
     `);
 
