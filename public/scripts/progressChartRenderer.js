@@ -1,6 +1,6 @@
 (function (window) {
-  function getBarBackground(isCurrentWeek) {
-    return isCurrentWeek ? "linear-gradient(0deg,#7c6aee,#a78bfa)" : "var(--violet)";
+  function getBarBackground(highlight) {
+    return highlight ? "linear-gradient(0deg,#2bbfa4,#34d399)" : "linear-gradient(0deg,#7c6aee,#a78bfa)";
   }
 
   function createWeeklyCompletionBar(weekData) {
@@ -12,11 +12,44 @@
 
     return `
       <div class="chart-bar${activeClass}" title="${range}: ${count} completed (${percent}%)">
-        <div class="cb-fill" style="--h:${percent}%;background:${getBarBackground(weekData.isCurrentWeek)}"></div>
+        <div class="cb-fill">
+          <div class="cb-fill-inner" style="position:absolute;bottom:0;left:0;right:0;height:${percent}%;background:${getBarBackground(weekData.isCurrentWeek)};border-radius:inherit;opacity:.85;"></div>
+        </div>
         <span>${label}</span>
         <span class="chart-bar-note">${count} done</span>
       </div>
     `;
+  }
+
+  function createDailyCompletionBar(dayData) {
+    const activeClass = dayData.isToday ? " active" : "";
+    const label = String(dayData.dayLabel || "");
+    const count = Number.isFinite(dayData.count) ? dayData.count : 0;
+    const percent = Number.isFinite(dayData.percentage) ? dayData.percentage : 0;
+    const target = Number.isFinite(dayData.target) ? dayData.target : 5;
+
+    return `
+      <div class="chart-bar${activeClass}" title="${dayData.date}: ${count}/${target} completed">
+        <div class="cb-fill">
+          <div class="cb-fill-inner" style="position:absolute;bottom:0;left:0;right:0;height:${percent}%;background:${getBarBackground(dayData.isToday)};border-radius:inherit;opacity:.85;"></div>
+        </div>
+        <span>${label}</span>
+        <span class="chart-bar-note">${count}/${target}</span>
+      </div>
+    `;
+  }
+
+  function renderDailyCompletionChart(container, dailySeries) {
+    if (!container) {
+      return;
+    }
+
+    if (!Array.isArray(dailySeries) || dailySeries.length === 0) {
+      container.innerHTML = `<div class="card card-pad"><p class="empty-state">No weekly completion history yet.</p></div>`;
+      return;
+    }
+
+    container.innerHTML = dailySeries.map(createDailyCompletionBar).join("");
   }
 
   function renderWeeklyCompletionChart(container, weeklySeries) {
@@ -34,5 +67,6 @@
 
   window.progressChartRenderer = {
     renderWeeklyCompletionChart,
+    renderDailyCompletionChart,
   };
 })(window);

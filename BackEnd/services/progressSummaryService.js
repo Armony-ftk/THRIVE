@@ -3,6 +3,7 @@ const { createApiError } = require("../utils/apiErrorHandler");
 
 const AVERAGE_WINDOW_DAYS = 30;
 const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
+const MAX_TASKS_PER_DAY = 5;
 
 function normalizeUserId(value) {
   const userId = Number(value);
@@ -16,6 +17,17 @@ function getTodayUtc() {
 
 function addDays(date, offset) {
   return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + offset));
+}
+
+function getStartOfWeek(date) {
+  const day = date.getUTCDay();
+  const mondayOffset = day === 0 ? -6 : 1 - day;
+  return addDays(date, mondayOffset);
+}
+
+function getWeekDays(referenceDate) {
+  const startOfWeek = getStartOfWeek(referenceDate);
+  return Array.from({ length: 7 }, (_, index) => addDays(startOfWeek, index));
 }
 
 function isValidIsoDateString(value) {
@@ -62,6 +74,40 @@ function calculateAverageDailyCompletedTasks(completionDates, referenceDate) {
   }
 
   return Number((completedCount / AVERAGE_WINDOW_DAYS).toFixed(1));
+}
+
+function calculateCurrentWeekDailyCompletions(completionDates, referenceDate, maxTasksPerDay = MAX_TASKS_PER_DAY) {
+  const weekDays = getWeekDays(referenceDate);
+  const countsByDate = weekDays.reduce((map, date) => {
+    map[formatDateOnlyUtc(date)] = 0;
+    return map;
+  }, {});
+
+  for (const dateString of completionDates) {
+    const date = parseDateOnlyString(dateString);
+    if (!date) {
+      continue;
+    }
+
+    const key = formatDateOnlyUtc(date);
+    if (key in countsByDate) {
+      countsByDate[key] += 1;
+    }
+  }
+
+  return weekDays.map((date) => {
+    const dateKey = formatDateOnlyUtc(date);
+    const count = countsByDate[dateKey] || 0;
+    const normalizedCount = Math.min(count, maxTasksPerDay);
+    return {
+      date: dateKey,
+      dayLabel: getDayLetter(date),
+      count,
+      target: maxTasksPerDay,
+      percentage: maxTasksPerDay > 0 ? Math.round((normalizedCount / maxTasksPerDay) * 100) : 0,
+      isToday: dateKey === formatDateOnlyUtc(referenceDate),
+    };
+  });
 }
 
 function getWeeklyRanges(referenceDate, weeks = 4) {
@@ -180,6 +226,7 @@ function createProgressSummary(completionRows) {
   const weeklyCompletion = calculateWeeklyCompletionSeries(completionDates, referenceDate);
   const uniqueDateStrings = new Set(completionDates);
   const dailyActivity = calculateDailyActivity(uniqueDateStrings, referenceDate, 7);
+  const currentWeekDailyCompletions = calculateCurrentWeekDailyCompletions(completionDates, referenceDate);
   const { currentStreakDays, bestStreakDays } = calculateStreaks(uniqueDateStrings, referenceDate);
 
   return {
@@ -189,6 +236,7 @@ function createProgressSummary(completionRows) {
     bestStreakDays,
     weeklyCompletion,
     dailyActivity,
+    currentWeekDailyCompletions,
   };
 }
 

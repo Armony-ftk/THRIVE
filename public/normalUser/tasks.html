@@ -86,15 +86,7 @@
           </div>
           <div class="card card-pad">
             <div class="card-header"><span class="card-title">Weekly view</span></div>
-            <div class="week-grid">
-              <div class="week-day done"><span class="wd-label">M</span><div class="wd-bar" style="--h:80%"></div><span class="wd-num">5/5</span></div>
-              <div class="week-day done"><span class="wd-label">T</span><div class="wd-bar" style="--h:60%"></div><span class="wd-num">3/5</span></div>
-              <div class="week-day done"><span class="wd-label">W</span><div class="wd-bar" style="--h:100%"></div><span class="wd-num">5/5</span></div>
-              <div class="week-day done"><span class="wd-label">T</span><div class="wd-bar" style="--h:40%"></div><span class="wd-num">2/5</span></div>
-              <div class="week-day today"><span class="wd-label">F</span><div class="wd-bar" style="--h:40%"></div><span class="wd-num">2/5</span></div>
-              <div class="week-day"><span class="wd-label">S</span><div class="wd-bar" style="--h:0%"></div><span class="wd-num">—</span></div>
-              <div class="week-day"><span class="wd-label">S</span><div class="wd-bar" style="--h:0%"></div><span class="wd-num">—</span></div>
-            </div>
+            <div id="weekly-completion-chart" class="chart-bars"></div>
           </div>
           <div class="card card-pad motive"><p class="motive-label">Keep going</p><p class="motive-quote">"Action is the foundational key to all success."</p><span class="motive-author">— Pablo Picasso</span></div>
         </div>
@@ -115,6 +107,7 @@
 <script src="/scripts/pageUtils.js"></script>
 <script src="/scripts/dashboardHelpers.js"></script>
 <script src="/scripts/taskCompletion.js"></script>
+<script src="/scripts/progressChartRenderer.js"></script>
 <script src="/scripts/tasksPage.js"></script>
 </body>
 </html>

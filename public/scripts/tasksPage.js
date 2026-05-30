@@ -1,45 +1,76 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const tasksContainer = document.getElementById("tasks-container");
+  const weeklyChartContainer = document.getElementById("weekly-completion-chart");
   if (!tasksContainer) {
     return;
   }
 
   tasksContainer.innerHTML = `<div class="card card-pad">Loading tasks...</div>`;
+  if (weeklyChartContainer) {
+    weeklyChartContainer.innerHTML = `<div class="card card-pad">Loading weekly completions...</div>`;
+  }
 
   try {
-    const response = await thriveUtils.fetchJson("/api/tasks");
-    const tasks = response.tasks || [];
+    const [tasksResponse, summaryResponse] = await Promise.all([
+      thriveUtils.fetchJson("/api/tasks"),
+      thriveUtils.fetchJson("/api/progress/summary"),
+    ]);
+
+    const tasks = tasksResponse.tasks || [];
     let allTasks = tasks;
+    const progressSummary = summaryResponse.summary || null;
 
     if (tasks.length === 0) {
       tasksContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">No tasks yet. Complete a goal plan to see tasks here.</p></div>`;
-      return;
+    } else {
+      const groupedTasks = groupTasksByGoal(allTasks);
+      tasksContainer.innerHTML = Object.values(groupedTasks)
+        .map((group) => createTaskGroupCard(group))
+        .join("");
+      taskCompletion.bindTaskCompletion(tasksContainer);
+      renderXpFromTasks(allTasks);
     }
 
-    const groupedTasks = groupTasksByGoal(allTasks);
-    tasksContainer.innerHTML = Object.values(groupedTasks)
-      .map((group) => createTaskGroupCard(group))
-      .join("");
-    taskCompletion.bindTaskCompletion(tasksContainer);
+    renderWeeklyCompletions(progressSummary);
 
-    // Render XP card based on fetched tasks
-    renderXpFromTasks(allTasks);
-
-    // Listen for task completion events to update local task state and XP
-    window.addEventListener("task:completed", (e) => {
+    window.addEventListener("task:completed", async (e) => {
       const taskId = Number(e?.detail?.taskId);
       if (!taskId) return;
+
       const idx = allTasks.findIndex((t) => Number(t.id) === taskId);
       if (idx !== -1) {
         allTasks[idx].status = "completed";
         renderXpFromTasks(allTasks);
       }
+
+      await refreshWeeklyCompletions();
     });
   } catch (error) {
     tasksContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">Unable to load tasks. ${error.message}</p></div>`;
+    if (weeklyChartContainer) {
+      weeklyChartContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">Unable to load weekly completions.</p></div>`;
+    }
     console.error("Tasks page error:", error);
   }
 });
+
+function renderWeeklyCompletions(summary) {
+  const container = document.getElementById("weekly-completion-chart");
+  if (!container || !window.progressChartRenderer || typeof progressChartRenderer.renderDailyCompletionChart !== "function") {
+    return;
+  }
+
+  progressChartRenderer.renderDailyCompletionChart(container, summary?.currentWeekDailyCompletions);
+}
+
+async function refreshWeeklyCompletions() {
+  try {
+    const summaryResponse = await thriveUtils.fetchJson("/api/progress/summary");
+    renderWeeklyCompletions(summaryResponse.summary || null);
+  } catch (error) {
+    console.error("Failed to refresh weekly completions:", error);
+  }
+}
 
 function groupTasksByGoal(tasks) {
   return tasks.reduce((grouped, task) => {
