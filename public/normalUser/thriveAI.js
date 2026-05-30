@@ -57,3 +57,11 @@ chatInput.addEventListener("keydown", event => {
     sendGoal();
   }
 });
+
+// Quick prompt buttons - populate input and submit
+document.querySelectorAll(".quick-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    chatInput.value = button.textContent;
+    sendGoal();
+  });
+});
