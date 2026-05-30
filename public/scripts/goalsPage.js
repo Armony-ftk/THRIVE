@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const goalsContainer = document.getElementById("goals-container");
+  const newGoalButton = document.querySelector(".btn-primary");
+
+  if (newGoalButton) {
+    newGoalButton.addEventListener("click", () => {
+      window.location.href = "thriveAI.html";
+    });
+  }
+
   if (!goalsContainer) {
     return;
   }
