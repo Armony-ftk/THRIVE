@@ -104,6 +104,20 @@
     return { count, completed, pending };
   }
 
+  function computeXpFromTasks(tasks, xpPerTask = 50) {
+    const { count, completed } = countTasksToday(tasks);
+    const available = Number(count || 0) * Number(xpPerTask || 0);
+    const earned = Number(completed || 0) * Number(xpPerTask || 0);
+    const percent = available > 0 ? Math.round((earned / available) * 100) : 0;
+    return {
+      earned,
+      available,
+      percent,
+      completedCount: completed,
+      totalCount: count,
+    };
+  }
+
   function calculateCompletionPercent(completed, total) {
     if (!total || total <= 0) {
       return 0;
@@ -145,6 +159,7 @@
     countGoalStatuses,
     countTaskCompletion,
     countTasksToday,
+    computeXpFromTasks,
     calculateCompletionPercent,
     filterActiveTasks,
     getAtRiskGoals,

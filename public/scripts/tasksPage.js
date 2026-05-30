@@ -9,18 +9,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await thriveUtils.fetchJson("/api/tasks");
     const tasks = response.tasks || [];
+    let allTasks = tasks;
 
     if (tasks.length === 0) {
       tasksContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">No tasks yet. Complete a goal plan to see tasks here.</p></div>`;
       return;
     }
 
-    const groupedTasks = groupTasksByGoal(tasks);
+    const groupedTasks = groupTasksByGoal(allTasks);
     tasksContainer.innerHTML = Object.values(groupedTasks)
       .map((group) => createTaskGroupCard(group))
       .join("");
-
     taskCompletion.bindTaskCompletion(tasksContainer);
+
+    // Render XP card based on fetched tasks
+    renderXpFromTasks(allTasks);
+
+    // Listen for task completion events to update local task state and XP
+    window.addEventListener("task:completed", (e) => {
+      const taskId = Number(e?.detail?.taskId);
+      if (!taskId) return;
+      const idx = allTasks.findIndex((t) => Number(t.id) === taskId);
+      if (idx !== -1) {
+        allTasks[idx].status = "completed";
+        renderXpFromTasks(allTasks);
+      }
+    });
   } catch (error) {
     tasksContainer.innerHTML = `<div class="card card-pad"><p class="empty-state">Unable to load tasks. ${error.message}</p></div>`;
     console.error("Tasks page error:", error);
@@ -74,6 +88,25 @@ function createTaskRow(task) {
       <span class="task-xp">${escapeHtml(statusLabel)} · ${deadline}</span>
     </div>
   `;
+}
+
+function renderXpFromTasks(tasks) {
+  try {
+    if (!window.dashboardHelpers) return;
+    const xp = dashboardHelpers.computeXpFromTasks(tasks, 50);
+    const xpNum = document.querySelector(".xp-num");
+    const xpLabel = document.querySelector(".xp-label");
+    const progressFill = document.querySelector(".progress-fill");
+
+    if (xpNum) xpNum.textContent = String(xp.earned);
+    if (xpLabel) xpLabel.textContent = `/ ${xp.available} XP earned today`;
+    if (progressFill) {
+      progressFill.style.width = `${xp.percent}%`;
+      progressFill.dataset.w = `${xp.percent}%`;
+    }
+  } catch (err) {
+    console.error("Failed to render XP:", err);
+  }
 }
 
 function escapeHtml(value) {

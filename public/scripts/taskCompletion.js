@@ -49,7 +49,7 @@
 
       try {
         await completeTaskRequest(taskId);
-        finalizeTaskRow(taskRow);
+        finalizeTaskRow(taskRow, taskId);
       } catch (error) {
         checkbox.disabled = false;
         checkbox.checked = false;
@@ -60,7 +60,7 @@
     });
   }
 
-  function finalizeTaskRow(row) {
+  function finalizeTaskRow(row, taskId) {
     row.classList.add("completed");
     const name = row.querySelector(".task-name");
     if (name) {
@@ -82,6 +82,11 @@
     window.setTimeout(() => {
       row.remove();
     }, 300);
+    try {
+      window.dispatchEvent(new CustomEvent("task:completed", { detail: { taskId: Number(taskId) } }));
+    } catch (e) {
+      // ignore dispatch errors
+    }
   }
 
   function showTaskError(message) {
