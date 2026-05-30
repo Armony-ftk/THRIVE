@@ -215,7 +215,21 @@ function calculateStreaks(uniqueDateStrings, referenceDate) {
   };
 }
 
-function createProgressSummary(completionRows) {
+function createGoalMilestones(goalRows) {
+  if (!Array.isArray(goalRows)) {
+    return [];
+  }
+
+  return goalRows.map((goal) => ({
+    id: Number(goal.id) || null,
+    title: String(goal.title || "Untitled goal").trim(),
+    category: goal.category || "other",
+    deadline: goal.deadline || null,
+    status: String(goal.status || "pending").trim().toLowerCase(),
+  }));
+}
+
+function createProgressSummary(completionRows, goalRows) {
   const completionDates = (completionRows || [])
     .map((row) => String(row.completion_date || "").trim())
     .filter(isValidIsoDateString);
@@ -237,6 +251,7 @@ function createProgressSummary(completionRows) {
     weeklyCompletion,
     dailyActivity,
     currentWeekDailyCompletions,
+    goalMilestones: createGoalMilestones(goalRows),
   };
 }
 
@@ -247,19 +262,44 @@ async function getProgressSummaryForUser(userId) {
   }
 
   const pool = await poolPromise;
-  const result = await pool
-    .request()
-    .input("userId", sql.Int, normalizedUserId)
-    .query(`
-      SELECT CONVERT(varchar(10), p.completion_date, 23) AS completion_date
-      FROM Progress AS p
-      INNER JOIN Tasks AS t ON t.id = p.task_id
-      INNER JOIN Goals AS g ON g.id = t.goal_id
-      WHERE g.user_id = @userId
-      ORDER BY p.completion_date ASC;
-    `);
+  const [completionResult, milestonesResult] = await Promise.all([
+    pool
+      .request()
+      .input("userId", sql.Int, normalizedUserId)
+      .query(`
+        SELECT CONVERT(varchar(10), p.completion_date, 23) AS completion_date
+        FROM Progress AS p
+        INNER JOIN Tasks AS t ON t.id = p.task_id
+        INNER JOIN Goals AS g ON g.id = t.goal_id
+        WHERE g.user_id = @userId
+        ORDER BY p.completion_date ASC;
+      `),
+    pool
+      .request()
+      .input("userId", sql.Int, normalizedUserId)
+      .query(`
+        SELECT
+          g.id,
+          g.title,
+          g.category,
+          CONVERT(varchar(10), g.deadline, 23) AS deadline,
+          g.status
+        FROM Goals AS g
+        WHERE g.user_id = @userId
+        ORDER BY
+          CASE LOWER(ISNULL(g.status, ''))
+            WHEN 'completed' THEN 1
+            WHEN 'at_risk' THEN 2
+            WHEN 'active' THEN 3
+            WHEN 'pending' THEN 4
+            ELSE 5
+          END,
+          CASE WHEN g.deadline IS NULL THEN 1 ELSE 0 END,
+          g.deadline ASC;
+      `),
+  ]);
 
-  return createProgressSummary(result.recordset || []);
+  return createProgressSummary(completionResult.recordset || [], milestonesResult.recordset || []);
 }
 
 module.exports = {

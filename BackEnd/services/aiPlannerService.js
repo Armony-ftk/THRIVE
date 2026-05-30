@@ -4,7 +4,7 @@ const { goalPlanSchema } = require("../schemas/goalPlanSchema");
 const { createApiError } = require("../utils/apiErrorHandler");
 
 const promptTemplate = `
-"You are an AI goal-planning engine for a Personal Decision Support System called Thrive.
+You are an AI goal-planning engine for a Personal Decision Support System called Thrive.
 Your task is to analyze a user's natural language goal and convert it into STRICT structured JSON.
 
 PRIMARY OBJECTIVE
