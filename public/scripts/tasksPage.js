@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     weeklyChartContainer.innerHTML = `<div class="card card-pad">Loading weekly completions...</div>`;
   }
 
+  renderMotivationalQuote();
+
   try {
     const [tasksResponse, summaryResponse] = await Promise.all([
       thriveUtils.fetchJson("/api/tasks"),
@@ -61,6 +63,28 @@ function renderWeeklyCompletions(summary) {
   }
 
   progressChartRenderer.renderDailyCompletionChart(container, summary?.currentWeekDailyCompletions);
+}
+
+function renderMotivationalQuote() {
+  if (!window.motivationService || typeof window.motivationService.getRandomQuote !== "function") {
+    return;
+  }
+
+  const quoteData = window.motivationService.getRandomQuote();
+  if (!quoteData) {
+    return;
+  }
+
+  const quoteEl = document.querySelector(".motive-quote");
+  const authorEl = document.querySelector(".motive-author");
+
+  if (quoteEl) {
+    quoteEl.textContent = quoteData.quote;
+  }
+
+  if (authorEl) {
+    authorEl.textContent = `— ${quoteData.author}`;
+  }
 }
 
 async function refreshWeeklyCompletions() {

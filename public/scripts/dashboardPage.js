@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   setDashboardLoading();
+  renderMotivationalQuote();
   goalsPreview.innerHTML = `<div class="card card-pad">Loading goal previews...</div>`;
   tasksPreview.innerHTML = `<div class="card card-pad">Loading task previews...</div>`;
 
@@ -170,4 +171,26 @@ function renderRiskAlert(badgeElement, contentElement, goals) {
 
   // Render the content (empty state or at-risk goals)
   riskAlertRenderer.renderAtRiskGoalsContent(contentElement, displayedAtRiskGoals, totalAtRiskCount);
+}
+
+function renderMotivationalQuote() {
+  if (!window.motivationService || typeof window.motivationService.getRandomQuote !== "function") {
+    return;
+  }
+
+  const quoteData = window.motivationService.getRandomQuote();
+  if (!quoteData) {
+    return;
+  }
+
+  const quoteEl = document.querySelector(".motive-quote");
+  const authorEl = document.querySelector(".motive-author");
+
+  if (quoteEl) {
+    quoteEl.textContent = quoteData.quote;
+  }
+
+  if (authorEl) {
+    authorEl.textContent = `— ${quoteData.author}`;
+  }
 }

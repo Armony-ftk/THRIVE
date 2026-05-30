@@ -58,10 +58,36 @@ chatInput.addEventListener("keydown", event => {
   }
 });
 
+function renderMotivationalQuote() {
+  if (!window.motivationService || typeof window.motivationService.getRandomQuote !== "function") {
+    return;
+  }
+
+  const quoteData = window.motivationService.getRandomQuote();
+  if (!quoteData) {
+    return;
+  }
+
+  const quoteEl = document.querySelector(".motive-quote");
+  const authorEl = document.querySelector(".motive-author");
+
+  if (quoteEl) {
+    quoteEl.textContent = quoteData.quote;
+  }
+
+  if (authorEl) {
+    authorEl.textContent = `— ${quoteData.author}`;
+  }
+}
+
 // Quick prompt buttons - populate input and submit
 document.querySelectorAll(".quick-btn").forEach(button => {
   button.addEventListener("click", () => {
     chatInput.value = button.textContent;
     sendGoal();
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderMotivationalQuote();
 });
