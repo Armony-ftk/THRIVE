@@ -5,6 +5,8 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const settingsRoutes = require("./routes/settingsRoutes");
 const configurePassport = require("./config/passportConfig");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
@@ -34,6 +36,7 @@ const app = express();
 configurePassport(passport);
 
 // Middleware setup
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
@@ -41,13 +44,16 @@ app.use(
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  }),
+  }
+  ),
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Mount route modules for auth-related endpoints.
 app.use("/", authRoutes);
+app.use("/", profileRoutes);
+app.use("/settings", settingsRoutes);
 
 // Global error handler keeps failures consistent.
 app.use(errorHandler);
