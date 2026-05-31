@@ -52,6 +52,34 @@ async function getGoalsForUser(userId) {
   return attachProgressToGoals(result.recordset || []);
 }
 
+async function deleteGoalForUser(userId, goalId) {
+  if (userId === undefined || userId === null) {
+    throw createApiError(401, "Authenticated user is required to delete goals.");
+  }
+
+  const parsedGoalId = Number(goalId);
+  if (!Number.isInteger(parsedGoalId) || parsedGoalId <= 0) {
+    throw createApiError(400, "A valid goal id is required to delete a goal.");
+  }
+
+  const pool = await poolPromise;
+  const result = await pool
+    .request()
+    .input("userId", sql.Int, Number(userId))
+    .input("goalId", sql.Int, parsedGoalId)
+    .query(`
+      DELETE FROM goals
+      WHERE id = @goalId AND user_id = @userId;
+    `);
+
+  if (!result.rowsAffected || result.rowsAffected[0] === 0) {
+    throw createApiError(404, "Goal not found or access denied.");
+  }
+
+  return true;
+}
+
 module.exports = {
   getGoalsForUser,
+  deleteGoalForUser,
 };

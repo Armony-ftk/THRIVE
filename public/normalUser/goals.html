@@ -69,8 +69,10 @@
           <h1 class="page-title">My Goals</h1>
           <p class="page-sub">Track and manage your long-term ambitions</p>
         </div>
-        <button class="btn-primary">+ New Goal</button>
+        <button class="btn-primary" id="new-goal-button">+ New Goal</button>
+        <button class="btn-primary" id="delete-goal-button">Remove Goal</button>
       </div>
+      <div id="goal-action-info" class="page-sub" style="display:none; margin-bottom: 16px;"></div>
       <div class="stats-grid fade-up">
         <div class="stat-card card s-violet"><div class="stat-top"><span class="stat-label">Total Goals</span></div><div id="goal-total-count" class="stat-value">0</div><p id="goal-total-categories" class="stat-sub">Across 0 categories</p></div>
         <div class="stat-card card s-teal"><div class="stat-top"><span class="stat-label">On Track</span></div><div id="goal-on-track-count" class="stat-value">0</div><p id="goal-on-track-sub" class="stat-sub">Ahead of schedule</p></div>
