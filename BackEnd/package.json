@@ -17,6 +17,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
+    "form-data": "^4.0.5",
     "mssql": "^12.5.0",
     "nodemailer": "^8.0.8",
     "passport": "^0.7.0",
