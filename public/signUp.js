@@ -27,15 +27,74 @@ const signUpForm = document.querySelector("form");
 if (signUpForm) {
   signUpForm.addEventListener("submit", (e) => {
     if (signupPassword.value !== confirmPassword.value) {
-      e.preventDefault(); // stop submission only if invalid
+      e.preventDefault(); 
       alert("Passwords do not match. Please try again.");
     }
   });
 }
 
+//password validation
+function validatePassword(signupPassword) {
+  if (signupPassword.length < 8) {
+    return "Password must be at least 8 characters long.";
+  }
+  if (!/[0-9]/.test(signupPassword)) {
+    return "Password must include at least one number.";
+  }
+  if (!/[^A-Za-z0-9]/.test(signupPassword)) {
+    return "Password must include at least one special character.";
+  }
+  return ""; 
+}
+
+signUpForm.addEventListener("submit", (e) => {
+  const errorMessage = validatePassword(pw.value);
+
+  if (signupPassword.value !== confirmPassword.value) {
+    e.preventDefault();
+    document.getElementById("password-error").textContent = "Passwords do not match.";
+    return;
+  }
+
+  if (errorMessage) {
+    e.preventDefault();
+    document.getElementById("password-error").textContent = errorMessage;
+    return;
+  }
+
+  document.getElementById("password-error").textContent = "";
+});
+
+//email validation
+function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regex.test(email)) {
+    return "Please enter a valid email address.";
+  }
+  return ""; 
+}
+
+signUpForm.addEventListener("submit", (e) => {
+  const emailInput = document.getElementById("email");
+  const emailError = document.getElementById("email-error");
+  const errorMessage = validateEmail(emailInput.value);
+
+  if (errorMessage) {
+    e.preventDefault();
+    emailError.textContent = errorMessage;
+    return;
+  }
+
+  emailError.textContent = "";
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const messageBox = document.getElementById("message-box");
+
+   if (params.has("pwerror")) {
+    document.getElementById("password-error").textContent = decodeURIComponent(params.get("pwerror"));
+  }
 
   if (params.has("error")) {
     messageBox.textContent = decodeURIComponent(params.get("error"));
@@ -50,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Clear query string so message disappears on refresh
-  if (params.has("error") || params.has("success")) {
+  if (params.has("error") || params.has("success") || params.has("pwerror")) {
     window.history.replaceState({}, document.title, window.location.pathname);
 
     // Auto-hide after 5 seconds

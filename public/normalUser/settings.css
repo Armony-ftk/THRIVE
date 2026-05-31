@@ -124,3 +124,22 @@ input:checked + .slider:before { transform: translateX(14px); }
   transform: translateY(-2px);
   filter: brightness(1.1);
 }
+
+.swal-input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.swal-input-group .swal2-input {
+  flex: 1;
+  padding-right: 40px; /* space for the eye icon */
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}

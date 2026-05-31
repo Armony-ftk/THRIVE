@@ -13,22 +13,19 @@
       <div class="form-box">
         <h1>Create Account</h1>
         <p>Already have an account? <a href="login.html" class="link">Login</a></p>
-        <form action="http://localhost:3000/signUp" method="post">
+        <form id="signUpForm"  action="http://localhost:3000/signUp" method="post">
           <input type="text" name="username" placeholder="Username" required>
           <input type="email" name="email" placeholder="Email" required>
+          <div id="email-error"></div>
           <div class="password-box">
             <input type="password" name="password" placeholder="Password" id="signup-password" required>
             <span id="toggle">👁</span>
           </div>
+          <div id="password-error" style="color:red; font-size:0.9em;"></div>
           <div class="password-box">
             <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirm-password" required>
             <span id="toggle-confirm">👁</span>
           </div>
-          <select name="role" required>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-            <option value="super_admin">Super Admin</option>
-          </select>
 
           <button type="submit">Sign Up</button>
         </form>
