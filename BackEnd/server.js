@@ -5,6 +5,12 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
+const aiRoutes = require("./routes/aiRoutes");
+const goalRoutes = require("./routes/goalRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+const progressRoutes = require("./routes/progressRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const settingsRoutes = require("./routes/settingsRoutes");
 const configurePassport = require("./config/passportConfig");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
@@ -18,6 +24,7 @@ const requiredEnv = [
   "DB_NAME",
   "GOOGLE_CLIENT_ID",
   "GOOGLE_CLIENT_SECRET",
+  "GOOGLE_API_KEY",
 ];
 
 const missingEnv = requiredEnv.filter(key => !process.env[key]);
@@ -34,20 +41,31 @@ const app = express();
 configurePassport(passport);
 
 // Middleware setup
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
   session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  }),
+  }
+  ),
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Mount route modules for auth-related endpoints.
 app.use("/", authRoutes);
+
+// Mount API route modules
+app.use("/api/goals", goalRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api", profileRoutes);
+app.use("/api/settings", settingsRoutes);
+app.use("/api/ai", aiRoutes);
 
 // Global error handler keeps failures consistent.
 app.use(errorHandler);

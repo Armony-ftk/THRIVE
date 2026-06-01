@@ -7,6 +7,7 @@ const router = express.Router();
 // Auth routes are intentionally kept thin. They delegate all business logic to controllers.
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
+router.get("/api/current-user", authController.currentUser);
 
 router.get(
   "/auth/google",

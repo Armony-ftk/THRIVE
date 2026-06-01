@@ -1,0 +1,139 @@
+@import "global.css";
+
+/* =========================
+   APP SHELL (shared layout)
+========================= */
+
+.shell {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* =========================
+   SIDEBAR (shared)
+========================= */
+
+.sidebar {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: calc(100vh - 40px);
+
+  width: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 0;
+
+  background: rgba(255,255,255,0.52);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: var(--r-xl);
+
+  box-shadow: 0 8px 40px rgba(100,80,200,0.12);
+}
+
+/* nav items */
+.sb-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  align-items: center;
+}
+
+.sb-item {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--r-md);
+  color: var(--text-3);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sb-item:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.sb-item.active {
+  background: var(--violet-light);
+  color: var(--violet);
+}
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* =========================
+   TOPBAR (shared)
+========================= */
+
+.topbar {
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px;
+  margin-bottom: 20px;
+
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(28px);
+
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: var(--r-xl);
+}
+
+/* =========================
+   CONTENT WRAPPER
+========================= */
+
+.content {
+  flex: 1;
+}
+
+/* =========================
+   CARDS (shared)
+========================= */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r-xl);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--card-shadow);
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeup 0.5s ease forwards;
+}
+
+@keyframes fadeup {
+  to { opacity: 1; transform: translateY(0); }
+}
