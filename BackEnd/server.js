@@ -59,6 +59,14 @@ app.use(passport.session());
 // Mount route modules for auth-related endpoints.
 app.use("/", authRoutes);
 
+// Mount API route modules
+app.use("/api/goals", goalRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api", profileRoutes);
+app.use("/api/settings", settingsRoutes);
+app.use("/api/ai", aiRoutes);
+
 // Global error handler keeps failures consistent.
 app.use(errorHandler);
 

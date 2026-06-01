@@ -6,10 +6,10 @@ async function sendWelcomeEmail(toEmail) {
   const msg = {
     to: toEmail,
     from: {
-      email: "thriveuser04@gmail.com", // must be the Gmail you verified in SendGrid
+      email: process.env.EMAIL_USER, // must be the Gmail you verified in SendGrid
       name: "Thrive"
     },
-    replyTo: "thriveuser04@gmail.com", // match from address to reduce spam flags
+    replyTo: process.env.EMAIL_USER, // match from address to reduce spam flags
     subject: "Welcome to Thrive – Your account is ready",
     text: `Hi there,
 
@@ -30,7 +30,7 @@ If you have any questions, just reply to this email.
           <p>If you have any questions, just reply to this email.</p>
           <hr>
           <p style="font-size: 12px; color: #777;">
-            Thrive Project • Contact: yourgmail@gmail.com
+            Thrive Project • Contact: thriveuser9@gmail.com
           </p>
         </body>
       </html>

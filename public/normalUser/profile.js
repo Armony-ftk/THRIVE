@@ -36,7 +36,7 @@ editProfileBtn.addEventListener("click", () => {
       if (result.isConfirmed) {
         const { name, email } = result.value;
 
-        const res = await fetch("/profile/update", {
+        const res = await fetch("/api/profile/update", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include", // ✅ ensure session cookie is sent

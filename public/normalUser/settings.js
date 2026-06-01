@@ -49,7 +49,7 @@ signOutBtn.addEventListener("click", async () => {
     cancelButtonText: "No, stay logged in"
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const res = await fetch("/settings/signout", { method: "POST" });
+      const res = await fetch("/api/settings/signout", { method: "POST" });
       const data = await res.json();
 
       if (data.success) {
@@ -114,10 +114,10 @@ changePasswordBtn.addEventListener("click", () => {
     if (result.isConfirmed) {
       const { currentPassword, newPassword } = result.value;
 
-      const res = await fetch("/settings/change-password", {
+      const res = await fetch("/api/settings/change-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ currentPassword, newPassword })
+        body: JSON.stringify({ currentPassword, newPassword }),
       });
 
       const data = await res.json();
@@ -148,7 +148,7 @@ document.querySelector(".form-change-password").addEventListener("submit", async
   const currentPassword = e.target.currentPassword.value;
   const newPassword = e.target.newPassword.value;
 
-  const res = await fetch("/settings/change-password", {
+  const res = await fetch("/api/settings/change-password", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ currentPassword, newPassword })
@@ -171,7 +171,7 @@ deleteAccountBtn.addEventListener("click", async () => {
     cancelButtonText: "No, keep my account"
   }).then(async (result) => {
     if (result.isConfirmed) {
-      const res = await fetch("/settings/delete-account", { method: "POST" });
+      const res = await fetch("/api/settings/delete-account", { method: "POST" });
       const data = await res.json();
 
       if (data.success) {
