@@ -1,13 +1,32 @@
+/**
+ * Generate a timestamp that is N hours/days ago from now
+ * @param {number} hours - Number of hours in the past
+ * @returns {Date} Date object
+ */
+function getTimeAgo(hours) {
+  const now = new Date();
+  return new Date(now.getTime() - (hours * 60 * 60 * 1000));
+}
+
+/**
+ * Format a date using formatTimeAgo utility
+ * @param {number} hours - Number of hours ago
+ * @returns {string} Formatted time string (e.g., "2h ago")
+ */
+function getFormattedTimeAgo(hours) {
+  return thriveUtils.formatTimeAgo(getTimeAgo(hours));
+}
+
 const FLAGS = [
-  { id:1, title:'Make quick cash online fast', user:'@unknown44', handle:'unkown_user44', time:'2h ago', type:'Spam / scam', severity:'urgent', quote:'Make quick cash online fast', reportCount:7 },
-  { id:2, title:'Lose 20kg in 2 weeks no food', user:'@health99', handle:'healthseeker99', time:'5h ago', type:'Harmful content', severity:'urgent', quote:'Lose 20kg in 2 weeks no food', reportCount:12 },
-  { id:3, title:'Get revenge on my ex by April', user:'@user_2891', handle:'user_2891', time:'9h ago', type:'Harmful content', severity:'urgent', quote:'Get revenge on my ex by April', reportCount:4 },
-  { id:4, title:'Buy followers to look popular', user:'@clickfarm_a', handle:'clickfarm_a', time:'11h ago', type:'Spam / scam', severity:'urgent', quote:'Buy followers to look popular', reportCount:3 },
-  { id:5, title:'Manifest wealth by doing nothing', user:'@manifester22', handle:'manifester22', time:'1d ago', type:'Misinformation', severity:'moderate', quote:'Manifest wealth by doing nothing', reportCount:2 },
-  { id:6, title:'Cure anxiety without any therapy or meds', user:'@selfhelp_bro', handle:'selfhelp_bro', time:'1d ago', type:'Misinformation', severity:'moderate', quote:'Cure anxiety without any therapy or meds', reportCount:5 },
-  { id:7, title:'Complete a 72-hour fast monthly', user:'@fasting_king', handle:'fasting_king', time:'2d ago', type:'Harmful content', severity:'moderate', quote:'Complete a 72-hour fast monthly', reportCount:8 },
-  { id:8, title:'Go off-grid and avoid all taxes', user:'@freemind99', handle:'freemind99', time:'2d ago', type:'Off-platform', severity:'moderate', quote:'Go off-grid and avoid all taxes', reportCount:1 },
-  { id:9, title:'Invest all savings in meme coins', user:'@cryptobro_x', handle:'cryptobro_x', time:'3d ago', type:'Misinformation', severity:'moderate', quote:'Invest all savings in meme coins', reportCount:6 },
+  { id:1, title:'Make quick cash online fast', user:'@unknown44', handle:'unkown_user44', time:getFormattedTimeAgo(2), type:'Spam / scam', severity:'urgent', quote:'Make quick cash online fast', reportCount:7 },
+  { id:2, title:'Lose 20kg in 2 weeks no food', user:'@health99', handle:'healthseeker99', time:getFormattedTimeAgo(5), type:'Harmful content', severity:'urgent', quote:'Lose 20kg in 2 weeks no food', reportCount:12 },
+  { id:3, title:'Get revenge on my ex by April', user:'@user_2891', handle:'user_2891', time:getFormattedTimeAgo(9), type:'Harmful content', severity:'urgent', quote:'Get revenge on my ex by April', reportCount:4 },
+  { id:4, title:'Buy followers to look popular', user:'@clickfarm_a', handle:'clickfarm_a', time:getFormattedTimeAgo(11), type:'Spam / scam', severity:'urgent', quote:'Buy followers to look popular', reportCount:3 },
+  { id:5, title:'Manifest wealth by doing nothing', user:'@manifester22', handle:'manifester22', time:getFormattedTimeAgo(24), type:'Misinformation', severity:'moderate', quote:'Manifest wealth by doing nothing', reportCount:2 },
+  { id:6, title:'Cure anxiety without any therapy or meds', user:'@selfhelp_bro', handle:'selfhelp_bro', time:getFormattedTimeAgo(24), type:'Misinformation', severity:'moderate', quote:'Cure anxiety without any therapy or meds', reportCount:5 },
+  { id:7, title:'Complete a 72-hour fast monthly', user:'@fasting_king', handle:'fasting_king', time:getFormattedTimeAgo(48), type:'Harmful content', severity:'moderate', quote:'Complete a 72-hour fast monthly', reportCount:8 },
+  { id:8, title:'Go off-grid and avoid all taxes', user:'@freemind99', handle:'freemind99', time:getFormattedTimeAgo(48), type:'Off-platform', severity:'moderate', quote:'Go off-grid and avoid all taxes', reportCount:1 },
+  { id:9, title:'Invest all savings in meme coins', user:'@cryptobro_x', handle:'cryptobro_x', time:getFormattedTimeAgo(72), type:'Misinformation', severity:'moderate', quote:'Invest all savings in meme coins', reportCount:6 },
 ];
 
 let currentFFilter = 'all';

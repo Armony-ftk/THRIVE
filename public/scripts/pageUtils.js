@@ -173,6 +173,108 @@
     return categoryMap[normalized]?.badge || "badge-violet";
   }
 
+  /**
+   * Format date as "Wednesday, 22 Apr 2026"
+   * @param {Date|null} date - Optional date object. If null, uses current date.
+   * @returns {string} Formatted date string
+   */
+  function formatDateChip(date = null) {
+    const d = date || new Date();
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+      return "Invalid date";
+    }
+    
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(d);
+  }
+
+  /**
+   * Format date as "Apr 20, 2026"
+   * @param {Date|null} date - Optional date object. If null, uses current date.
+   * @returns {string} Formatted date string
+   */
+  function formatDateShort(date = null) {
+    const d = date || new Date();
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+      return "Invalid date";
+    }
+    
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(d);
+  }
+
+  /**
+   * Format date as "Monday, 20 April 2026"
+   * @param {Date|null} date - Optional date object. If null, uses current date.
+   * @returns {string} Formatted date string
+   */
+  function formatDateLong(date = null) {
+    const d = date || new Date();
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+      return "Invalid date";
+    }
+    
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(d);
+  }
+
+  /**
+   * Format date/time as relative time (e.g., "2h ago", "1d ago")
+   * @param {Date|string|number} date - Date to format
+   * @returns {string} Relative time string
+   */
+  function formatTimeAgo(date) {
+    let d;
+    if (typeof date === "string") {
+      d = new Date(date);
+    } else if (typeof date === "number") {
+      d = new Date(date);
+    } else {
+      d = date;
+    }
+
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+      return "Invalid date";
+    }
+
+    const now = new Date();
+    const diffMs = now.getTime() - d.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) {
+      return "just now";
+    } else if (diffMins < 60) {
+      return `${diffMins}m ago`;
+    } else if (diffHours < 24) {
+      return `${diffHours}h ago`;
+    } else if (diffDays < 7) {
+      return `${diffDays}d ago`;
+    } else {
+      return formatDateShort(d);
+    }
+  }
+
+  /**
+   * Get current date formatted as "Wednesday, 22 Apr 2026"
+   * @returns {string} Formatted current date
+   */
+  function getCurrentDateChip() {
+    return formatDateChip();
+  }
+
   window.thriveUtils = {
     fetchJson,
     formatDate,
@@ -182,5 +284,10 @@
     getTaskBadgeClass,
     getCategoryEmoji,
     getCategoryBadgeClass,
+    formatDateChip,
+    formatDateShort,
+    formatDateLong,
+    formatTimeAgo,
+    getCurrentDateChip,
   };
 })(window);

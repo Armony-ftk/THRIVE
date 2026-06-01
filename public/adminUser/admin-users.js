@@ -1,19 +1,30 @@
 const COLORS = ['av-blue','av-teal','av-amber','av-purple'];
 const AVBG = { 'av-blue':'linear-gradient(135deg,#3b82f6,#1d4ed8)', 'av-teal':'linear-gradient(135deg,#10b981,#059669)', 'av-amber':'linear-gradient(135deg,#f59e0b,#d97706)', 'av-purple':'linear-gradient(135deg,#8b5cf6,#6d28d9)' };
 
+/**
+ * Generate a date that is N days ago from today, formatted as "Mon DD, YYYY"
+ * @param {number} daysAgo - Number of days in the past
+ * @returns {string} Formatted date
+ */
+function getDateDaysAgo(daysAgo) {
+  const today = new Date();
+  const date = new Date(today.getTime() - (daysAgo * 24 * 60 * 60 * 1000));
+  return thriveUtils.formatDateShort(date);
+}
+
 const USERS = [
-  { id:1, name:'Jamie Kim',      handle:'@jamiekim',    email:'jamie@email.com',    joined:'Apr 20, 2026', goals:3, streak:7,  status:'active',    color:'av-blue' },
-  { id:2, name:'Sofia Lara',     handle:'@sofialara',   email:'sofia@email.com',    joined:'Apr 19, 2026', goals:5, streak:14, status:'active',    color:'av-teal' },
-  { id:3, name:'Marcus Reed',    handle:'@marcusreed',  email:'marcus@email.com',   joined:'Apr 18, 2026', goals:2, streak:0,  status:'suspended', color:'av-amber' },
-  { id:4, name:'Priya Nair',     handle:'@priyanair',   email:'priya@email.com',    joined:'Apr 17, 2026', goals:4, streak:21, status:'active',    color:'av-purple' },
-  { id:5, name:'Lucas Ferreira', handle:'@lucasf',      email:'lucas@email.com',    joined:'Apr 16, 2026', goals:6, streak:3,  status:'new',       color:'av-blue' },
-  { id:6, name:'Aisha Okafor',   handle:'@aishao',      email:'aisha@email.com',    joined:'Apr 15, 2026', goals:2, streak:9,  status:'active',    color:'av-teal' },
-  { id:7, name:'Tom Higgins',    handle:'@tomh',        email:'tom@email.com',      joined:'Apr 14, 2026', goals:1, streak:0,  status:'suspended', color:'av-amber' },
-  { id:8, name:'Mei Lin',        handle:'@meilin',      email:'mei@email.com',      joined:'Apr 13, 2026', goals:7, streak:30, status:'active',    color:'av-purple' },
-  { id:9, name:'Ethan Brooks',   handle:'@ethanb',      email:'ethan@email.com',    joined:'Apr 12, 2026', goals:3, streak:5,  status:'new',       color:'av-blue' },
-  { id:10,name:'Clara Voss',     handle:'@clarav',      email:'clara@email.com',    joined:'Apr 11, 2026', goals:4, streak:18, status:'active',    color:'av-teal' },
-  { id:11,name:'Ravi Sharma',    handle:'@ravis',       email:'ravi@email.com',     joined:'Apr 10, 2026', goals:2, streak:0,  status:'suspended', color:'av-amber' },
-  { id:12,name:'Zoe Marchetti',  handle:'@zoemar',      email:'zoe@email.com',      joined:'Apr 9, 2026',  goals:5, streak:12, status:'active',    color:'av-purple' },
+  { id:1, name:'Jamie Kim',      handle:'@jamiekim',    email:'jamie@email.com',    joined:getDateDaysAgo(11), goals:3, streak:7,  status:'active',    color:'av-blue' },
+  { id:2, name:'Sofia Lara',     handle:'@sofialara',   email:'sofia@email.com',    joined:getDateDaysAgo(12), goals:5, streak:14, status:'active',    color:'av-teal' },
+  { id:3, name:'Marcus Reed',    handle:'@marcusreed',  email:'marcus@email.com',   joined:getDateDaysAgo(13), goals:2, streak:0,  status:'suspended', color:'av-amber' },
+  { id:4, name:'Priya Nair',     handle:'@priyanair',   email:'priya@email.com',    joined:getDateDaysAgo(14), goals:4, streak:21, status:'active',    color:'av-purple' },
+  { id:5, name:'Lucas Ferreira', handle:'@lucasf',      email:'lucas@email.com',    joined:getDateDaysAgo(15), goals:6, streak:3,  status:'new',       color:'av-blue' },
+  { id:6, name:'Aisha Okafor',   handle:'@aishao',      email:'aisha@email.com',    joined:getDateDaysAgo(16), goals:2, streak:9,  status:'active',    color:'av-teal' },
+  { id:7, name:'Tom Higgins',    handle:'@tomh',        email:'tom@email.com',      joined:getDateDaysAgo(17), goals:1, streak:0,  status:'suspended', color:'av-amber' },
+  { id:8, name:'Mei Lin',        handle:'@meilin',      email:'mei@email.com',      joined:getDateDaysAgo(18), goals:7, streak:30, status:'active',    color:'av-purple' },
+  { id:9, name:'Ethan Brooks',   handle:'@ethanb',      email:'ethan@email.com',    joined:getDateDaysAgo(19), goals:3, streak:5,  status:'new',       color:'av-blue' },
+  { id:10,name:'Clara Voss',     handle:'@clarav',      email:'clara@email.com',    joined:getDateDaysAgo(20), goals:4, streak:18, status:'active',    color:'av-teal' },
+  { id:11,name:'Ravi Sharma',    handle:'@ravis',       email:'ravi@email.com',     joined:getDateDaysAgo(21), goals:2, streak:0,  status:'suspended', color:'av-amber' },
+  { id:12,name:'Zoe Marchetti',  handle:'@zoemar',      email:'zoe@email.com',      joined:getDateDaysAgo(22), goals:5, streak:12, status:'active',    color:'av-purple' },
 ];
 
 let currentFilter = 'all';

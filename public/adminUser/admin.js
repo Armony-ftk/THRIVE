@@ -1,17 +1,10 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const dateElement = document.getElementById("date-text");
-
-  const today = new Date();
-
-  const options = { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  };
-
-  dateElement.textContent = today.toLocaleDateString('en-ZA', options);
+  
+  if (dateElement && typeof thriveUtils !== 'undefined') {
+    dateElement.textContent = thriveUtils.getCurrentDateChip();
+  }
 });
 
 
