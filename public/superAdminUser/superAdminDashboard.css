@@ -786,7 +786,43 @@ button {
 .content-grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
+  /* KEY FIX: make the two .col children stretch to equal height,
+     then the activity card (3rd child, still inside the unclosed grid)
+     spans both columns and fills the remaining width */
+  grid-template-rows: auto;
+  align-items: stretch;
   gap: 18px;
+}
+
+/* The left and right .col fill their grid cell height */
+.content-grid > .col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Left col: make the last card (risk/alert) grow to fill remaining height */
+.content-grid > .col:first-child > .card:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-grid > .col:first-child > .card:last-child .risk-text {
+  flex: 1;
+}
+
+/* RIGHT COL: right col's last card (System Health) also stretches */
+.content-grid > .col:last-of-type > .card:last-child {
+  flex: 1;
+}
+
+/* ─── KEY FIX: Activity Feed card is the 3rd direct child of content-grid
+   (because closing tags are commented out). Span it across both columns. ─── */
+.content-grid > .card.fade-up {
+  grid-column: 1 / -1;
+  margin-top: 0 !important;
 }
 
 .col {
@@ -1181,6 +1217,7 @@ button {
   .sidebar      { display: none; }
   .content-grid { grid-template-columns: 1fr; }
   .stats-grid   { grid-template-columns: repeat(2,1fr); }
+  .content-grid > .card.fade-up { grid-column: 1; }
 }
 
 @media (max-width: 600px) {

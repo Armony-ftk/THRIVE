@@ -1,0 +1,157 @@
+/* ============================================
+   Thrive — Terms & Conditions
+   Single-viewport layout, no scroll
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-light:       #eef0f8;
+  --text-dark:      #1a1a2e;
+  --text-body:      #3a3a5c;
+  --accent-purple:  #6b5fcf;
+  --accent-teal:    #2a9d8f;
+  --accent-coral:   #c0392b;
+  --radius-card:    18px;
+  --blur:           18px;
+  --shadow-card:    0 8px 32px rgba(100, 90, 180, 0.10), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* no scroll */
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  color: var(--text-body);
+  background-color: var(--bg-light);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 15%,  rgba(180, 170, 235, 0.75) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 85% 20%,  rgba(140, 215, 200, 0.65) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 90%,  rgba(225, 190, 190, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 75%,  rgba(195, 215, 240, 0.45) 0%, transparent 50%);
+}
+
+/* ── Full-height container, 3 equal columns ── */
+.container {
+  height: 100vh;
+  padding: 28px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* ── Glass Cards — fill their column fully ── */
+.glass-box {
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(var(--blur)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  border-radius: var(--radius-card);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glass-box:hover {
+  box-shadow: 0 12px 40px rgba(100, 90, 180, 0.15), 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.glass-box:nth-child(1) {
+  background: linear-gradient(135deg, rgba(185, 178, 230, 0.50) 0%, rgba(255,255,255,0.45) 60%);
+  border-color: rgba(185, 178, 230, 0.55);
+}
+.glass-box:nth-child(2) {
+  background: linear-gradient(135deg, rgba(155, 220, 205, 0.48) 0%, rgba(255,255,255,0.44) 60%);
+  border-color: rgba(155, 220, 205, 0.55);
+}
+.glass-box:nth-child(3) {
+  background: linear-gradient(135deg, rgba(230, 195, 195, 0.46) 0%, rgba(255,255,255,0.44) 60%);
+  border-color: rgba(230, 195, 195, 0.55);
+}
+
+/* ── Headings ── */
+.glass-box h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(0.75rem, 1.1vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.60);
+  flex-shrink: 0;
+}
+
+.glass-box:nth-child(1) h2 { color: var(--accent-purple); }
+.glass-box:nth-child(2) h2 { color: var(--accent-teal);   }
+.glass-box:nth-child(3) h2 { color: var(--accent-coral);  }
+
+/* ── List — grows to fill remaining card height ── */
+ol {
+  list-style: none;
+  counter-reset: thrive-counter;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-evenly; /* distribute items evenly in available space */
+}
+
+ol li {
+  counter-increment: thrive-counter;
+  padding-left: 36px;
+  position: relative;
+  font-size: clamp(0.65rem, 0.85vw, 0.825rem);
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+ol li::before {
+  content: counter(thrive-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'DM Serif Display', serif;
+  font-size: 0.75rem;
+  line-height: 1.4rem;
+  width: 24px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 1px 3px;
+}
+
+.glass-box:nth-child(1) ol li::before {
+  color: var(--accent-purple);
+  background: rgba(107, 95, 207, 0.10);
+}
+.glass-box:nth-child(2) ol li::before {
+  color: var(--accent-teal);
+  background: rgba(42, 157, 143, 0.10);
+}
+.glass-box:nth-child(3) ol li::before {
+  color: var(--accent-coral);
+  background: rgba(192, 57, 43, 0.10);
+}
+
+/* ── Item titles ── */
+ol li strong {
+  display: block;
+  font-size: clamp(0.6rem, 0.75vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  color: var(--text-dark);
+}
