@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thrive - Sign Up</title>
+    <link rel="stylesheet" href="signUp.css" />
+  </head>
+  <body>
+    <div class="split-container">
+      <!-- ── LEFT PANEL ── -->
+      <div class="left-panel">
+        <div class="form-box">
+          <div class="brand">
+            <div class="brand-icon"></div>
+            <span class="brand-name">Thrive</span>
+          </div>
+
+          <h1>Create your account</h1>
+          <p class="subtitle">Start your journey to success today.</p>
+
+          <!-- Google -->
+          <button class="google-btn" type="button">
+            <img src="google-icon.png" class="icon" alt="Google" />
+            Continue with Google
+          </button>
+
+          <div class="divider"><span>or</span></div>
+
+          <!-- Form -->
+          <form
+            id="signUpForm"
+            action="http://localhost:3000/signUp"
+            method="post"
+          >
+            <div class="row-two">
+              <div class="field-group">
+                <label>FIRST NAME</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Alex"
+                  required
+                />
+              </div>
+              <div class="field-group">
+                <label>LAST NAME</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Morgan"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>EMAIL</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="alex@example.com"
+                required
+              />
+              <div class="field-error" id="email-error"></div>
+            </div>
+
+            <div class="field-group">
+              <label>PASSWORD</label>
+              <div class="password-box">
+                <input
+                  type="password"
+                  name="password"
+                  id="signup-password"
+                  placeholder="Min. 8 characters"
+                  required
+                />
+              </div>
+              <div class="field-error" id="password-error"></div>
+            </div>
+
+            <div class="field-group">
+              <label>CONFIRM PASSWORD</label>
+              <div class="password-box">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirm-password"
+                  placeholder="Re-enter password"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create account</button>
+          </form>
+
+          <p class="signin-link">
+            Already have an account? <a href="login.html">Sign in</a>
+          </p>
+          <p class="terms">
+            By signing up, you agree to our
+            <a href="terms.html" target="_blank">Terms of Service</a> and
+            <a href="terms.html" target="_blank">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── RIGHT PANEL ── -->
+      <div class="right-panel">
+        <div class="welcome">
+          <span class="daily-badge">Daily motivation</span>
+
+          <h2>Welcome to Thrive!</h2>
+          <p>Create your account and start your journey to success.</p>
+
+          <div class="quote-card">
+            <p class="quote-text">
+              "The secret of getting ahead is getting started."
+            </p>
+            <p class="quote-author">— Mark Twain</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">&#128100;</div>
+              <div class="stat-number">40k+</div>
+              <div class="stat-label">Members worldwide</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">&#128200;</div>
+              <div class="stat-number">92%</div>
+              <div class="stat-label">Report real progress</div>
+            </div>
+          </div>
+
+          <div class="members-row">
+            <div class="avatar-stack">
+              <span class="av" style="background: #e05c8a">EM</span>
+              <span class="av" style="background: #4a90d9">JK</span>
+              <span class="av" style="background: #e07c3a">AL</span>
+              <span class="av" style="background: #5cb85c">+</span>
+            </div>
+            <div class="members-text">
+              <strong>Join 40,000+ members</strong>
+              <span>Building habits that stick</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="message-box"></div>
+    <script src="signUp.js"></script>
+  </body>
+</html>

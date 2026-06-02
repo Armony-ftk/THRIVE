@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thrive - Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="split-container">
+
+    <!-- ── LEFT PANEL ── -->
+    <div class="left-panel">
+      <div class="form-box">
+
+        <div class="brand">
+          <div class="brand-icon"></div>
+          <span class="brand-name">Thrive</span>
+        </div>
+
+        <h1>Welcome back</h1>
+        <p class="subtitle">Sign in to continue your journey.</p>
+
+        <!-- Google -->
+        <button class="google-btn" type="button">
+          <img src="google-icon.png" class="icon" alt="Google">
+          Continue with Google
+        </button>
+
+        <div class="divider"><span>or</span></div>
+
+        <!-- Form -->
+        <form id="loginForm" action="http://localhost:3000/login" method="post">
+
+          <div class="field-group">
+            <label>USERNAME</label>
+            <input type="text" name="username" placeholder="Your username" required>
+          </div>
+
+          <div class="field-group">
+            <label>PASSWORD</label>
+            <div class="password-box">
+              <input type="password" name="password" id="password" placeholder="Your password" required>
+            </div>
+            <div class="field-error" id="login-error"></div>
+          </div>
+
+          <a href="passwordReset.html" class="forgot-link">Forgot password?</a>
+
+          <button type="submit" class="submit-btn">Sign in</button>
+        </form>
+
+        <p class="signin-link">Don't have an account? <a href="signUp.html">Sign up</a></p>
+        <p class="terms">By continuing, you agree to our <a href="terms.html" target="_blank">Terms of Service</a> and <a href="terms.html" target="_blank">Privacy Policy</a>.</p>
+
+      </div>
+    </div>
+
+    <!-- ── RIGHT PANEL ── -->
+    <div class="right-panel">
+      <div class="welcome">
+
+        <span class="daily-badge">Daily motivation</span>
+
+        <h2>Welcome to Thrive!</h2>
+        <p>Sign in and continue your journey to success.</p>
+
+        <div class="quote-card">
+          <p class="quote-text">"The secret of getting ahead is getting started."</p>
+          <p class="quote-author">— Mark Twain</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">&#128100;</div>
+            <div class="stat-number">40k+</div>
+            <div class="stat-label">Members worldwide</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">&#128200;</div>
+            <div class="stat-number">92%</div>
+            <div class="stat-label">Report real progress</div>
+          </div>
+        </div>
+
+        <div class="members-row">
+          <div class="avatar-stack">
+            <span class="av" style="background:#e05c8a">EM</span>
+            <span class="av" style="background:#4a90d9">JK</span>
+            <span class="av" style="background:#e07c3a">AL</span>
+            <span class="av" style="background:#5cb85c">+</span>
+          </div>
+          <div class="members-text">
+            <strong>Join 40,000+ members</strong>
+            <span>Building habits that stick</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
