@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thrive — Thrive AI</title>
   <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="thriveAI.css"/>
 </head>
 <body>
 <canvas id="aurora"></canvas>
@@ -71,36 +72,52 @@
         </div>
         <span class="badge badge-teal" style="padding:6px 14px;font-size:11px">● AI Online</span>
       </div>
-      <div class="content-grid fade-up">
-        <div class="col">
-          <div class="card card-pad ai-chat">
-            <div class="card-header"><span class="card-title">What Is Your Goal?</span></div>
-            <div class="chat-window"></div>
-            <div class="chat-input-row">
-              <input class="chat-input" type="text" placeholder="I want to…"/>
-              <button class="chat-send"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card card-pad coming-soon">
-            <div class="card-header"><span class="card-title">AI Insights</span><span class="badge badge-violet">Coming Soon</span></div>
-            <div class="insight-row"><span class="insight-icon">📈</span><div><p class="insight-title">Your best day is Wednesday</p><p class="insight-sub">You complete 94% of tasks on Wednesdays — try scheduling harder tasks then.</p></div></div>
-            <div class="insight-row"><span class="insight-icon">⚠️</span><div><p class="insight-title">Portfolio deadline risk</p><p class="insight-sub">At current pace you'll miss the Apr 24 milestone by ~2 days.</p></div></div>
-            <div class="insight-row"><span class="insight-icon">🏆</span><div><p class="insight-title">Spanish is going great</p><p class="insight-sub">72% complete with 4 months left — you're ahead of schedule!</p></div></div>
-          </div>
-          <div class="card card-pad">
-            <div class="card-header"><span class="card-title">Quick prompts</span></div>
-            <div class="quick-prompts">
-              <button class="quick-btn">I want to learn Spanish in 6 months</button>
-              <button class="quick-btn">I want to build a portfolio website</button>
-              <button class="quick-btn">I want to run my first 10K race</button>
-              <button class="quick-btn">I want to improve my daily productivity</button>
-            </div>
-          </div>
-          <div class="card card-pad motive"><p class="motive-label">AI pick of the day</p><p class="motive-quote">Loading inspirational quote…</p><span class="motive-author"></span></div>
+
+      <!-- Centered hero: heading + search bar -->
+      <div class="ai-chat fade-up">
+        <div class="chat-window"></div>
+        <h2 class="ai-hero-heading">Hi there, what do you want to <em>achieve today?</em></h2>
+        <div class="chat-input-row">
+          <input class="chat-input" type="text" placeholder="I want to…"/>
+          <button class="chat-send"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
+
+      <div class="content-grid fade-up">
+        <div class="col">
+          <div class="card card-pad">
+            <div class="card-header"><span class="card-title">Suggested prompts</span></div>
+            <p class="card-sub">Pick a goal to get started with your AI plan</p>
+            <div class="quick-prompts">
+              <button class="quick-btn">I want to learn Spanish in 6 months</button>
+              <button class="quick-btn">I want to build a portfolio website in a week</button>
+              <button class="quick-btn">I want to learn javascript in 5 months</button>
+              <button class="quick-btn">I want to read 12 books this year</button>
+              <button class="quick-btn">I want to build a functioning e-commerce site in 3 months</button>
+              <button class="quick-btn">I want to start a blog in 1 month</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card card-pad motive">
+            <p class="motive-label">AI pick of the day</p>
+            <p class="motive-quote">Loading inspirational quote…</p>
+            <span class="motive-author"></span>
+          </div>
+          <div class="card card-pad coming-soon">
+            <div class="premium-row">
+              <span class="premium-icon">👑</span>
+              <div class="premium-info">
+                <span class="card-title">Go Premium</span>
+                <span class="badge badge-violet">+ PREMIUM</span>
+              </div>
+              <button class="btn-upgrade">Upgrade →</button>
+            </div>
+            <p class="premium-sub">Unlock AI insights, goal predictions & more.</p>
+          </div>
+        </div>
+      </div>
+
       <footer class="page-footer fade-up">
         <p class="footer-copy">© 2026 Thrive. All rights reserved.</p>
         <nav class="footer-links"><a href="dashboard.html">Dashboard</a><a href="goals.html">Goals</a><a href="tasks.html">Daily tasks</a><a href="progress.html">Progress</a></nav>
