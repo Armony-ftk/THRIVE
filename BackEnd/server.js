@@ -30,7 +30,7 @@ const requiredEnv = [
 const missingEnv = requiredEnv.filter(key => !process.env[key]);
 if (missingEnv.length > 0) {
   console.error("Missing required environment variables:", missingEnv.join(", "));
-  process.exit(1);
+  if (require.main === module) process.exit(1);
 }
 
 const PORT = process.env.PORT;
