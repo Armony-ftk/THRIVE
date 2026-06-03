@@ -7,10 +7,14 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="orb orb-4"></div>
   <div class="split-container">
     <div class="left-panel">
       <div class="form-box">
-        <h1>Thrive</h1>
+        <h1>Log In</h1>
         <p>Don't have an account? <a href="signUp.html" class="link">Sign Up</a></p>
         <form action="http://localhost:3000/login" method="post">
           <input type="text" name="username" placeholder="username" required>
@@ -37,11 +41,39 @@
     </div>
     <div class="right-panel">
       <div class="welcome">
-        <h2>Welcome Back!</h2>
-        <p>Manage your goals, track progress, and thrive with ease.</p>
-      </div>  
+        <h2>Achieve More,<br>Every Day.</h2>
+        <p>Manage your goals, track your progress, and grow every day with Thrive.</p>
+      </div>
+      <div class="feature-pills">
+        <div class="pill pill-1"><span class="pill-icon"></span>Smart Goal Tracking</div>
+        <div class="pill pill-2"><span class="pill-icon"></span>Progress Insights</div>
+        <div class="pill pill-3"><span class="pill-icon"></span>AI-Powered Planner</div>
+      </div>
+      <div class="brand-stats">
+        <div class="stat-item">
+          <span class="stat-num">10K+</span>
+          <span class="stat-label">Active Users</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">Goal Success</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">4.9&#9733;</span>
+          <span class="stat-label">User Rating</span>
+        </div>
+      </div>
     </div>
   </div>
+  <footer class="auth-footer">
+    <nav class="auth-footer-links">
+      <a href="terms.html">Terms</a>
+      <a href="#">Plans</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </footer>
   <script src="login.js"></script>
 </body>
 </html>
