@@ -11,6 +11,7 @@ const taskRoutes = require("./routes/taskRoutes");
 const progressRoutes = require("./routes/progressRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const configurePassport = require("./config/passportConfig");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
@@ -66,6 +67,7 @@ app.use("/api/progress", progressRoutes);
 app.use("/api", profileRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Global error handler keeps failures consistent.
 app.use(errorHandler);

@@ -72,6 +72,9 @@ async function login(req, res, next) {
       if (result.reason === "google_login_required") {
         return res.redirect("/login.html?error=Use+Google+Login");
       }
+      if (result.reason === "account_suspended") {
+        return res.redirect("/login.html?error=Your+account+has+been+suspended");
+      }
       return res.redirect("/login.html?error=Invalid+password");
     }
 
@@ -116,6 +119,10 @@ async function googleCallback(req, res, next) {
 
     if (result.created) {
       await sendWelcomeEmail(result.user.email);
+    }
+
+    if (result.user.account_status === "suspended") {
+      return res.redirect("/login.html?error=Your+account+has+been+suspended");
     }
 
     // ✅ Save user into session

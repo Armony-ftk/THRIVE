@@ -1,109 +1,193 @@
-const COLORS = ['av-blue','av-teal','av-amber','av-purple'];
-const AVBG = { 'av-blue':'linear-gradient(135deg,#3b82f6,#1d4ed8)', 'av-teal':'linear-gradient(135deg,#10b981,#059669)', 'av-amber':'linear-gradient(135deg,#f59e0b,#d97706)', 'av-purple':'linear-gradient(135deg,#8b5cf6,#6d28d9)' };
+/* ═══════════════════════════════════════════════════════════════
+   admin-users.js  –  dynamic, API-driven user management table
+   ═══════════════════════════════════════════════════════════════ */
 
-/**
- * Generate a date that is N days ago from today, formatted as "Mon DD, YYYY"
- * @param {number} daysAgo - Number of days in the past
- * @returns {string} Formatted date
- */
-function getDateDaysAgo(daysAgo) {
-  const today = new Date();
-  const date = new Date(today.getTime() - (daysAgo * 24 * 60 * 60 * 1000));
-  return thriveUtils.formatDateShort(date);
+const COLORS = ['av-blue', 'av-teal', 'av-amber', 'av-purple'];
+const AVBG = {
+  'av-blue':   'linear-gradient(135deg,#3b82f6,#1d4ed8)',
+  'av-teal':   'linear-gradient(135deg,#10b981,#059669)',
+  'av-amber':  'linear-gradient(135deg,#f59e0b,#d97706)',
+  'av-purple': 'linear-gradient(135deg,#8b5cf6,#6d28d9)',
+};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let currentFilter = 'all';
+let searchTerm    = '';
+let currentPage   = 1;
+const PAGE_SIZE   = 12;
+let totalUsers    = 0;
+const selectedIds = new Set();
+let searchDebounce = null;
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-const USERS = [
-  { id:1, name:'Jamie Kim',      handle:'@jamiekim',    email:'jamie@email.com',    joined:getDateDaysAgo(11), goals:3, streak:7,  status:'active',    color:'av-blue' },
-  { id:2, name:'Sofia Lara',     handle:'@sofialara',   email:'sofia@email.com',    joined:getDateDaysAgo(12), goals:5, streak:14, status:'active',    color:'av-teal' },
-  { id:3, name:'Marcus Reed',    handle:'@marcusreed',  email:'marcus@email.com',   joined:getDateDaysAgo(13), goals:2, streak:0,  status:'suspended', color:'av-amber' },
-  { id:4, name:'Priya Nair',     handle:'@priyanair',   email:'priya@email.com',    joined:getDateDaysAgo(14), goals:4, streak:21, status:'active',    color:'av-purple' },
-  { id:5, name:'Lucas Ferreira', handle:'@lucasf',      email:'lucas@email.com',    joined:getDateDaysAgo(15), goals:6, streak:3,  status:'new',       color:'av-blue' },
-  { id:6, name:'Aisha Okafor',   handle:'@aishao',      email:'aisha@email.com',    joined:getDateDaysAgo(16), goals:2, streak:9,  status:'active',    color:'av-teal' },
-  { id:7, name:'Tom Higgins',    handle:'@tomh',        email:'tom@email.com',      joined:getDateDaysAgo(17), goals:1, streak:0,  status:'suspended', color:'av-amber' },
-  { id:8, name:'Mei Lin',        handle:'@meilin',      email:'mei@email.com',      joined:getDateDaysAgo(18), goals:7, streak:30, status:'active',    color:'av-purple' },
-  { id:9, name:'Ethan Brooks',   handle:'@ethanb',      email:'ethan@email.com',    joined:getDateDaysAgo(19), goals:3, streak:5,  status:'new',       color:'av-blue' },
-  { id:10,name:'Clara Voss',     handle:'@clarav',      email:'clara@email.com',    joined:getDateDaysAgo(20), goals:4, streak:18, status:'active',    color:'av-teal' },
-  { id:11,name:'Ravi Sharma',    handle:'@ravis',       email:'ravi@email.com',     joined:getDateDaysAgo(21), goals:2, streak:0,  status:'suspended', color:'av-amber' },
-  { id:12,name:'Zoe Marchetti',  handle:'@zoemar',      email:'zoe@email.com',      joined:getDateDaysAgo(22), goals:5, streak:12, status:'active',    color:'av-purple' },
-];
-
-let currentFilter = 'all';
-let searchTerm = '';
-const selectedIds = new Set();
+/** Derive display status from DB fields */
+function displayStatus(user) {
+  if (user.account_status === 'suspended') return 'suspended';
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  if (new Date(user.created_at).getTime() >= sevenDaysAgo) return 'new';
+  return 'active';
+}
 
 function statusBadge(status) {
-  const map = { active:'s-active', suspended:'s-suspended', new:'s-new' };
-  return `<span class="status-badge ${map[status]||'s-active'}">${status}</span>`;
+  const map = { active: 's-active', suspended: 's-suspended', new: 's-new' };
+  return `<span class="status-badge ${map[status] || 's-active'}">${status}</span>`;
 }
 
-function actionBtns(user) {
-  const view = `<button class="act-btn view" data-id="${user.id}" data-action="view" title="View profile"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg></button>`;
-  const del  = `<button class="act-btn delete" data-id="${user.id}" data-action="delete" title="Delete user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 5h10M6 5V3h4v2M7 8v4M9 8v4M4 5l1 9h6l1-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
-  if (user.status === 'suspended') {
-    const reinstate = `<button class="act-btn reinstate" data-id="${user.id}" data-action="reinstate" title="Reinstate user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8a5 5 0 1 0 2-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M3 4v4h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
-    return `<div class="action-group">${view}${reinstate}${del}</div>`;
+function actionBtns(user, status) {
+  const viewBtn = `<button class="act-btn view" data-id="${user.id}" data-action="view" title="View profile"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg></button>`;
+  const delBtn  = `<button class="act-btn delete" data-id="${user.id}" data-action="delete" title="Delete user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 5h10M6 5V3h4v2M7 8v4M9 8v4M4 5l1 9h6l1-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+
+  if (status === 'suspended') {
+    const reinstateBtn = `<button class="act-btn reinstate" data-id="${user.id}" data-action="reinstate" title="Reinstate user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8a5 5 0 1 0 2-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M3 4v4h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+    return `<div class="action-group">${viewBtn}${reinstateBtn}${delBtn}</div>`;
   }
-  const suspend = `<button class="act-btn suspend" data-id="${user.id}" data-action="suspend" title="Suspend user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><rect x="6" y="5" width="1.3" height="6" rx=".65" fill="currentColor"/><rect x="8.7" y="5" width="1.3" height="6" rx=".65" fill="currentColor"/></svg></button>`;
-  return `<div class="action-group">${view}${suspend}${del}</div>`;
+  const suspendBtn = `<button class="act-btn suspend" data-id="${user.id}" data-action="suspend" title="Suspend user"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><rect x="6" y="5" width="1.3" height="6" rx=".65" fill="currentColor"/><rect x="8.7" y="5" width="1.3" height="6" rx=".65" fill="currentColor"/></svg></button>`;
+  return `<div class="action-group">${viewBtn}${suspendBtn}${delBtn}</div>`;
 }
 
-function getFiltered() {
-  return USERS.filter(u => {
-    const matchFilter = currentFilter === 'all' || u.status === currentFilter;
-    const q = searchTerm.toLowerCase();
-    const matchSearch = !q || u.name.toLowerCase().includes(q) || u.handle.includes(q) || u.email.includes(q);
-    return matchFilter && matchSearch;
+// ── API helpers ───────────────────────────────────────────────────────────────
+async function callApi(url, method = 'GET', body = null) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body) opts.body = JSON.stringify(body);
+  const res  = await fetch(url, opts);
+  const data = await res.json();
+  if (!data.success) throw new Error(data.error || 'Request failed');
+  return data;
+}
+
+async function fetchUsers() {
+  const params = new URLSearchParams({
+    page:     currentPage,
+    pageSize: PAGE_SIZE,
+    filter:   currentFilter,
+    search:   searchTerm,
   });
+  return callApi(`/api/admin/users?${params}`);
 }
 
-function render() {
-  const list = getFiltered();
+// ── Render ────────────────────────────────────────────────────────────────────
+async function render() {
   const tbody = document.getElementById('user-tbody');
-  if (!list.length) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text-3);font-size:13px">No users match your search</td></tr>`;
-    document.getElementById('table-count').textContent = 'No results';
-    return;
+  tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text-3)">Loading…</td></tr>`;
+
+  try {
+    const { users, total } = await fetchUsers();
+    totalUsers = total;
+
+    if (!users.length) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text-3);font-size:13px">No users match your search</td></tr>`;
+      document.getElementById('table-count').textContent = 'No results';
+      updatePagination();
+      return;
+    }
+
+    tbody.innerHTML = users.map(u => {
+      const status   = displayStatus(u);
+      const color    = COLORS[u.id % COLORS.length];
+      const initials = u.name.split(' ').map(n => (n[0] || '')).join('').toUpperCase().slice(0, 2);
+      const joined   = typeof thriveUtils !== 'undefined'
+        ? thriveUtils.formatDateShort(new Date(u.created_at))
+        : new Date(u.created_at).toLocaleDateString();
+
+      return `
+        <tr data-id="${u.id}">
+          <td><input type="checkbox" class="row-check user-check" data-id="${u.id}" ${selectedIds.has(u.id) ? 'checked' : ''}></td>
+          <td>
+            <div class="u-cell">
+              <div class="u-av" style="background:${AVBG[color]}">${escapeHtml(initials)}</div>
+              <div>
+                <div class="u-name">${escapeHtml(u.name)}</div>
+                <div class="u-handle">${escapeHtml(u.email)}</div>
+              </div>
+            </div>
+          </td>
+          <td>${escapeHtml(u.email)}</td>
+          <td>${joined}</td>
+          <td style="font-weight:500;color:var(--text)">${u.goal_count}</td>
+          <td>${u.streak_days > 0 ? `<span style="color:var(--text-2)">${u.streak_days}d 🔥</span>` : '<span style="color:var(--text-3)">—</span>'}</td>
+          <td>${statusBadge(status)}</td>
+          <td>${actionBtns(u, status)}</td>
+        </tr>`;
+    }).join('');
+
+    const showing = users.length;
+    document.getElementById('table-count').textContent =
+      `Showing ${showing} of ${Number(total).toLocaleString()} users`;
+
+    updatePagination();
+    wireRowActions();
+    wireCheckboxes();
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--text-3)">Failed to load users. Please refresh.</td></tr>`;
+    console.error('Failed to load users:', err);
   }
-  tbody.innerHTML = list.map(u => `
-    <tr data-id="${u.id}" class="${u._removed ? 'fading' : ''}">
-      <td><input type="checkbox" class="row-check user-check" data-id="${u.id}" ${selectedIds.has(u.id)?'checked':''}></td>
-      <td><div class="u-cell"><div class="u-av" style="background:${AVBG[u.color]}">${u.name.split(' ').map(n=>n[0]).join('')}</div><div><div class="u-name">${u.name}</div><div class="u-handle">${u.handle}</div></div></div></td>
-      <td>${u.email}</td>
-      <td>${u.joined}</td>
-      <td style="font-weight:500;color:var(--text)">${u.goals}</td>
-      <td>${u.streak > 0 ? `<span style="color:var(--text-2)">${u.streak}d 🔥</span>` : '<span style="color:var(--text-3)">—</span>'}</td>
-      <td>${statusBadge(u.status)}</td>
-      <td>${actionBtns(u)}</td>
-    </tr>
-  `).join('');
-  document.getElementById('table-count').textContent = `Showing ${list.length} of 2,841 users`;
-  wireRowActions();
-  wireCheckboxes();
 }
 
+// ── Pagination ────────────────────────────────────────────────────────────────
+function updatePagination() {
+  const totalPages = Math.max(1, Math.ceil(totalUsers / PAGE_SIZE));
+  document.getElementById('pg-info').textContent = `Page ${currentPage} of ${totalPages}`;
+  document.getElementById('pg-prev').disabled = currentPage <= 1;
+  document.getElementById('pg-next').disabled = currentPage >= totalPages;
+}
+
+document.getElementById('pg-prev').addEventListener('click', () => {
+  if (currentPage > 1) { currentPage--; render(); }
+});
+document.getElementById('pg-next').addEventListener('click', () => {
+  const totalPages = Math.ceil(totalUsers / PAGE_SIZE);
+  if (currentPage < totalPages) { currentPage++; render(); }
+});
+
+// ── Row action wiring ─────────────────────────────────────────────────────────
 function wireRowActions() {
   document.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = +btn.dataset.id;
-      const user = USERS.find(u => u.id === id);
+      const id     = +btn.dataset.id;
       const action = btn.dataset.action;
+      const row    = btn.closest('tr');
+      const name   = row.querySelector('.u-name')?.textContent || 'this user';
+
+      if (action === 'view') {
+        // Navigate to admin profile view with userId query param
+        window.location.href = `/adminUser/admin-profile.html?userId=${id}`;
+        return;
+      }
       if (action === 'delete') {
-        showModal({ icon:'🗑️', title:'Delete account', body:`Permanently delete ${user.name}'s account? This cannot be undone.`, confirmLabel:'Delete account', confirmStyle:'', onConfirm:() => {
-          USERS.splice(USERS.indexOf(user), 1); render();
-        }});
+        showModal({
+          icon: '🗑️', title: 'Delete account',
+          body: `Permanently delete ${name}'s account? This cannot be undone.`,
+          confirmLabel: 'Delete account', confirmStyle: '',
+          onConfirm: async () => { await callApi(`/api/admin/users/${id}`, 'DELETE'); render(); }
+        });
       } else if (action === 'suspend') {
-        showModal({ icon:'⏸️', title:'Suspend user', body:`Suspend ${user.name}'s account? They will be locked out until reinstated.`, confirmLabel:'Suspend', confirmStyle:'confirm-amber', onConfirm:() => {
-          user.status = 'suspended'; user.streak = 0; render();
-        }});
+        showModal({
+          icon: '⏸️', title: 'Suspend user',
+          body: `Suspend ${name}'s account? They will be locked out until reinstated.`,
+          confirmLabel: 'Suspend', confirmStyle: 'confirm-amber',
+          onConfirm: async () => { await callApi(`/api/admin/users/${id}/suspend`, 'PATCH'); render(); }
+        });
       } else if (action === 'reinstate') {
-        showModal({ icon:'✅', title:'Reinstate user', body:`Reinstate ${user.name}'s account? They will regain full access.`, confirmLabel:'Reinstate', confirmStyle:'confirm-green', onConfirm:() => {
-          user.status = 'active'; render();
-        }});
+        showModal({
+          icon: '✅', title: 'Reinstate user',
+          body: `Reinstate ${name}'s account? They will regain full access.`,
+          confirmLabel: 'Reinstate', confirmStyle: 'confirm-green',
+          onConfirm: async () => { await callApi(`/api/admin/users/${id}/reinstate`, 'PATCH'); render(); }
+        });
       }
     });
   });
 }
 
+// ── Checkbox & bulk bar ───────────────────────────────────────────────────────
 function wireCheckboxes() {
   document.querySelectorAll('.user-check').forEach(cb => {
     cb.addEventListener('change', () => {
@@ -112,59 +196,80 @@ function wireCheckboxes() {
       updateBulkBar();
     });
   });
-  document.getElementById('select-all').addEventListener('change', function() {
-    getFiltered().forEach(u => this.checked ? selectedIds.add(u.id) : selectedIds.delete(u.id));
-    render();
+
+  const selectAll = document.getElementById('select-all');
+  // Replace listener cleanly by cloning
+  const fresh = selectAll.cloneNode(true);
+  selectAll.parentNode.replaceChild(fresh, selectAll);
+  fresh.addEventListener('change', function () {
+    document.querySelectorAll('.user-check').forEach(cb => {
+      const id = +cb.dataset.id;
+      this.checked ? selectedIds.add(id) : selectedIds.delete(id);
+      cb.checked = this.checked;
+    });
+    updateBulkBar();
   });
 }
 
 function updateBulkBar() {
   const bar = document.getElementById('bulk-bar');
-  const n = selectedIds.size;
-  document.getElementById('bulk-count').textContent = `${n} user${n!==1?'s':''} selected`;
+  const n   = selectedIds.size;
+  document.getElementById('bulk-count').textContent = `${n} user${n !== 1 ? 's' : ''} selected`;
   n > 0 ? bar.classList.add('visible') : bar.classList.remove('visible');
 }
 
-document.getElementById('bulk-clear').addEventListener('click', () => { selectedIds.clear(); render(); updateBulkBar(); });
-document.getElementById('bulk-suspend').addEventListener('click', () => {
-  showModal({ icon:'⏸️', title:`Suspend ${selectedIds.size} users`, body:'These users will be locked out until reinstated. Continue?', confirmLabel:'Suspend all', confirmStyle:'confirm-amber', onConfirm:() => {
-    selectedIds.forEach(id => { const u = USERS.find(u=>u.id===id); if(u) { u.status='suspended'; u.streak=0; } });
-    selectedIds.clear(); render(); updateBulkBar();
-  }});
-});
-document.getElementById('bulk-delete').addEventListener('click', () => {
-  showModal({ icon:'🗑️', title:`Delete ${selectedIds.size} accounts`, body:'This will permanently remove these accounts. This cannot be undone.', confirmLabel:'Delete all', confirmStyle:'', onConfirm:() => {
-    selectedIds.forEach(id => { const i = USERS.findIndex(u=>u.id===id); if(i>-1) USERS.splice(i,1); });
-    selectedIds.clear(); render(); updateBulkBar();
-  }});
+document.getElementById('bulk-clear').addEventListener('click', () => {
+  selectedIds.clear();
+  render();
+  updateBulkBar();
 });
 
-// filter buttons
+document.getElementById('bulk-suspend').addEventListener('click', () => {
+  showModal({
+    icon: '⏸️', title: `Suspend ${selectedIds.size} users`,
+    body: 'These users will be locked out until reinstated. Continue?',
+    confirmLabel: 'Suspend all', confirmStyle: 'confirm-amber',
+    onConfirm: async () => {
+      await callApi('/api/admin/users/bulk-suspend', 'POST', { userIds: [...selectedIds] });
+      selectedIds.clear();
+      render();
+      updateBulkBar();
+    }
+  });
+});
+
+document.getElementById('bulk-delete').addEventListener('click', () => {
+  showModal({
+    icon: '🗑️', title: `Delete ${selectedIds.size} accounts`,
+    body: 'This will permanently remove these accounts. This cannot be undone.',
+    confirmLabel: 'Delete all', confirmStyle: '',
+    onConfirm: async () => {
+      await callApi('/api/admin/users/bulk-delete', 'POST', { userIds: [...selectedIds] });
+      selectedIds.clear();
+      render();
+      updateBulkBar();
+    }
+  });
+});
+
+// ── Filter buttons ────────────────────────────────────────────────────────────
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentFilter = btn.dataset.filter;
+    currentPage   = 1;
     render();
   });
 });
 
-// search
-document.getElementById('user-search').addEventListener('input', function() {
+// ── Search (debounced) ────────────────────────────────────────────────────────
+document.getElementById('user-search').addEventListener('input', function () {
   searchTerm = this.value;
-  render();
+  currentPage = 1;
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(render, 300);
 });
 
-// pagination buttons (visual only — full implementation would paginate USERS array)
-document.getElementById('pg-next').addEventListener('click', function() {
-  document.getElementById('pg-prev').disabled = false;
-  document.getElementById('pg-info').textContent = 'Page 2 of 237';
-  this.disabled = false;
-});
-document.getElementById('pg-prev').addEventListener('click', function() {
-  document.getElementById('pg-info').textContent = 'Page 1 of 237';
-  this.disabled = true;
-});
-
-// init
+// ── Init ──────────────────────────────────────────────────────────────────────
 render();

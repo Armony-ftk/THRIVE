@@ -80,6 +80,10 @@ async function validateLocalLogin(username, password, role) {
     return { success: false, reason: "user_not_found_or_wrong_role" };
   }
 
+  if (user.account_status === "suspended") {
+    return { success: false, reason: "account_suspended" };
+  }
+
   if (user.password == null) {
     return { success: false, reason: "google_login_required" };
   }
