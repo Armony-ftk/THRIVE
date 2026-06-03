@@ -84,4 +84,11 @@ async function startServer() {
   }
 }
 
-startServer();
+if (require.main === module) {
+  // Local development: start the HTTP server directly.
+  startServer();
+} else {
+  // Serverless (Vercel): initialize DB pool and export the app.
+  poolPromise.catch(err => console.error("DB pool initialization failed:", err));
+  module.exports = app;
+}
