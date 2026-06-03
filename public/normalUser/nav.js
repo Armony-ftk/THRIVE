@@ -94,3 +94,98 @@ document.querySelectorAll('.task-check:not(.done)').forEach(cb => {
     } else { cb.innerHTML = ''; label?.classList.remove('done'); }
   });
 });
+
+/* ── Smooth page transitions ────────────────── */
+(function () {
+  document.body.classList.add('page-ready');
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) return;
+    if (link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => { window.location.href = href; }, 260);
+  });
+})();
+
+/* ── Mobile hamburger & nav drawer ─────────── */
+(function () {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+
+  // Inject hamburger button at the start of the topbar
+  const burger = document.createElement('button');
+  burger.className = 'nav-burger';
+  burger.setAttribute('aria-label', 'Toggle navigation');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.innerHTML = `<span></span><span></span><span></span>`;
+  topbar.insertBefore(burger, topbar.firstChild);
+
+  // Build drawer cloning existing topbar links + profile/settings extras
+  const existingLinks = document.querySelector('.topbar-links');
+  const drawer = document.createElement('nav');
+  drawer.className = 'nav-drawer';
+  drawer.setAttribute('aria-hidden', 'true');
+  if (existingLinks) {
+    drawer.innerHTML = existingLinks.innerHTML;
+  }
+
+  // Add divider + Profile + Settings
+  const divider = document.createElement('div');
+  divider.className = 'nav-drawer-divider';
+  drawer.appendChild(divider);
+
+  [['profile.html', 'Profile'], ['settings.html', 'Settings']].forEach(([href, label]) => {
+    const a = document.createElement('a');
+    a.href = href;
+    a.textContent = label;
+    if (window.location.pathname.endsWith(href)) a.classList.add('active');
+    drawer.appendChild(a);
+  });
+
+  // Insert drawer as next sibling of topbar (inside .main-col)
+  topbar.insertAdjacentElement('afterend', drawer);
+
+  let isOpen = false;
+
+  function openDrawer() {
+    isOpen = true;
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeDrawer() {
+    isOpen = false;
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isOpen ? closeDrawer() : openDrawer();
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (isOpen && !topbar.contains(e.target) && !drawer.contains(e.target)) {
+      closeDrawer();
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeDrawer();
+  });
+
+  // Close drawer on link click (page transition handles navigation)
+  drawer.addEventListener('click', (e) => {
+    if (e.target.closest('a')) closeDrawer();
+  });
+})();

@@ -586,6 +586,136 @@
   .tlink:nth-child(n+4) { display: none; }
 }
 
+/* ═══════════════════════════════════════
+   HAMBURGER BUTTON
+═══════════════════════════════════════ */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  padding: 7px;
+  border: none; background: transparent;
+  cursor: pointer; flex-shrink: 0;
+  border-radius: var(--r-sm);
+  transition: background .2s;
+}
+.nav-burger:hover { background: rgba(255,255,255,0.55); }
+
+.nav-burger span {
+  display: block;
+  width: 18px; height: 2px;
+  background: var(--text-2);
+  border-radius: 2px;
+  transition: transform .28s cubic-bezier(.4,0,.2,1), opacity .22s ease, background .2s;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg);  background: var(--violet); }
+.nav-burger.open span:nth-child(2) { opacity: 0;                                 transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--violet); }
+
+/* ═══════════════════════════════════════
+   MOBILE NAV DRAWER
+═══════════════════════════════════════ */
+.nav-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: var(--r-xl);
+  padding: 0 8px;
+  margin-bottom: 0;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1),
+              opacity    .28s ease,
+              padding    .3s ease,
+              margin     .3s ease;
+  box-shadow: 0 8px 32px rgba(100,80,200,0.12);
+}
+.nav-drawer.open {
+  max-height: 400px;
+  opacity: 1;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.nav-drawer a {
+  display: block !important;
+  padding: 11px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px; font-weight: 500;
+  color: var(--text-2);
+  transition: background .18s, color .18s, padding-left .18s;
+}
+.nav-drawer a:hover {
+  background: rgba(255,255,255,0.7);
+  color: var(--text);
+  padding-left: 20px;
+}
+.nav-drawer a.active {
+  background: var(--violet-light);
+  color: var(--violet);
+  font-weight: 600;
+  border: 1px solid var(--violet-mid);
+}
+
+.nav-drawer-divider {
+  height: 1px;
+  background: rgba(124,106,238,0.12);
+  margin: 4px 0;
+}
+
+/* ═══════════════════════════════════════
+   PAGE TRANSITION
+═══════════════════════════════════════ */
+body {
+  opacity: 0;
+  transition: opacity .26s ease;
+}
+body.page-ready {
+  opacity: 1;
+}
+body.page-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-burger       { display: flex; }
+  .nav-drawer       { display: flex; }
+  .topbar-links     { display: none; }
+  .sidebar          { display: none; }
+
+  .shell            { padding: 10px; gap: 0; }
+  .topbar           { top: 10px; margin-bottom: 12px; padding: 0 14px; border-radius: var(--r-lg); }
+  .main-col         { padding-right: 0; }
+
+  .stats-grid       { grid-template-columns: 1fr; }
+  .content-grid     { grid-template-columns: 1fr; }
+
+  .welcome h1       { font-size: 26px; }
+  .stat-value       { font-size: 32px; }
+  .page-title       { font-size: 24px; }
+
+  .page-footer      { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+@media (max-width: 480px) {
+  .shell            { padding: 8px; }
+  .topbar           { top: 8px; height: 50px; }
+  .date-chip        { display: none; }
+  .welcome h1       { font-size: 22px; }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    SHARED PAGE COMPONENTS  (goals, tasks, progress, AI, profile, settings)
 ═══════════════════════════════════════════════════════════════ */
