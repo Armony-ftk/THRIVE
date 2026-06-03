@@ -1,49 +1,43 @@
-const sgMail = require("@sendgrid/mail");
+const supabaseFunctionUrl = process.env.SUPABASE_FUNCTION_URL || (process.env.SUPABASE_URL
+  ? `${process.env.SUPABASE_URL.replace(/\/$/, "")}/functions/v1/send-welcome-email`
+  : null);
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
 async function sendWelcomeEmail(toEmail) {
-  const msg = {
-    to: toEmail,
-    from: {
-      email: process.env.EMAIL_USER, // must be the Gmail you verified in SendGrid
-      name: "Thrive"
-    },
-    replyTo: process.env.EMAIL_USER, // match from address to reduce spam flags
-    subject: "Welcome to Thrive – Your account is ready",
-    text: `Hi there,
+  if (!toEmail) {
+    console.error("Welcome email skipped: missing recipient email.");
+    return;
+  }
 
-Welcome to Thrive! Your account has been created successfully.
-
-You can now log in and start exploring.
-
-If you have any questions, just reply to this email.
-
-– The Thrive Team
-    `,
-    html: `
-      <html>
-        <body style="font-family: Arial, sans-serif; color: #333;">
-          <h2>Welcome to Thrive!</h2>
-          <p>Your account has been created successfully.</p>
-          <p>You can now log in and start exploring.</p>
-          <p>If you have any questions, just reply to this email.</p>
-          <hr>
-          <p style="font-size: 12px; color: #777;">
-            Thrive Project • Contact: thriveuser9@gmail.com
-          </p>
-        </body>
-      </html>
-    `
-  };
+  if (!supabaseFunctionUrl || !supabaseAnonKey) {
+    console.error("Welcome email skipped: missing SUPABASE_FUNCTION_URL or SUPABASE_ANON_KEY.");
+    return;
+  }
 
   try {
-    await sgMail.send(msg);
-    console.log("Welcome email sent!");
+    const response = await fetch(supabaseFunctionUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${supabaseAnonKey}`,
+        apikey: supabaseAnonKey,
+      },
+      body: JSON.stringify({
+        email: toEmail,
+      }),
+    });
+
+    if (!response.ok) {
+      const responseBody = await response.text();
+      console.error("Error sending welcome email via Supabase Edge Function:", responseBody);
+      return;
+    }
+
+    console.log("Welcome email sent via Supabase Edge Function!");
   } catch (error) {
-    console.error("Error sending email:", error.response ? error.response.body : error);
+    console.error("Error calling Supabase Edge Function:", error);
   }
 }
 
-// Example usage
 module.exports = { sendWelcomeEmail };
