@@ -133,5 +133,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.querySelector(".google-btn").addEventListener("click", () => {
   // Always hit the backend server directly
-  window.location.href = "http://localhost:3000/auth/google";
+  window.location.href = "/auth/google";
 });
