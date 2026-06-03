@@ -114,6 +114,10 @@ async function googleCallback(req, res, next) {
 
     const result = await authService.findOrCreateGoogleUser({ name, email });
 
+    if (result.created) {
+      await sendWelcomeEmail(result.user.email);
+    }
+
     // ✅ Save user into session
     setAuthenticatedUser(req, result.user);
 
