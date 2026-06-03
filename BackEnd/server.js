@@ -17,7 +17,6 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 const { poolPromise } = require("./database/connection");
 
 const requiredEnv = [
-  "PORT",
   "SESSION_SECRET",
   "DB_USER",
   "DB_PASSWORD",
