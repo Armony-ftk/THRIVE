@@ -27,5 +27,6 @@ module.exports = {
   options: {
     trustServerCertificate: !isAzure,
     encrypt: isAzure,
+    cryptoCredentialsDetails: isAzure ? { minVersion: "TLSv1.2" } : undefined,
   },
 };

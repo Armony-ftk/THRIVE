@@ -6,7 +6,7 @@ let poolPromise;
 // Lazy pool with retry — handles Azure SQL Serverless cold starts.
 async function getPool() {
   if (poolPromise) return poolPromise;
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 5; attempt++) {
     try {
       const pool = await new sql.ConnectionPool(dbConfig).connect();
       console.log("✔️ MSSQL connection pool created");
@@ -15,8 +15,8 @@ async function getPool() {
       return poolPromise;
     } catch (err) {
       console.error(`DB connection attempt ${attempt} failed:`, err.message);
-      if (attempt === 3) throw err;
-      await new Promise(r => setTimeout(r, 3000 * attempt));
+      if (attempt === 5) throw err;
+      await new Promise(r => setTimeout(r, 5000 * attempt));
     }
   }
 }
