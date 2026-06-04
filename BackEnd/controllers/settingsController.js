@@ -33,14 +33,9 @@ async function changePassword(req, res) {
 };
 
 function signOut(req, res) {
-  // Destroy the session only
-  req.session.destroy(err => {
-    if (err) {
-      return res.status(500).json({ error: "Failed to sign out" });
-    }
-    // ✅ Return JSON with redirect path
-    res.json({ success: true, redirect: "/login.html" });
-  });
+  req.session = {};
+  res.clearCookie("auth_token");
+  res.json({ success: true, redirect: "/login.html" });
 }
 
 async function deleteAccount(req, res) {
@@ -54,13 +49,9 @@ async function deleteAccount(req, res) {
     // Delete from DB first
     await settingsService.deleteAccount(userId);
 
-    // Then destroy session
-    req.session.destroy(err => {
-      if (err) {
-        return res.status(500).json({ error: "Failed to end session" });
-      }
-      res.json({ success: true, redirect: "/login.html" });
-    });
+    req.session = {};
+    res.clearCookie("auth_token");
+    res.json({ success: true, redirect: "/login.html" });
   } catch (err) {
     res.status(500).json({ error: "Failed to delete account" });
   }
