@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
-const session = require("express-session");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
 const aiRoutes = require("./routes/aiRoutes");
@@ -46,13 +46,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
-  session({
+  cookieSession({
+    name: "thrive_session",
     secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  }
-  ),
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    httpOnly: true,
+  })
 );
+// Passport 0.6+ requires these methods on the session object when using cookie-session
+app.use((req, res, next) => {
+  if (req.session && !req.session.regenerate) {
+    req.session.regenerate = (cb) => { cb(); };
+  }
+  if (req.session && !req.session.save) {
+    req.session.save = (cb) => { cb(); };
+  }
+  next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
 
