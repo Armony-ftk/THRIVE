@@ -13,7 +13,7 @@ router.get("/api/current-user", authController.currentUser);
 
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] }),
+  passport.authenticate("google", { scope: ["profile", "email"], session: false }),
 );
 
 router.get(
@@ -21,13 +21,14 @@ router.get(
   passport.authenticate("google", {
     scope: ["profile", "email"],
     prompt: "select_account",
+    session: false,
     callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:3000/auth/google/callback",
   }),
 );
 
 router.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login.html" }),
+  passport.authenticate("google", { failureRedirect: "/login.html", session: false }),
   authController.googleCallback,
 );
 
