@@ -2,7 +2,8 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
-const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
 const aiRoutes = require("./routes/aiRoutes");
@@ -45,28 +46,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
-app.use(
-  cookieSession({
-    name: "thrive_session",
-    secret: SESSION_SECRET,
-    maxAge: 24 * 60 * 60 * 1000,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    httpOnly: true,
-  })
-);
-// Passport 0.6+ requires these methods on the session object when using cookie-session
+app.use(cookieParser());
+
+// JWT auth middleware — stateless, works across all Vercel serverless instances.
 app.use((req, res, next) => {
-  if (req.session && !req.session.regenerate) {
-    req.session.regenerate = (cb) => { cb(); };
-  }
-  if (req.session && !req.session.save) {
-    req.session.save = (cb) => { cb(); };
+  req.session = req.session || {};
+  req.session.save = (cb) => { if (cb) cb(); };
+  const token = req.cookies && req.cookies.auth_token;
+  if (token) {
+    try {
+      const payload = jwt.verify(token, SESSION_SECRET);
+      req.session.user = { id: payload.id, name: payload.name, email: payload.email, role: payload.role };
+    } catch (e) {
+      res.clearCookie("auth_token");
+    }
   }
   next();
 });
 app.use(passport.initialize());
-app.use(passport.session());
 
 // Mount route modules for auth-related endpoints.
 app.use("/", authRoutes);

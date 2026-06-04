@@ -1,15 +1,25 @@
 const authService = require("../services/authService");
 const { sendWelcomeEmail } = require("../services/emailService");
+const jwt = require("jsonwebtoken");
+
+const JWT_COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax",
+  maxAge: 24 * 60 * 60 * 1000,
+};
 
 // Controllers manage request/response only. Business rules stay in services.
-function setAuthenticatedUser(req, user) {
-  // Keep a lightweight user record in the session so frontend routes can fetch the current user.
-  req.session.user = {
+function setAuthenticatedUser(req, res, user) {
+  const userData = {
     id: user.id,
     name: user.name,
     email: user.email,
     role: user.role,
   };
+  req.session.user = userData;
+  const token = jwt.sign(userData, process.env.SESSION_SECRET, { expiresIn: "24h" });
+  res.cookie("auth_token", token, JWT_COOKIE_OPTIONS);
 }
 
 //password
@@ -78,27 +88,18 @@ async function login(req, res, next) {
       return res.redirect("/login.html?error=Invalid+password");
     }
 
-    // ✅ Save user into session
-    setAuthenticatedUser(req, result.user);
+    // ✅ Set JWT cookie and redirect
+    setAuthenticatedUser(req, res, result.user);
 
-    // ✅ Ensure session persists before redirect
-    req.session.save(err => {
-      if (err) {
-        console.error("Session save failed:", err);
-        return res.status(500).json({ error: "Failed to create session" });
-      }
-
-      // Redirect based on role
-      if (role === "user") {
-        return res.redirect("/normalUser/dashboard.html");
-      } else if (role === "admin") {
-        return res.redirect("/adminUser/admin.html");
-      } else if (role === "super_admin") {
-        return res.redirect("/superAdminUser/superAdminDashboard.html");
-      } else {
-        return res.redirect("/login.html?error=invalid_role");
-      }
-    });
+    if (role === "user") {
+      return res.redirect("/normalUser/dashboard.html");
+    } else if (role === "admin") {
+      return res.redirect("/adminUser/admin.html");
+    } else if (role === "super_admin") {
+      return res.redirect("/superAdminUser/superAdminDashboard.html");
+    } else {
+      return res.redirect("/login.html?error=invalid_role");
+    }
   } catch (err) {
     return next(err);
   }
@@ -125,18 +126,9 @@ async function googleCallback(req, res, next) {
       return res.redirect("/login.html?error=Your+account+has+been+suspended");
     }
 
-    // ✅ Save user into session
-    setAuthenticatedUser(req, result.user);
-
-    // ✅ Ensure session persists before redirect
-    req.session.save(err => {
-      if (err) {
-        console.error("Session save failed:", err);
-        return res.status(500).send("Failed to create session");
-      }
-
-      return res.redirect("/normalUser/dashboard.html");
-    });
+    // ✅ Set JWT cookie and redirect
+    setAuthenticatedUser(req, res, result.user);
+    return res.redirect("/normalUser/dashboard.html");
   } catch (err) {
     return next(err);
   }
@@ -169,9 +161,17 @@ async function currentUser(req, res, next) {
   }
 }
 
+function logout(req, res) {
+  res.clearCookie("auth_token");
+  req.session = {};
+  return res.redirect("/login.html");
+}
+
 module.exports = {
   signup,
   login,
   googleCallback,
   currentUser,
+  logout,
 };
+
