@@ -1,18 +1,16 @@
 const sql = require("mssql");
 const dbConfig = require("../config/dbConfig");
 
-let poolPromise;
-
 // Lazy pool with retry — handles Azure SQL Serverless cold starts.
-async function getPool() {
-  if (poolPromise) return poolPromise;
+// poolPromise is assigned synchronously before the first await so concurrent
+// callers all reuse the same in-flight promise instead of each opening a pool.
+async function createPool() {
   for (let attempt = 1; attempt <= 5; attempt++) {
     try {
       const pool = await new sql.ConnectionPool(dbConfig).connect();
       console.log("✔️ MSSQL connection pool created");
       pool.on("error", err => console.error("MSSQL pool error", err));
-      poolPromise = Promise.resolve(pool);
-      return poolPromise;
+      return pool;
     } catch (err) {
       console.error(`DB connection attempt ${attempt} failed:`, err.message);
       if (attempt === 5) throw err;
@@ -21,8 +19,10 @@ async function getPool() {
   }
 }
 
-// Export a promise-compatible interface so existing code works unchanged.
+// Assigned once — all concurrent requires share this single promise.
+const poolPromise = createPool();
+
 module.exports = {
   sql,
-  get poolPromise() { return getPool(); },
+  poolPromise,
 };
